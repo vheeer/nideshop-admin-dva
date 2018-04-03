@@ -1,0 +1,60 @@
+.main {
+	height: 100%;
+}
+.top {
+	position: relative;
+}
+.logo {
+	position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 200px;
+    height: 100%;
+	background: url("../assets/logo.png") 16px 12px no-repeat;
+	background-size: 80%;
+}
+.menu_trigger_box_trigger {
+  font-size: 18px;
+  line-height: 50px;
+  padding: 0 18px 0 26px;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+.menu_trigger_box_trigger:hover {
+  color: #1890ff;
+}
+.ostro_picWall .ant-upload-list-item-info:before {
+  left: 0px;
+}
+.menu_trigger_box {
+
+}
+.header {
+	position: relative;
+	background: #fff;
+	padding: 0;
+}
+.nav {
+    position: relative;
+    top: 15px;
+}
+.nav_login_box {
+	position: relative;
+	float: right;
+	top: 20px;
+	right: 20px;
+	z-index: 1;
+}
+.nav_login_box span, .nav_login_box a {
+	color: white;
+}
+.content {
+	margin: 2px 16px 16px 16px;
+	overflow: initial;
+}
+.content_div {
+	padding: 24px;
+	background: #fff;
+	text-align: center;
+}

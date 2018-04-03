@@ -1,0 +1,9 @@
+.cube_box {
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+}
+.cube_box img {
+	height: 100%;
+	cursor: pointer;
+}

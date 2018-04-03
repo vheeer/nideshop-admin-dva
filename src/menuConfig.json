@@ -1,0 +1,66 @@
+[
+    {
+        "href": "#/", 
+        "word": "主页", 
+        "icon": "home",
+        "title": "主页"
+    }, 
+    {
+        "href": "goods", 
+        "word": "商品管理", 
+        "icon": "user", 
+        "children": [
+            {
+                "href": "#/goods/list", 
+                "word": "货物管理", 
+                "icon": "user", 
+                "title": "货物管理"
+            }, 
+            {
+                "href": "#/goods/brand", 
+                "word": "品牌管理", 
+                "icon": "user", 
+                "title": "品牌管理"
+            }
+        ]
+    }, 
+    {
+        "href": "order", 
+        "word": "订单中心", 
+        "icon": "user", 
+        "children": [
+            {
+                "href": "#/order/list", 
+                "word": "订单列表", 
+                "icon": "user", 
+                "title": "订单列表"
+            }
+        ]
+    }, 
+    {
+        "href": "shop", 
+        "word": "店铺运营", 
+        "icon": "user", 
+        "children": [
+            {
+                "href": "#/shop/topic", 
+                "word": "专题管理", 
+                "icon": "user", 
+                "title": "专题管理"
+            }
+        ]
+    }, 
+    {
+        "href": "vip", 
+        "word": "会员管理", 
+        "icon": "user", 
+        "children": [
+            {
+                "href": "#/vip/list", 
+                "word": "会员列表", 
+                "icon": "user", 
+                "title": "会员列表"
+            }
+        ]
+    }
+]
