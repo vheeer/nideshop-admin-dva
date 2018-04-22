@@ -1,6 +1,6 @@
 'use strict';
-let project = "nide/admin"
-let host = "https://www.dapingkeji.com/" + project;
+let project = "nideshop/admin"
+let host = "https://www.yinmudianying.club/" + project;
 export default {
 	project,
 	host,

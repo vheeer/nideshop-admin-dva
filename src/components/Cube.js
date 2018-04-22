@@ -14,25 +14,25 @@ export default class Cube extends React.Component {
 		if(topCategoryFocusId){
 			cube = (
 				<div data-top_category_focus_id={topCategoryFocusId} className={styles.cube_box}  onClick={this.props.handleOnClick}>
-		    		<img src={this.props.src} />
+		    		<img src={this.props.src} alt="分类图片" />
 		    	</div>
 		    );
 		}else if(firstCategoryFocusId){
 			cube = (
 				<div data-first_category_focus_id={firstCategoryFocusId} className={styles.cube_box}  onClick={this.props.handleOnClick}>
-		    		<img src={this.props.src} />
+		    		<img src={this.props.src} alt="分类图片" />
 		    	</div>
 		    );
 		}else if(goodsFocusId){
 			cube = (
 				<div data-goods_focus_id={goodsFocusId} className={styles.cube_box}  onClick={this.props.handleOnClick}>
-		    		<img src={this.props.src} />
+		    		<img src={this.props.src} alt="商品图片" />
 		    	</div>
 		    );
 		}else{
 			cube = (
 				<div className={styles.cube_box}  onClick={this.props.handleOnClick}>
-		    		<img src={this.props.src} />
+		    		<img src={this.props.src} alt="图片" />
 		    	</div>
 		    );
 		}

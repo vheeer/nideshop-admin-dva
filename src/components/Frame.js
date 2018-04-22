@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Icon, Breadcrumb, Menu, Row, Col } from 'antd';
+import { Layout, Icon, Breadcrumb, Row, Col } from 'antd';
 import styles from './Frame.css';
 import Menus from './Menus';
 const { Header, Sider, Content } = Layout;

@@ -68,9 +68,7 @@ export default {
   effects: {
     *login ({ values }, { call, put }) {
       yield put({ type: 'showLoginLoading' });
-      console.log("values", values);
       const mes = yield call(userService.login, values);
-      console.log("mes", mes);
       yield put({ type: 'hideLoginLoading' });
       if(mes.data.mes === "success"){
         message.success("成功登录");
@@ -87,9 +85,7 @@ export default {
     },
     *register ({ values }, { call, put }) {
       yield put({ type: 'showLoginLoading' });
-      console.log("values", values);
       const mes = yield call(userService.register, values);
-      console.log("mes", mes);
       yield put({ type: 'hideLoginLoading' });
       if(mes.data.mes === "success"){
         message.success("注册成功并登录");
@@ -122,9 +118,7 @@ export default {
     },
     *changePSD ({ values }, { call, put }) {
       yield put({ type: 'showLoginLoading' });
-      console.log("values", values);
       const mes = yield call(userService.changePSD, values);
-      console.log("mes", mes);
       yield put({ type: 'hideLoginLoading' });
       if(mes.data.mes === "success"){
         message.success("更改密码成功");

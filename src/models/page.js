@@ -72,7 +72,6 @@ export default {
       {
         newState[key] = obj[key];
       }
-      console.log("新的model page", newState);
       return newState;
     },
   },
