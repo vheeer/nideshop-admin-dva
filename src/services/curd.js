@@ -11,9 +11,8 @@ export function query() {
    * params { select_description: { id, page, offset, order }, model }
    * @return {Promise} []
    */
-export function read(params) {
-	const { select_description, model } = params;
-	const params_str = objToParams(select_description);
+export function read({ model, ...params }) {
+	const params_str = objToParams(params);
 
 	let url = config.host + '/' + model + '/read?' + params_str;
 
@@ -27,9 +26,8 @@ export function read(params) {
    * params { values, model }
    * @return {Promise} []
    */
-export function create(params) {
-	const { insert_values, model } = params;
-	const params_str = objToParams(insert_values);
+export function create({ model, ...params }) {
+	const params_str = objToParams(params);
 
 	let url = config.host + '/' + model + '/create';
 
@@ -47,9 +45,8 @@ export function create(params) {
    * params { values, model }
    * @return {Promise} []
    */
-export function update(params) {
-	const { update_values, model } = params;
-	const params_str = objToParams(update_values);
+export function update({ model, ...params }) {
+	const params_str = objToParams(params);
 
 	let url = config.host + '/' + model + '/update';
 
@@ -68,10 +65,8 @@ export function update(params) {
    * params { values, model }
    * @return {Promise} []
    */
-export function delete_row(params) {
-	const { id, model } = params;
-	const params_str = objToParams({ id }, { auto_delete_id: false });
-	console.log("params_str", params_str);
+export function delete_row({ model, id }) {
+	const params_str = objToParams({ id });
 
 	let url = config.host + '/' + model + '/delete';
 

@@ -23,7 +23,7 @@ export function numToBool(number) {
 	}
 	return result;
 }
-export function objToParams(obj, { auto_delete_id = true }) {
+export function objToParams(obj) {
 	let str = "";
 	for(let key in obj)
 	{
