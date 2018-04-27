@@ -1,32 +1,15 @@
 import React from 'react';
-import { Button, Form, Input, Modal, InputNumber } from 'antd';
-import SingleImgUploader from './mini_components/SingleImgUploader';
-import MySwitch from './mini_components/MySwitch';
+import { Form, Input, Modal, InputNumber } from 'antd';
 import styles from './GoodsCollectionsPage.css';
-import { boolToNum, numToBool } from '../utils/mini_utils';
-import config from '../config';
 
-const { TextArea } = Input;
 const FormItem = Form.Item;
-const globalData = {};
 
 const GoodsCollectionCreateForm = Form.create({
   onFieldsChange(props, changedFields) {
 
   },
   mapPropsToFields(props) {
-  	const goodsList = props.dataList;
-    const { dataId: editGoodsId, columnMatch, dispatch, count, pageSize, loading, model } = props;
-
-    /*** 获取正在编辑的商品对象 ***/
-  	let editGoodsObj = null;
-  	goodsList.forEach((item) => {
-  		if(item.id === parseInt(editGoodsId, 10)) {
-  			editGoodsObj = item;
-  		}
-  	});
-  	editGoodsObj = editGoodsObj || {};
-    globalData.editGoodsObj = editGoodsObj;
+    const { editGoodsObj, columnMatch } = props;
 
     /*** 表单值生成 ***/
     //填值函数
@@ -57,11 +40,9 @@ const GoodsCollectionCreateForm = Form.create({
           break;
       }
     }
-    
     return fieldsObj;
-    
   },
-  onValuesChange(_, values) {
+  onValuesChange(props, values) {
     console.log(values);
   },
 })(
@@ -70,12 +51,11 @@ const GoodsCollectionCreateForm = Form.create({
   		super(props);
       this.state = {
 
-      };
+      }
   	}
     render() {
-      const { goodsId, visible, onCancel, onCreate, form, columnMatch } = this.props;
+      const { editGoodsObj, visible, onCancel, onCreate, form, columnMatch } = this.props;
       const { getFieldDecorator } = form;
-      const { editGoodsObj } = globalData;
 
       /*** 表单结构生成 ***/
       const fieldsHTML = [];
@@ -136,7 +116,8 @@ const GoodsCollectionCreateForm = Form.create({
                   <Input />
                 )}
               </FormItem>
-            ));  
+            )); 
+            break;
           case "money":
             fieldsHTML.push((
               <FormItem
@@ -154,7 +135,10 @@ const GoodsCollectionCreateForm = Form.create({
                   />
                 )}
               </FormItem>
-            ));  
+            ));
+            break;
+          default:
+            break;
         }
       }
 
@@ -183,24 +167,23 @@ export default class GoodsCollectionsPage extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			visible: false,
-			editGoodsId: null
+
 		};
 	}
   showModal = (event) => {
-  	const editGoodsId = event.currentTarget.dataset.goods_id;
     this.setState({
-    	visible: true,
-    	editGoodsId
+      visible: true
     });
   }
   handleCancel = () => {
-    this.setState({ visible: false });
+      this.setState({ 
+        visible: false
+      });
   }
   handleCreate = () => {
     const props = this.formRef.props;
     const form = props.form;
-    const { dataId: editGoodsId, columnMatch, dispatch, count, pageSize, loading, model, currentPage } = props;
+    const { dispatch, model, currentPage } = props;
     form.validateFields((err, values) => {
       if(err){
         return;
@@ -223,23 +206,32 @@ export default class GoodsCollectionsPage extends React.Component {
         type: model + '/readData',
         page: currentPage
       })
-
-      this.setState({ visible: false });
+      //防止提交后表单值立即重新渲染为修改前数据
+      dispatch({
+        type: model + '/changeDataValues',
+        values: newValues
+      })
+      //关闭
+      this.setState({ 
+        visible: false
+      });
     });
+
   }
   saveFormRef = (formRef) => {
     this.formRef = formRef;
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    const result = nextState.visible !== this.state.visible;
+    if(result)
+      return true;
+    else
+      return false;
+  }
   render() {
     return (
       <span>
-        <a
-          type="primary" 
-          size="small"
-          data-goods_id={this.props.goodsId} 
-          onClick={this.showModal}
-          href={"javascript:void(0);"}
-        >
+        <a onClick={this.showModal}>
           编辑
         </a>
         <GoodsCollectionCreateForm
@@ -248,7 +240,6 @@ export default class GoodsCollectionsPage extends React.Component {
           visible={this.state.visible}
           onCancel={this.handleCancel}
           onCreate={this.handleCreate}
-          editGoodsId={this.state.editGoodsId}
         />
       </span>
     );

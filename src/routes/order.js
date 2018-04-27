@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import styles from './IndexPage.css';
-import { header, content } from 'antd';
+import { header } from 'antd';
 import DataTable from '../components/DataTable';
 
 class Order extends React.Component {

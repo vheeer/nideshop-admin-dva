@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table, Spin, Divider, Icon, Popconfirm, Button, Switch } from 'antd';
-import styles from './Frame.css';
-import OrderCollectionsPage from '../components/OrderCollectionsPage'
+import { Table, Spin, Divider, Popconfirm, Switch } from 'antd';
+import OrderCollectionsPage from '../components/OrderCollectionsPage';
+import styles from './DataTable.css';
 
 export default class DataTable extends React.Component {
 	constructor(props) {
     	super(props);
 		this.state = {
-			
+			...props
 		}
 		this.handleClickEdit = this.handleClickEdit.bind(this);
 		this.handleClickDelete = this.handleClickDelete.bind(this);
 		this.handleClickCreate = this.handleClickCreate.bind(this);
 		this.handleSwitchchange = this.handleSwitchchange.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
 	}
 	static propTypes = {
 		columnMatch: PropTypes.object.isRequired,
@@ -35,7 +36,8 @@ export default class DataTable extends React.Component {
 	handleClickCreate(e) {
 		const { dispatch, model } = this.props;
 		dispatch({
-			type: model + '/createData'
+			type: model + '/createData',
+			order_sn: parseInt(Math.random() * 1000000, 10)
 		});
 		dispatch({
 			type: model + '/readData'
@@ -53,11 +55,14 @@ export default class DataTable extends React.Component {
 
 		dispatch(dispatchObj);
 	}
+	handleInputChange(values, editGoodsObj) {
+		// const newValues = Object.assign(editGoodsObj, values);
+		// this.setState(newValues);
+	}
 	render() {
 		const _that = this;
-		const { dataList, columnMatch, dispatch, count, pageSize, loading, model } = this.props;
+		const { dataList, columnMatch, dispatch, count, pageSize, loading, model, order_status, pay_status } = this.props;
 		const columns = [];
-		const dataSource = [];
 
 		//表头
 		for(const key in columnMatch)
@@ -68,18 +73,18 @@ export default class DataTable extends React.Component {
 				{
 					case 'varchar':
 						columns.push({
+							...columnMatch[key][4],
 							title: columnMatch[key][0],
 							dataIndex: key,
-							key,
-							...columnMatch[key][4]
+							key
 						});
 						break;
 					case 'switch':
 						columns.push({
+							...columnMatch[key][4],
 							title: columnMatch[key][0],
 							dataIndex: key,
 							key,
-							...columnMatch[key][4],
 							render: (data, record) => {
 								return (
 									<Switch 
@@ -90,6 +95,47 @@ export default class DataTable extends React.Component {
 											)(record, key, data)
 										}
 									></Switch>
+								)
+							}
+						});
+						break;
+					case 'avatar':
+						columns.push({
+							...columnMatch[key][4],
+							title: columnMatch[key][0],
+							dataIndex: key,
+							key,
+							render: (data, record) => {
+								return (
+									<img src={data} width={50} alt={record.nickname} />
+								)
+							}
+						});
+						break;
+					case 'order_status':
+						columns.push({
+							...columnMatch[key][4],
+							title: columnMatch[key][0],
+							dataIndex: key,
+							key,
+							render: (data, record) => {
+								const statusText = order_status(data);
+								return (
+									<span>{ statusText }</span>
+								)
+							}
+						});
+						break;
+					case 'pay_status':
+						columns.push({
+							...columnMatch[key][4],
+							title: columnMatch[key][0],
+							dataIndex: key,
+							key,
+							render: (data, record) => {
+								const statusText = pay_status(data);
+								return (
+									<span>{ statusText }</span>
 								)
 							}
 						});
@@ -107,7 +153,13 @@ export default class DataTable extends React.Component {
 		  render: (data, record) => {
 		  	return (
 			    <div>
-			      <OrderCollectionsPage {...this.props} dataId={data.id} />
+			      <OrderCollectionsPage 
+				      columnMatch={columnMatch}
+				      dispatch={dispatch}
+				      model={model}
+				      editGoodsObj={record} 
+				      handleInputChange={this.handleInputChange} 
+			      />
 			      <Divider type="vertical" />
 			      <Popconfirm 
 			      	title="删除后将不可恢复！"
@@ -115,15 +167,7 @@ export default class DataTable extends React.Component {
 			       	okText={"确认"}	
 			       	cancelText={"取消"}
 			      >
-		          	<a
-			          type="primary" 
-			          size="small"
-			          data-goods_id={this.props.goodsId} 
-			          onClick={this.showModal}
-			          href={"javascript:void(0);"}
-			        >
-			          删除
-			        </a>
+		          	<a>删除</a>
 		          </Popconfirm>
 			    </div>
 		  	)},
@@ -131,9 +175,10 @@ export default class DataTable extends React.Component {
 
 		return (
 			<div>
-				<button onClick={this.handleClickCreate}>添加</button>
+				{/*<button onClick={this.handleClickCreate}>添加</button>*/}
 				<Spin spinning={loading}>
 					<Table 
+						rowClassName={styles.row}
 						scroll={{ x: 5000 }}
 						columns={columns} 
 						dataSource={dataList} 
