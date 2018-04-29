@@ -57,8 +57,10 @@
         },
         //拉取数据
         *readData({ type, ...readDesc }, { call, put }) {
+          //使用副本对象，防止默认对象defaultReadDesc被修改
+          const defaultReadDescCopy = Object.assign({}, defaultReadDesc);
           //确认拉取形式
-          const currentReadDesc = Object.assign(defaultReadDesc, readDesc);
+          const currentReadDesc = Object.assign(defaultReadDescCopy, readDesc);
           //加载中状态
           yield put({ type: 'toggleLoading', loading: true });
           //拉取数据
@@ -97,6 +99,17 @@
         toggleLoading(state, { loading }) {
           let newState = Object.assign({}, state);
               newState.loading = loading;
+          return newState;
+        },
+        //按id修改记录值
+        changeDataValues(state, { values }) {
+          const { id } = values; 
+          let newState = Object.assign({}, state);
+          newState.dataList.forEach((item) => {
+            if(item.id === id){
+              item = Object.assign(item, values);
+            }
+          });
           return newState;
         }
       }

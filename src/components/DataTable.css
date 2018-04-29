@@ -1,3 +1,43 @@
 .row {
-	height: 86px;
+    行高 = 头像高度（宽度） + 16px * 2
+	height: 50px;
+}
+.operation {
+	padding: 0 0 8px 0;
+}
+.select {
+	width: 120px;
+}
+.create {
+	float: right;
+}
+.key {
+	float: left;
+    width: 100px;
+}
+.value {
+	float: left;
+    width: 200px;
+    margin: 0 0 0 8px;
+}
+.search {
+	float: left;
+    width: 60px;
+    margin: 0px 0 0 8px;
+}
+.pageSize {
+    float: left;
+    width: 60px;
+    margin: 0px 0 0 8px;
+}
+.alert {
+    text-align: left;
+    margin: 0 0 10px 0;
+}
+.avatar {
+    position: absolute;
+    width: 35px;
+    margin: -18px 0px 0px 0px;
+    left: 10px;
+    border-radius: 2px;
 }

@@ -33,3 +33,13 @@ export function objToParams(obj) {
 	str = str.substr(0, str.length - 1);
 	return str;
 }
+
+export function getDiff(nextObj, currentObj) {
+	const diff = [];
+	for(const key in nextObj)
+	{
+    	if(nextObj[key] !== currentObj[key])
+    		diff.push(key);
+    }
+    return diff;
+}

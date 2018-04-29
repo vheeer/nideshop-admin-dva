@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Modal, InputNumber } from 'antd';
+import { getDiff } from '../utils/mini_utils';
 import styles from './GoodsCollectionsPage.css';
 
 const FormItem = Form.Item;
@@ -222,11 +223,15 @@ export default class GoodsCollectionsPage extends React.Component {
     this.formRef = formRef;
   }
   shouldComponentUpdate(nextProps, nextState) {
-    const result = nextState.visible !== this.state.visible;
+    //获取DIFF
+    const diffState = getDiff(nextState, this.state);
+    //不重新渲染条件
+    const result = diffState.indexOf("visible") === -1;
+
     if(result)
-      return true;
-    else
       return false;
+    else
+      return true;
   }
   render() {
     return (
