@@ -1,13 +1,15 @@
 import React from 'react';
 import { Router, Route, Switch } from 'dva/router';
 import { connect } from 'dva';
+import Frame from './components/Frame';
+
 import IndexPage from './routes/IndexPage';
 import Login from './routes/Login';
 import Register from './routes/Register';
 import ChangePSD from './routes/ChangePSD';
 import Goods from './routes/Goods';
 import Order from './routes/Order';
-import Frame from './components/Frame';
+
 let WrapFrame = connect(({ page, user }) => ({
   page, 
   user
@@ -21,7 +23,9 @@ function RouterConfig({ history }) {
 		   		<Route path="/login" exact component={Login} />
 		   		<Route path="/register" exact component={Register} />
 		   		<Route path="/changePSD" exact component={ChangePSD} />
+
 		   		<Route path="/goods/list" exact component={Goods} />
+
 		   		<Route path="/order/list" exact component={Order} />
 			</WrapFrame>
 		</Switch>

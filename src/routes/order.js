@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
 import styles from './IndexPage.css';
-import { header } from 'antd';
 import DataTable from '../components/DataTable';
 
 class Order extends React.Component {
@@ -10,12 +9,6 @@ class Order extends React.Component {
 		this.state = {
 			
 		}
-		this.handleClick = this.handleClick.bind(this);
-	}
-	handleClick(e) {
-		// this.props.dispatch({
-		// 	type: 'order/test'
-		// });
 	}
   	render() {
   		const { dispatch } = this.props;
@@ -23,7 +16,6 @@ class Order extends React.Component {
 		    <div className={styles.normal}>
 		      <DataTable
 			      {...this.props.order}
-			      
 			      model={"order"}
 			      dispatch={dispatch}
 		      />
@@ -31,6 +23,4 @@ class Order extends React.Component {
 	    )
 	}
 }
-
-
 export default connect(({ order }) => ({ order }))(Order);

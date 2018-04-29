@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table, Spin, Divider, Popconfirm, Switch, Input, Select, Button, Message, Row, Col, Icon, Alert } from 'antd';
+import { Table, Spin, Divider, Popconfirm, Switch, Input, Select, Button, Message, Row, Icon, Alert } from 'antd';
 import OrderCollectionsPage from '../components/OrderCollectionsPage';
 import { getDiff } from '../utils/mini_utils';
 import styles from './DataTable.css';
@@ -9,7 +9,6 @@ const { Option } = Select;
 export default class DataTable extends React.Component {
 	constructor(props) {
     	super(props);
-    	console.log("propsc", props);
 		this.state = {
 			...props,
 			key: '__none',
@@ -81,11 +80,11 @@ export default class DataTable extends React.Component {
 		});
 	}
 	handleInputClick() {
-		console.log("this.state", this.state);
-		const { dispatch, model } = this.props;
+		const { model } = this.props;
 		//查询第一页
-		this.state.currentPage = 1;
-		const { key, value, pageSize, currentPage: page } = this.state;
+		const page = 1;
+		this.setState({ currentPage: page });
+		const { key, value, pageSize } = this.state;
 		if(value === "" && key !== "__none")
 			return Message.warning("请填写查询内容");
 		if(key !== "__none")
@@ -110,7 +109,7 @@ export default class DataTable extends React.Component {
 	}
 	shouldComponentUpdate(nextProps, nextState) {
 		//获取DIFF
-		const diffProps = getDiff(nextProps, this.props);
+		// const diffProps = getDiff(nextProps, this.props);
 		const diffState = getDiff(nextState, this.state);
 		//不重新渲染条件
 		const result = diffState.length === 1 && diffState[0] === "pageSize";
@@ -228,6 +227,7 @@ export default class DataTable extends React.Component {
 								)
 							}
 						});
+						break;
 					default:
 						break;
 				}
@@ -285,7 +285,7 @@ export default class DataTable extends React.Component {
 				    	{Options}
 				    </Select>
 				    <Input type="text" className={styles.value} value={value} placeholder={holder} onChange={this.inputHandleChange} disabled={key === "__none"} />
-				    <Select defaultValue="10" className={styles.pageSize} onChange={this.pageSizeHandleChange}>
+				    <Select defaultValue="7" className={styles.pageSize} onChange={this.pageSizeHandleChange}>
 				    	<Option value={7}>7</Option>
 				    	<Option value={15}>15</Option>
 				    	<Option value={20}>20</Option>
