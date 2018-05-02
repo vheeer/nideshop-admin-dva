@@ -2,24 +2,6 @@
   import { message } from 'antd';
   const getModalDesc = (model, { defaultCreateDesc, defaultUpdateDesc, defaultReadDesc }) => {
     return {
-      subscriptions: {
-        setup({ dispatch, history }) {
-          history.listen(location => {
-            const hash = window.location.hash.split("#/")[1];
-            switch(hash)
-            {
-              case model + '/list':
-                // read
-                dispatch({ 
-                  type: 'readData'
-                });
-                break;
-              default:
-                break;
-            }
-          });
-        }
-      },
       effects: {
         //添加数据
         *createData({ type, ...createDesc }, { call, put }) {

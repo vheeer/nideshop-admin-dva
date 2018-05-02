@@ -19,9 +19,13 @@ const app = dva({
 // 3. Model
 // app.model(require('./models/example').default);
 app.model(require('./models/page').default);
-app.model(require('./models/user').default);
+app.model(require('./models/account').default);
+
 app.model(require('./models/goods').default);
 app.model(require('./models/order').default);
+app.model(require('./models/brand').default);
+app.model(require('./models/topic').default);
+app.model(require('./models/user').default);
 
 // 4. Router
 app.router(require('./router').default);

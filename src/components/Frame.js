@@ -19,21 +19,20 @@ export default class Frame extends React.Component {
   }
   handleClickLogout() {
     this.props.dispatch({
-      type: "user/logout"
+      type: "account/logout"
     });
   }
   static propTypes = {  
     
   }
   render() {
-    console.log("props of Frame: ", this.props);
     return (
       <Layout className={styles.main}>
         <Header className={styles.top}>
           <div className={styles.logo} />
           <div className={styles.nav_login_box}>
           {
-            !this.props.user.id
+            !this.props.account.id
             ?
             <Breadcrumb>
               <Breadcrumb.Item><a href="#/login" onClick={this.props.handleClickLogin}>登录</a></Breadcrumb.Item>

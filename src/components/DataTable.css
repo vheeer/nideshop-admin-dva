@@ -1,5 +1,5 @@
 .row {
-    行高 = 头像高度（宽度） + 16px * 2
+    /*行高 = 头像高度（宽度） + 16px * 2*/
 	height: 50px;
 }
 .operation {
@@ -40,4 +40,12 @@
     margin: -18px 0px 0px 0px;
     left: 10px;
     border-radius: 2px;
+}
+.image_box {
+    width: 110px;
+    height: 50px;
+    overflow: hidden;
+}
+.image {
+    height: 100%;
 }

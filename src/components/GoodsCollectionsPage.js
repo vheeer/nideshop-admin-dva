@@ -207,6 +207,7 @@ const GoodsCollectionCreateForm = Form.create({
               })(
                 <SingleImgUploader
                   {...this.props} 
+                  name={'prima_pic_url'}
                   action={config.host + "/goods/changeImage?column=prima_pic_url&goodsId=" + goodsId} 
                 />
               )}
@@ -219,6 +220,7 @@ const GoodsCollectionCreateForm = Form.create({
               })(
                 <SingleImgUploader
                   {...this.props} 
+                  name={'list_pic_url'}
                   action={config.host + "/goods/changeImage?column=list_pic_url&goodsId=" + goodsId} 
                 />
               )}

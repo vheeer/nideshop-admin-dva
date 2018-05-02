@@ -15,12 +15,6 @@
                 "word": "货物管理", 
                 "icon": "user", 
                 "title": "货物管理"
-            }, 
-            {
-                "href": "#/goods/brand", 
-                "word": "品牌管理", 
-                "icon": "user", 
-                "title": "品牌管理"
             }
         ]
     }, 
@@ -47,6 +41,12 @@
                 "word": "专题管理", 
                 "icon": "user", 
                 "title": "专题管理"
+            }, 
+            {
+                "href": "#/shop/brand", 
+                "word": "制造商", 
+                "icon": "user", 
+                "title": "制造商"
             }
         ]
     }, 

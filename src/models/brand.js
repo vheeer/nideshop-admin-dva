@@ -1,16 +1,17 @@
 import getModalDesc from './curd';
 
 //命名空间
-const namespace = "user";
+const namespace = "brand";
 //全局提示
-const alertMessage = "您可以在这里查看访客";
+const alertMessage = "您可以在这里设置品牌";
 //默认每页条数
 const pageSize = 7;
 //操作列宽度
 const actionWidth = 108;
 //默认添加形式
 const defaultCreateDesc = {
-  model: namespace
+  model: namespace,
+  pay_status: 0
 }
 //默认更新形式
 const defaultUpdateDesc = {
@@ -37,19 +38,20 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * 4个汉字宽90px 5个汉字宽105px
  */
 const columnMatch = {
-         avatar: ["头像", true, 'image', true, {width: 60, fixed: 'left'}, "avatar", true],
-             id: ["ID", false, 'varchar required', true, {width: 120}, "varchar", true],
-       username: ["用户名", false, 'varchar', true, {width: 150}, "varchar", true],
-         gender: ["性别", false, 'varchar', true, {width: 150}, "varchar", true],
-       birthday: ["生日", true, 'varchar', true, {width: 180}, "date_time", true],
-  register_time: ["注册时间", true, 'varchar', true, {width: 180}, "date_time", true],
-last_login_time: ["上次登录时间", true, 'varchar', true, {width: 180}, "date_time", true],
-  last_login_ip: ["上次登陆ip", false, 'varchar', true, {width: 150}, "varchar", true],
-  user_level_id: ["用户等级id", true, 'varchar', true, {width: 150}, "varchar", true],
-       nickname: ["昵称", true, 'varchar', true, {width: 150}, "varchar", true],
-         mobile: ["手机", true, 'varchar', true, {width: 150}, "varchar", true],
-    register_ip: ["注册ip", false, 'varchar', true, {width: 150}, "varchar", true],
-};
+                     id: ["ID", false, 'varchar required', true, {width: 120, fixed: 'left'}, "varchar", true],
+                   name: ["名称", true, 'varchar', true, {width: 150, fixed: 'left'}, "varchar", true],
+           list_pic_url: ["list_pic_url", true, 'image', true, {width: 150}, "image", true],
+            simple_desc: ["简短描述", true, 'textArea', true, {width: 450}, "varchar", true],
+               add_time: ["添加时间", true, 'varchar', false, {width: 180}, "date_time", false],
+                pic_url: ["pic_url", true, 'image', true, {width: 150}, "image", true],
+             sort_order: ["排序", true, 'varchar', true, {width: 150}, "varchar", true],
+                is_show: ["是否显示", true, 'varchar', true, {width: 150}, "switch", true],
+            floor_price: ["floor_price", true, 'varchar', true, {width: 150}, "varchar", true],
+       app_list_pic_url: ["app_list_pic_url", true, 'image', true, {width: 150}, "image", true],
+                 is_new: ["新品", true, 'varchar', true, {width: 150}, "switch", true],
+            new_pic_url: ["new_pic_url", true, 'image', true, {width: 150}, "image", true],
+         new_sort_order: ["new_sort_order", true, 'number', true, {width: 150}, "varchar", true],
+    };
 //计算表格总宽度
 const totalWidth = (() => {
   let totalWidth = 0;
@@ -72,7 +74,7 @@ export default {
       let fun = location => {
         if(typeof fun["executed"] === "undefined"){
           const hash = window.location.hash.split("#/")[1];
-          if(hash === 'vip/list'){
+          if(hash === 'shop/brand'){
             dispatch({
               type: 'readData'
             });

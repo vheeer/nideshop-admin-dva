@@ -127,11 +127,32 @@ export default class DataTable extends React.Component {
 		const _that = this;
 		const { dataList, columnMatch, dispatch, count, loading, model, order_status, pay_status, totalWidth, actionWidth, alertMessage, currentPage: page } = this.props;
 		const { pageSize, key, value } = this.state;
+    	console.log("props of DataTable: ", this.props);
+    	console.log("columnMatch: ", columnMatch);
+
+    	//查询到的字段列表
+    	let keys = [];
+    	if(dataList.length !== 0)
+    		keys = Object.keys(dataList[0]);
 
 		//表头
 		const columns = [];
-		for(const key in columnMatch)
+		for(const key of keys)
 		{
+			//字段对应表中没有有相应的字段
+			if(typeof columnMatch[key] === "undefined")
+			{
+				if(key.indexOf("avatar") > -1){
+					columnMatch[key] = ["头像", true, 'varchar', true, {width: 60,fixed: 'left'}, "avatar", false]
+				}
+				if(key.indexOf("add_time") > -1){
+					columnMatch[key] = ["下单时间", true, 'varchar', false, {width: 180}, "date_time", false]
+				}
+				if(key.indexOf("swtich") > -1){
+					columnMatch[key] = ["是否显示", true, 'varchar', false, {width: 150}, "switch", false]
+				}
+			}
+			//字段对应表中有相应的字段,且显示
 			if(columnMatch[key][1] === true)
 			{
 				switch(columnMatch[key][5])
@@ -171,6 +192,8 @@ export default class DataTable extends React.Component {
 							dataIndex: key,
 							key,
 							render: (data, record) => {
+								if(!data || data === "")
+									data = "https://www.yinmudianying.club/nideshop/files/images/default.png";
 								return (
 									<img 
 										src={data} 
@@ -178,6 +201,25 @@ export default class DataTable extends React.Component {
 										alt={record.nickname}
 										className={styles.avatar}
 									/>
+								)
+							}
+						});
+						break;
+					case 'image':
+						columns.push({
+							...columnMatch[key][4],
+							title: columnMatch[key][0],
+							dataIndex: key,
+							key,
+							render: (data, record) => {
+								return (
+									<div className={styles.image_box}>
+										<img 
+											src={data} 
+											alt={columnMatch[key][0]}
+											className={styles.image}
+										/>
+									</div>
 								)
 							}
 						});

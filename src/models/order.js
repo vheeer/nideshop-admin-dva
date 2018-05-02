@@ -25,7 +25,7 @@ const defaultReadDesc = {
   pageSize
 }
 //获取模型操作过程
-const { subscriptions, effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defaultUpdateDesc, defaultReadDesc });
+const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defaultUpdateDesc, defaultReadDesc });
 /*
  * 字段对应表  
  * columnMatch: {
@@ -139,7 +139,20 @@ export default {
     loading: false
   },
   subscriptions: {
-    ...subscriptions
+    setup({ dispatch, history }) {
+      let fun = location => {
+        if(typeof fun["executed"] === "undefined"){
+          const hash = window.location.hash.split("#/")[1];
+          if(hash === namespace + '/list'){
+            dispatch({
+              type: 'readData'
+            });
+            fun["executed"] = true;
+          }
+        }
+      };
+      history.listen(fun);
+    }
   },
   effects: {
     ...effects

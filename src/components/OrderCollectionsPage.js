@@ -1,8 +1,10 @@
 import React from 'react';
 import { Form, Input, Modal, InputNumber } from 'antd';
 import { getDiff } from '../utils/mini_utils';
-import styles from './GoodsCollectionsPage.css';
-
+import SingleImgUploader from './mini_components/SingleImgUploader';
+import styles from './OrderCollectionsPage.css';
+import config from '../config';
+const { TextArea } = Input;
 const FormItem = Form.Item;
 
 const GoodsCollectionCreateForm = Form.create({
@@ -16,7 +18,7 @@ const GoodsCollectionCreateForm = Form.create({
     //填值函数
     const KV = (key, value) => {
       fieldsObj[key] = Form.createFormField({
-        value: value
+        value
       });
     }
     const fieldsObj = {};
@@ -31,11 +33,28 @@ const GoodsCollectionCreateForm = Form.create({
         case "varchar":
           KV(key, editGoodsObj[key]);
           break;
+        case "textArea":
+          KV(key, editGoodsObj[key]);
+          break;
         case "varchar required":
+          KV(key, editGoodsObj[key]);
+          break;
+        case "number":
           KV(key, editGoodsObj[key]);
           break;
         case "money":
           KV(key, editGoodsObj[key]);
+          break;
+        case "image":
+          const filelist = [{
+            uid: -1,
+            name: columnMatch[key][0],
+            status: 'done',
+            url: editGoodsObj[key]
+          }];
+          fieldsObj[key] = Form.createFormField({
+            value: filelist
+          });
           break;
         default:
           break;
@@ -55,7 +74,7 @@ const GoodsCollectionCreateForm = Form.create({
       }
   	}
     render() {
-      const { editGoodsObj, visible, onCancel, onCreate, form, columnMatch } = this.props;
+      const { editGoodsObj, visible, onCancel, onCreate, form, columnMatch, model } = this.props;
       const { getFieldDecorator } = form;
 
       /*** 表单结构生成 ***/
@@ -90,7 +109,6 @@ const GoodsCollectionCreateForm = Form.create({
         //默认字段类型
         switch(columnMatch[key][2])
         {
-          //默认
           case "varchar":
             fieldsHTML.push((
               <FormItem
@@ -104,7 +122,21 @@ const GoodsCollectionCreateForm = Form.create({
                 )}
               </FormItem>
             ));
-          break;
+            break;
+          case "textArea":
+            fieldsHTML.push((
+              <FormItem
+                key={key}
+                label={columnMatch[key][0]}
+              >
+                {getFieldDecorator(key, {
+                  rules: [{ required: false, message: '' }],
+                })(
+                  <TextArea className={styles.textArea} />
+                )}
+              </FormItem>
+            ));
+            break;
           case "varchar required":
             fieldsHTML.push((
               <FormItem
@@ -118,6 +150,23 @@ const GoodsCollectionCreateForm = Form.create({
                 )}
               </FormItem>
             )); 
+            break;
+          case "number":
+            fieldsHTML.push((
+              <FormItem
+                key={key}
+                label={columnMatch[key][0]}
+              >
+                {getFieldDecorator(key, {
+                  rules: [{ required: false, message: '请输入价格' }],
+                })(
+                  <InputNumber
+                    min={0}
+                    max={500000}
+                  />
+                )}
+              </FormItem>
+            ));
             break;
           case "money":
             fieldsHTML.push((
@@ -138,6 +187,23 @@ const GoodsCollectionCreateForm = Form.create({
               </FormItem>
             ));
             break;
+          case "image":
+            fieldsHTML.push((
+              <FormItem
+                key={key}
+                label={columnMatch[key][0]}
+              >
+                {getFieldDecorator(key, {
+                  rules: [{ required: false, message: '请输入价格' }],
+                })(
+                  <SingleImgUploader
+                    name={columnMatch[key][0]}
+                    action={config.host + "/" + model + "/changeImage?column=" + key + "&id=" + editGoodsObj['id']} 
+                  />
+                )}
+              </FormItem>
+            ));
+            break;
           default:
             break;
         }
@@ -151,7 +217,7 @@ const GoodsCollectionCreateForm = Form.create({
           cancelText="取消"
           onCancel={onCancel}
           onOk={onCreate}
-          className={styles.modal}
+          className={styles.model}
         >
           <Form layout="vertical">
             {
