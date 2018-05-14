@@ -16,7 +16,7 @@ export default {
       history.listen(location => {
         let userName,id,login;
         //测试时使用默认登录态
-        if(window.location.origin === "http://localhost:8000"){
+        if(window.location.origin === "http://localhost:8000" || 1){
           userName = "zhangjizhe1993728@126.com";
           id = 14;
           dispatch({
