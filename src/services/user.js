@@ -3,18 +3,19 @@ import config from '../config';
 
 export function login(data) {
   console.log("service: data ", JSON.stringify(data));
-  return request(config.host + '/user_login', {
+  return request(config.host + '/user_login/index', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      'withCredentials': true
       //'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data).replace('\'','"'),
+    body: "userName=" + data.userName + "&&password=" + data.password
   });
 }
 export function register(data) {
   console.log("service: data ", JSON.stringify(data));
-  return request(config.host + '/user_register', {
+  return request(config.host + '/user_register/index', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
@@ -25,7 +26,7 @@ export function register(data) {
 }
 export function logout(data) {
   console.log("service: data ", JSON.stringify(data));
-  return request(config.host + '/user_logout', {
+  return request(config.host + '/user_logout/index', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',

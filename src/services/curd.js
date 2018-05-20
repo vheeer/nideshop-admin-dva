@@ -20,6 +20,20 @@ export function read({ model, ...params }) {
 		method: 'get'
 	});
 }
+  /**
+   * readColumn request
+   * params readDesc
+   * @return {Promise} []
+   */
+export function readColumn({ model, ...params }) {
+	const params_str = objToParams(params);
+
+	let url = config.host + '/' + model + '/readcolumn';
+
+	return request(url, {
+		method: 'get'
+	});
+}
 
   /**
    * create request

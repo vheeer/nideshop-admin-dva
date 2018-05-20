@@ -2,9 +2,9 @@ import getModalDesc from './curd';
 import menuConfig from '../menuConfig';
 
 //命名空间
-const namespace = "brand";
+const namespace = "others";
 //全局提示
-const alertMessage = "您可以在这里设置产品";
+const alertMessage = "您可以在这里查看用户的反馈";
 //默认每页条数
 const pageSize = 7;
 //操作列宽度
@@ -39,20 +39,22 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * 4个汉字宽90px 5个汉字宽105px
  */
 const columnMatch = {
-                     id: ["ID", true, 'varchar', true, "varchar required", {width: 120, fixed: 'left'}, true],
-                   name: ["名称", true, 'varchar', true, "varchar", {width: 150, fixed: 'left'}, true],
-           list_pic_url: ["list_pic_url", true, 'image', true, "image", {width: 150}, true],
-            simple_desc: ["简短描述", true, 'varchar', true, "varchar", {width: 150}, true],
-                pic_url: ["pic_url", true, 'image', true, "image", {width: 150}, true],
-             sort_order: ["排序", true, 'varchar', true, "varchar", {width: 150}, true],
-                is_show: ["是否显示", true, 'switch', true, "switch", {width: 150}, true],
-            floor_price: ["floor_price", true, 'varchar', true, "varchar", {width: 150}, true],
-       app_list_pic_url: ["app_list_pic_url", true, 'image', true, "image", {width: 150}, true],
-                 is_new: ["新品", true, 'switch', true, "switch", {width: 150}, true],
-            new_pic_url: ["新品图片", true, 'image', true, "image", {width: 150}, true],
-         new_sort_order: ["新品排序", true, 'varchar', true, "varchar", {width: 150}, true],
-               add_time: ["添加时间", true, 'date_time', true, "varchar", {width: 200}, true],
-    };
+                      id: ["ID", true, 'varchar', true, "varchar required", {width: 120, fixed: 'left'}, true],
+                    name: ["名称", true, 'varchar', true, "varchar", {width: 150}, true],
+                 freight: ["运费", true, 'varchar', true, "money", {width: 150}, true],
+             brand_title: ["制造商标题", true, 'varchar', true, "varchar", {width: 150}, true],
+               new_title: ["新品标题", true, 'varchar', true, "varchar", {width: 150}, true],
+               hot_title: ["热卖标题", true, 'varchar', true, "varchar", {width: 150}, true],
+             topic_title: ["专题标题", true, 'varchar', true, "varchar", {width: 150}, true], 
+                add_time: ["添加时间", true, 'date_time', true, "varchar", {width: 250}, true],
+        service_policy_1: ["服务1", true, 'varchar', true, "varchar", {width: 170}, true],
+        service_policy_2: ["服务2", true, 'varchar', true, "varchar", {width: 170}, true],
+        service_policy_3: ["服务3", true, 'varchar', true, "varchar", {width: 170}, true],
+         hot_goods_title: ["热品标题", true, 'varchar', true, "varchar", {width: 170}, true],
+    hot_goods_bannar_url: ["热品大图", true, 'image', true, "image", {width: 170}, true],
+         new_goods_title: ["新品标题", true, 'varchar', true, "varchar", {width: 170}, true],
+    new_goods_bannar_url: ["新品大图", true, 'image', true, "image", {width: 170}, true],
+};
 //计算表格总宽度
 const totalWidth = (() => {
   let totalWidth = 0;

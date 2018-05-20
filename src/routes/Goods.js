@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import styles from './Goods.css';
-import { Row, Col, Button } from 'antd';
+import { Row, Col, Button, Alert } from 'antd';
 import Cube from '../components/Cube';
 import CategoryCollectionsPage from '../components/CategoryCollectionsPage';
 import GoodsCollectionsPage from '../components/GoodsCollectionsPage';
@@ -165,6 +165,7 @@ class Goods extends React.Component {
 		return (
 			<div>
 				{/* 顶级分类 */}
+				<Alert className={styles.alert} message="顶级分类" type="info" />
 				<Row type="flex" justify="middle">
 				{
 					this.props.goods.topCategory.map((item, index) => {
@@ -172,7 +173,7 @@ class Goods extends React.Component {
 							<Col key={item.id} className={styles.category_col}>
 								<Cube
 									handleOnClick={this.handleTopCategoryClick}
-									src={item.img_url}
+									src={item.wap_banner_url}
 									topCategoryFocusId={item.id}
 								>
 								</Cube>
@@ -187,6 +188,7 @@ class Goods extends React.Component {
 				</Button>
 				</Row>
 				{/* 一级分类 */}
+				<Alert className={styles.alert} message="一级分类" type="info" />
 				<Row type="flex" justify="middle">
 				{
 					firstCategory_now.map((item, index) => {
@@ -194,7 +196,7 @@ class Goods extends React.Component {
 							<Col key={item.id} className={styles.category_col}>
 								<Cube
 									handleOnClick={this.handleFirstCategoryClick}
-									src={item.wap_banner_url}
+									src={item.icon_url}
 									firstCategoryFocusId={item.id}
 								>
 								</Cube>
@@ -208,7 +210,8 @@ class Goods extends React.Component {
 					添加
 				</Button>
 				</Row>
-				{/* 货物列表 */}
+				{/* 商品列表 */}
+				<Alert className={styles.alert} message="商品列表" type="info" />
 				<Row type="flex" justify="middle">
 				{
 					this.props.goods.goodsList.map((item, index) => {
@@ -230,7 +233,8 @@ class Goods extends React.Component {
 					添加
 				</Button>
 				</Row>
-				{/* 展示图列表 */}
+				<Alert className={styles.alert} message="商品展示图列表" type="info" />
+				{/* 商品展示图列表 */}
 				<Row type="flex" justify="middle">
 				<div className={"ostro_picWall"}>
 					<MultiImgUploader
@@ -257,6 +261,7 @@ class Goods extends React.Component {
 				*/}
 				</Row>
 				{/* 商品描述 */}
+				<Alert className={styles.alert} message="商品描述" type="info" />
 				<Row type="flex" justify="middle">
 				{/*
 					<Col className={styles.category_col}>
@@ -270,14 +275,14 @@ class Goods extends React.Component {
 					!this.state.toggleEditor
 					?
 					<div className={styles.goods_desc_box}>
-						<button onClick={this.handleToggleEditor}>{this.state.toggleEditor?"取消":"编辑"}</button>
+						<Button type="primary" onClick={this.handleToggleEditor}>{this.state.toggleEditor?"取消":"编辑"}</Button>
 						<Col className={styles.category_col}>
 							<div dangerouslySetInnerHTML={{ __html: goods_desc }} />
 						</Col>
 					</div>
 					:
 					<div className={styles.goods_desc_box}>
-						<button onClick={this.handleToggleEditor}>{this.state.toggleEditor?"取消":"编辑"}</button>
+						<Button type="primary" onClick={this.handleToggleEditor}>{this.state.toggleEditor?"取消":"编辑"}</Button>
 						<RichText 
 							onSave={this.handleDescSave} 
 							richText={goods_desc} 

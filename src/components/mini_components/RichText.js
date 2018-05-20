@@ -1,5 +1,6 @@
 import React from 'react';
 import './RichText.css';
+import { Button } from 'antd';
 // import E from 'wangeditor';
 // import E from '../../routes/wangEditor';
 const E = window.wangEditor;
@@ -18,7 +19,7 @@ export default class RichText extends React.Component {
         <div ref="editorElem" style={{textAlign: 'left'}}>
         </div>
 
-        <button onClick={this.clickHandle.bind(this)}>获取内容</button>
+        <Button type="primary" onClick={this.clickHandle.bind(this)}>确认修改</Button>
       </div>
     );
   }

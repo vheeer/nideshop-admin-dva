@@ -3,43 +3,42 @@ import { Router, Route, Switch } from 'dva/router';
 import { connect } from 'dva';
 import Frame from './components/Frame';
 import Curd from './routes/Curd';
-
-import IndexPage from './routes/IndexPage';
-import Login from './routes/Login';
-import Register from './routes/Register';
-import ChangePSD from './routes/ChangePSD';
 import Goods from './routes/Goods';
+import Login from './routes/Login';
+import menuConfig from './menuConfig.json';
+import IndexPage from './routes/IndexPage';
 
-/*
-import Order from './routes/Order';
-import Brand from './routes/Brand';
-import Topic from './routes/Topic';
-import User from './routes/User';
-*/
+const ingore_model = [ "goods" ]; //过滤模型
+const routes = [];
+menuConfig.forEach(firstPath => {
+	const { href: href_1, children } = firstPath;
+	if(children)
+		children.forEach(secondPath => {
+			const { href: href_2, model } = secondPath;
+			// 过滤指定模型
+			if(ingore_model.indexOf(model) > -1)
+				return false;
+			routes.push((
+				<Route key={href_1 + href_2} path={href_2.substr(1)} exact component={Curd(model)} />
+			));
+		});
+});
+// 添加指定路由
+routes.unshift((<Route key={"/goods/list"} path="/goods/list" exact component={Goods} />));
+routes.unshift((<Route key={"/login"} path="/login" exact component={Login} />));
 
 let WrapFrame = connect(({ page, account }) => ({
   page, 
   account
 }))(Frame);
 function RouterConfig({ history }) {
+	console.log("routes", routes);
   return (
     <Router history={history}>
 		<Switch>
 			<WrapFrame>
 		   		<Route path="/" exact component={IndexPage} />
-		   		<Route path="/login" exact component={Login} />
-		   		<Route path="/register" exact component={Register} />
-		   		<Route path="/changePSD" exact component={ChangePSD} />
-
-		   		<Route path="/goods/list" exact component={Goods} />
-
-		   		<Route path="/shop/brand" exact component={Curd("brand")} />
-		   		<Route path="/shop/topic" exact component={Curd("topic")} />
-
-		   		<Route path="/order/list" exact component={Curd("order")} />
-
-		   		<Route path="/vip/list" exact component={Curd("user")} />
-
+		   		{routes}
 			</WrapFrame>
 		</Switch>
     </Router>

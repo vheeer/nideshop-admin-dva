@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, Input, Modal, Icon, InputNumber } from 'antd';
+import { Button, Form, Input, Modal, Icon, InputNumber, Popconfirm } from 'antd';
 import SingleImgUploader from './mini_components/SingleImgUploader';
 import MySwitch from './mini_components/MySwitch';
 import { boolToNum, numToBool } from '../utils/mini_utils';
@@ -55,6 +55,14 @@ const CategoryCollectionCreateForm = Form.create({
       status: 'done',
       url: wap_banner_url
     }];
+    // 判断当前是否为顶级分类
+    let is_top;
+    if(editFirstCategoryObj && !editTopCategoryObj && Object.keys(editFirstCategoryObj).length !== 0){
+      is_top = false;
+    }else if(editTopCategoryObj && Object.keys(editTopCategoryObj).length !== 0 && !editFirstCategoryObj){
+      is_top = true;
+    }
+
     return {
       id: Form.createFormField({
         value: id
@@ -77,11 +85,13 @@ const CategoryCollectionCreateForm = Form.create({
       banner_url: Form.createFormField({
         value: banner_url_filelist
       }),
+      // 一级分类按钮图
       icon_url: Form.createFormField({
-        value: icon_url_filelist
+        value: !is_top?icon_url_filelist:null
       }),
+      // 顶级分类大图
       wap_banner_url: Form.createFormField({
-        value: wap_banner_url_filelist
+        value: is_top?wap_banner_url_filelist:null
       }),
       show_index: Form.createFormField({
         value: show_index
@@ -100,6 +110,7 @@ const CategoryCollectionCreateForm = Form.create({
       };
   	}
     render() {
+      const { props } = this;
       const { categoryId, visible, onCancel, onCreate, form } = this.props;
       const { getFieldDecorator } = form;
       return (
@@ -130,29 +141,31 @@ const CategoryCollectionCreateForm = Form.create({
 	            <Input placeholder="请输入名称" />
 	          )}
 	        </FormItem>
+          {/*
+            <FormItem
+              label="分类简介"
+            >
+              {getFieldDecorator('front_desc', {
+                rules: [{ required: false, message: '请输入分类简介' }],
+              })(
+                <TextArea 
+                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  placeholder="请输入简介" 
+                />
+              )}
+            </FormItem>
+          */}
           <FormItem
-            label="分类简介"
-          >
-            {getFieldDecorator('front_desc', {
-              rules: [{ required: false, message: '请输入分类简介' }],
-            })(
-              <TextArea 
-                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                placeholder="请输入简介" 
-              />
-            )}
-          </FormItem>
-          <FormItem
-            label="排序"
+            label="分类排序（后台管理）"
           >
             {getFieldDecorator('sort_order', {
-              rules: [{ required: true, message: '请输入排序' }],
+              rules: [{ required: false, message: '请输入排序' }],
             })(
               <InputNumber min={1} max={500} />
             )}
           </FormItem>
           <FormItem
-            label="show_index"
+            label="分类排序（小程序端）"
           >
             {getFieldDecorator('show_index', {
               rules: [{ required: false, message: '请输入排序' }],
@@ -161,6 +174,7 @@ const CategoryCollectionCreateForm = Form.create({
             )}
           </FormItem>
           {/*图片开始*/}
+          {/*
           <FormItem
             label="img_url"
           >
@@ -185,30 +199,44 @@ const CategoryCollectionCreateForm = Form.create({
               />
             )}
           </FormItem>
-          <FormItem
-            label="icon_url"
-          >
-            {getFieldDecorator('icon_url', {
-              rules: [{ required: false, message: 'icon_url' }],
-            })(
-              <SingleImgUploader
-                {...this.props} 
-                action={config.host + "/category/changeImage?column=icon_url&categoryId=" + categoryId} 
-              />
-            )}
-          </FormItem>
-          <FormItem
-            label="wap_banner_url"
-          >
-            {getFieldDecorator('wap_banner_url', {
-              rules: [{ required: false, message: 'wap_banner_url' }],
-            })(
-              <SingleImgUploader
-                {...this.props} 
-                action={config.host + "/category/changeImage?column=wap_banner_url&categoryId=" + categoryId} 
-              />
-            )}
-          </FormItem>
+          */}
+          {
+            (() => this.props.form.getFieldValue("icon_url"))()
+            ?
+            (<FormItem
+              label="一级分类按钮图"
+            >
+              {getFieldDecorator('icon_url', {
+                rules: [{ required: false, message: 'icon_url' }],
+              })(
+                  <SingleImgUploader
+                    {...this.props} 
+                    action={config.host + "/category/changeImage?column=icon_url&categoryId=" + categoryId} 
+                  />
+              )}
+            </FormItem>)
+            :
+            null
+          }
+
+          {
+            (() => this.props.form.getFieldValue("wap_banner_url"))()
+            ?
+            (<FormItem
+              label="分类页顶部大图（顶级分类展示图）"
+            >
+              {getFieldDecorator('wap_banner_url', {
+                rules: [{ required: false, message: 'wap_banner_url' }],
+              })(
+                  <SingleImgUploader
+                    {...this.props} 
+                    action={config.host + "/category/changeImage?column=wap_banner_url&categoryId=" + categoryId} 
+                  />
+              )}
+            </FormItem>)
+            :
+            null
+          }
           {/*图片结束*/}
 	        <FormItem
 	          label="启用"
@@ -240,6 +268,13 @@ export default class CategoryCollectionsPage extends React.Component {
     	visible: true,
     	editCategoryId
     });
+  }
+  deleteCategory = () => {
+    const { dispatch, categoryId } = this.props;
+    dispatch({
+      type: "goods/deleteCategory",
+      categoryId
+    })
   }
   handleCancel = () => {
     this.setState({ visible: false });
@@ -288,6 +323,9 @@ export default class CategoryCollectionsPage extends React.Component {
     return (
       <div>
         <Button type="primary" data-category_id={this.props.categoryId} onClick={this.showModal}>编辑</Button>
+         <Popconfirm title="删除分类及其子分类与商品，不可恢复！" onConfirm={this.deleteCategory} okText="是" cancelText="否">
+          <Button type="" data-category_id={this.props.categoryId}>删除</Button>
+         </Popconfirm>
         <CategoryCollectionCreateForm
           {...this.props}
           wrappedComponentRef={this.saveFormRef}

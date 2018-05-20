@@ -2,7 +2,7 @@ import getModalDesc from './curd';
 import menuConfig from '../menuConfig';
 
 //命名空间
-const namespace = "brand";
+const namespace = "product";
 //全局提示
 const alertMessage = "您可以在这里设置产品";
 //默认每页条数
@@ -40,18 +40,12 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  */
 const columnMatch = {
                      id: ["ID", true, 'varchar', true, "varchar required", {width: 120, fixed: 'left'}, true],
-                   name: ["名称", true, 'varchar', true, "varchar", {width: 150, fixed: 'left'}, true],
-           list_pic_url: ["list_pic_url", true, 'image', true, "image", {width: 150}, true],
-            simple_desc: ["简短描述", true, 'varchar', true, "varchar", {width: 150}, true],
-                pic_url: ["pic_url", true, 'image', true, "image", {width: 150}, true],
-             sort_order: ["排序", true, 'varchar', true, "varchar", {width: 150}, true],
-                is_show: ["是否显示", true, 'switch', true, "switch", {width: 150}, true],
-            floor_price: ["floor_price", true, 'varchar', true, "varchar", {width: 150}, true],
-       app_list_pic_url: ["app_list_pic_url", true, 'image', true, "image", {width: 150}, true],
-                 is_new: ["新品", true, 'switch', true, "switch", {width: 150}, true],
-            new_pic_url: ["新品图片", true, 'image', true, "image", {width: 150}, true],
-         new_sort_order: ["新品排序", true, 'varchar', true, "varchar", {width: 150}, true],
-               add_time: ["添加时间", true, 'date_time', true, "varchar", {width: 200}, true],
+               goods_id: ["商品ID", true, 'varchar', true, "varchar", {width: 150}, true],
+goods_specification_ids: ["商品规格号", true, 'varchar', true, "varchar", {width: 150}, true],
+               goods_sn: ["商品号", true, 'varchar', true, "varchar", {width: 150}, true],
+           goods_number: ["数量", true, 'varchar', true, "varchar", {width: 150}, true],
+           retail_price: ["价格", true, 'varchar', true, "money", {width: 150}, true],
+               add_time: ["添加时间", true, 'date_time', true, "varchar", {width: 250}, true],
     };
 //计算表格总宽度
 const totalWidth = (() => {

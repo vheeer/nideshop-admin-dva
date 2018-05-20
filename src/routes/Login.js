@@ -59,7 +59,7 @@ class Login extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
   handleLogin(values) {
-    this.props.dispatch({ type: 'user/login', values });
+    this.props.dispatch({ type: 'account/login', values });
   }
   render() {
     console.log("Login this.props", this.props);

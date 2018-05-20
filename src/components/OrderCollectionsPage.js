@@ -21,14 +21,20 @@ const GoodsCollectionCreateForm = Form.create({
         value
       });
     }
+
+    //查询到的字段列表
+    let keys = [];
+    if(editGoodsObj)
+      keys = Object.keys(editGoodsObj);
     const fieldsObj = {};
-    for(const key in editGoodsObj)
+    const column = [];
+    for(const key of keys)
     {
       //跳过字段
       if(columnMatch[key][3] === false)
         continue;
       //默认字段值
-      switch(columnMatch[key][2])
+      switch(columnMatch[key][4])
       {
         case "varchar":
           KV(key, editGoodsObj[key]);
@@ -67,12 +73,12 @@ const GoodsCollectionCreateForm = Form.create({
   },
 })(
   class extends React.Component {
-  	constructor(props){
-  		super(props);
+    constructor(props){
+      super(props);
       this.state = {
 
       }
-  	}
+    }
     render() {
       const { editGoodsObj, visible, onCancel, onCreate, form, columnMatch, model } = this.props;
       const { getFieldDecorator } = form;
@@ -107,7 +113,7 @@ const GoodsCollectionCreateForm = Form.create({
         if(columnMatch[key][3] === false)
           continue;
         //默认字段类型
-        switch(columnMatch[key][2])
+        switch(columnMatch[key][4])
         {
           case "varchar":
             fieldsHTML.push((
@@ -198,7 +204,7 @@ const GoodsCollectionCreateForm = Form.create({
                 })(
                   <SingleImgUploader
                     name={columnMatch[key][0]}
-                    action={config.host + "/" + model + "/changeImage?column=" + key + "&id=" + editGoodsObj['id']} 
+                    action={config.host + "/" + model + "/changeimg?column=" + key + "&id=" + editGoodsObj['id']} 
                   />
                 )}
               </FormItem>
@@ -231,12 +237,12 @@ const GoodsCollectionCreateForm = Form.create({
 );
 
 export default class GoodsCollectionsPage extends React.Component {
-	constructor(props){
-		super(props);
-		this.state = {
+  constructor(props){
+    super(props);
+    this.state = {
 
-		};
-	}
+    };
+  }
   showModal = (event) => {
     this.setState({
       visible: true
@@ -259,10 +265,10 @@ export default class GoodsCollectionsPage extends React.Component {
       const newValues = Object.assign({}, values);
       for(let key in values)
       {
-      	if(key === "id")
-      		continue;
-      	if(!form.isFieldTouched(key))
-      		delete newValues[key];
+        if(key === "id")
+          continue;
+        if(!form.isFieldTouched(key))
+          delete newValues[key];
       }
       //提交修改的信息
       if(Object.keys(newValues).length > 1) {

@@ -187,8 +187,27 @@ export default {
         message.error("删除图片失败，请刷新网页");
       }
       console.log("deleteGallery result ", result);
+    },
+    *deleteGoods({ goodsId }, { call, put }) {
+      const result = yield call(goodsService.deleteGoods, { goodsId });
+      const { errno, data } = result.data;
+      if(errno === 0 && data){
+        message.success("删除商品成功");
+      }else{
+        message.error("删除商品失败，请刷新网页");
+      }
+      console.log("deleteGoods result ", result);
+    },
+    *deleteCategory({ categoryId }, { call, put }) {
+      const result = yield call(goodsService.deleteCategory, { categoryId });
+      const { errno, data } = result.data;
+      if(errno === 0 && data){
+        message.success("删除分类成功");
+      }else{
+        message.error("删除分类失败，请刷新网页");
+      }
+      console.log("deleteCategory result ", result);
     }
-
   },
   reducers: {
     init(state, { topCategory, firstCategory, topCategoryFocusId }) {

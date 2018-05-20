@@ -37,23 +37,39 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * 4个汉字宽90px 5个汉字宽105px
  */
 const columnMatch = {
-         avatar: ["头像", true, 'image', true, {width: 60, fixed: 'left'}, "avatar", true],
-             id: ["ID", false, 'varchar required', true, {width: 120}, "varchar", true],
-       username: ["用户名", false, 'varchar', true, {width: 150}, "varchar", true],
-         gender: ["性别", false, 'varchar', true, {width: 150}, "varchar", true],
-       birthday: ["生日", true, 'varchar', true, {width: 180}, "date_time", true],
-  register_time: ["注册时间", true, 'varchar', true, {width: 180}, "date_time", true],
-last_login_time: ["上次登录时间", true, 'varchar', true, {width: 180}, "date_time", true],
-  last_login_ip: ["上次登陆ip", false, 'varchar', true, {width: 150}, "varchar", true],
-  user_level_id: ["用户等级id", true, 'varchar', true, {width: 150}, "varchar", true],
-       nickname: ["昵称", true, 'varchar', true, {width: 150}, "varchar", true],
-         mobile: ["手机", true, 'varchar', true, {width: 150}, "varchar", true],
-    register_ip: ["注册ip", false, 'varchar', true, {width: 150}, "varchar", true],
+             id: ["ID", true, 'varchar', true, "varchar required", {width: 120, fixed: 'left'}, true],
+         avatar: ["头像", true, 'image', true, "image", {width: 60}, true],
+       username: ["用户名", true, 'varchar', true, "varchar", {width: 150}, true],
+         gender: ["性别", true, 'varchar', true, "varchar", {width: 150}, true],
+       birthday: ["生日", true, 'date_time', true, "varchar", {width: 180}, true],
+  register_time: ["注册时间", true, 'date_time', true, "varchar", {width: 180}, true],
+last_login_time: ["上次登录时间", true, 'date_time', true, "varchar", {width: 180}, true],
+  last_login_ip: ["上次登陆ip", true, 'varchar', true, "varchar", {width: 150}, true],
+  user_level_id: ["用户等级id", true, 'varchar', true, "varchar", {width: 150}, true],
+       nickname: ["昵称", true, 'varchar', true, "varchar", {width: 150}, true],
+         mobile: ["手机", true, 'varchar', true, "varchar", {width: 150}, true],
+    register_ip: ["注册ip", true, 'varchar', true, "varchar", {width: 150}, true]
+
+//     id: 43
+//        username: 微信用户092b2bbe-1dea-40dd-848e-e10716a7db05
+//        password: oGe284j8jvfzAGAS_N-0mWSQVtl4
+//          gender: 1
+//        birthday: 0
+//   register_time: 1526059411
+// last_login_time: 1526246109
+//   last_login_ip: 
+//   user_level_id: 0
+//        nickname: 风猫
+//          mobile: 
+//     register_ip: 
+//          avatar: https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLsKiag370r0iaGBzXR4ZPLxkxSRDc0r4pBBErFJWpI1Aib6hdMzpvpDwXnB7z9RI0ebcKiaXBOrJyCUA/132
+//   weixin_openid: oGe284j8jvfzAGAS_N-0mWSQVtl4
+//        add_time: 0
 };
 //计算表格总宽度
 const totalWidth = (() => {
   let totalWidth = 0;
-  Object.keys(columnMatch).forEach(key => totalWidth += columnMatch[key][1]?columnMatch[key][4]["width"]:0);
+  Object.keys(columnMatch).forEach(key => totalWidth += columnMatch[key][1]?columnMatch[key][5]["width"]:0);
   return totalWidth;
 })();
 export default {

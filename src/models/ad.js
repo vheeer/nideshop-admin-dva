@@ -1,13 +1,13 @@
 import getModalDesc from './curd';
 
 //命名空间
-const namespace = "topic";
+const namespace = "ad";
 //全局提示
-const alertMessage = "您可以在这里设置专题";
+const alertMessage = "您可以在这里设置广告（首页轮播）";
 //默认每页条数
 const pageSize = 7;
 //操作列宽度
-const actionWidth = 108;
+const actionWidth = 1;
 //默认添加形式
 const defaultCreateDesc = {
   model: namespace,
@@ -38,34 +38,27 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * 4个汉字宽90px 5个汉字宽105px
  */
 const columnMatch = {
-               id: ["ID", true, 'varchar', true, "varchar required", {width: 80, fixed: 'left'}, true],
-            title: ["标题", true, 'varchar', true, "varchar", {width: 150, fixed: 'left'}, true],
-          content: ["内容", true, 'varchar', true, "varchar", {width: 150}, true],
-           avatar: ["头像", true, 'image', true, "image", {width: 150}, true],
-     item_pic_url: ["item_pic_url", true, 'image', true, "image", {width: 150}, true],
-         subtitle: ["抬头", true, 'varchar', true, "varchar", {width: 150}, true],
-topic_category_id: ["topic_category_id", true, 'varchar', true, "varchar", {width: 150}, true],
-       price_info: ["price_info", true, 'varchar', true, "varchar", {width: 150}, true],
-       read_count: ["read_count", true, 'varchar', true, "varchar", {width: 150}, true],
-    scene_pic_url: ["scene_pic_url", true, 'image', true, "image", {width: 150}, true],
-topic_template_id: ["topic_template_id", true, 'varchar', true, "varchar", {width: 150}, true],
-     topic_tag_id: ["topic_tag_id", true, 'varchar', true, "varchar", {width: 150}, true],
-       sort_order: ["排序", true, 'varchar', true, "varchar", {width: 150}, true],
-          is_show: ["是否显示", true, 'switch', true, "switch", {width: 150}, true],
-         add_time: ["添加时间", true, 'data_time', true, "varchar", {width: 150}, true],
-
-};
+                                id: ["ID", true, 'varchar', true, "varchar required", {width: 120}, true],
+                    ad_position_id: ["ad_position_id", false, 'varchar', false, "varchar", {width: 150}, false],
+                        media_type: ["media_type", false, 'varchar', false, "varchar", {width: 150}, false],
+                              name: ["名称", true, 'varchar', true, "varchar", {width: 150}, true],
+                              link: ["链接", false, 'varchar', false, "varchar", {width: 150}, false],
+                         image_url: ["大图", true, 'image', true, "image", {width: 150}, false],
+                           content: ["内容", true, 'varchar', true, "textArea", {width: 150}, true],
+                          end_time: ["结束时间", false, 'date_time', false, "varchar", {width: 150}, false],
+                           enabled: ["是否启用", true, 'switch', true, "switch", {width: 150}, false],
+                          add_time: ["添加时间", true, 'date_time', false, "varchar", {width: 150}, false],
+    };
 //计算表格总宽度
 const totalWidth = (() => {
   let totalWidth = 0;
   Object.keys(columnMatch).forEach(key => totalWidth += columnMatch[key][1]?columnMatch[key][5]["width"]:0);
-  return totalWidth;
+  return 0;
 })();
 export default {
   namespace,
   state: {
     dataList: [],
-    a: 1,
     columnMatch,
     alertMessage,
     totalWidth,
@@ -78,7 +71,7 @@ export default {
       let fun = location => {
         if(typeof fun["executed"] === "undefined"){
           const hash = window.location.hash.split("#/")[1];
-          if(hash === 'shop/topic'){
+          if(hash === 'shop/ad'){
             dispatch({
               type: 'readData'
             });

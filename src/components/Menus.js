@@ -3,20 +3,36 @@ import { Menu, Icon } from 'antd';
 export default class Menus extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      openKeys: props.page.openDefaultKey
+    }
+    this.handleOpenChange = this.handleOpenChange.bind(this);
   }
-  handleClick(e) { 
-
-  }  
+  handleOpenChange(openKeys) {
+    console.log("openKeys", openKeys);
+    while(openKeys.length > 1)
+    {
+      openKeys.shift();
+    }
+    this.setState({
+      openKeys
+    });
+  }
   render() {
+    console.log("Menus props", this.props);
     const { menuConfig } = this.props.page;
+
+    const { selectedKeys, openDefaultKey } = this.props.page;
+    const { openKeys } = this.state;
+
     return (
           <Menu 
-            theme="dark" 
-            mode="inline" 
-            selectedKeys={this.props.page.selectedKeys}
-            defaultOpenKeys={this.props.page.openDefaultKey}
-            onClick={this.handleClick}
+            theme="dark"
+            mode="inline"
+            selectedKeys={selectedKeys}
+            defaultOpenKeys={openDefaultKey}
+            openKeys={openKeys}
+            onOpenChange={this.handleOpenChange}
           >
             {
               menuConfig.map((item, index) => {

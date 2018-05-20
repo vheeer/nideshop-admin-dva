@@ -84,3 +84,26 @@ export function deleteGallery({ galleryId }) {
     body
   });
 }
+
+export function deleteGoods({ goodsId }) {
+  const body = "goodsId=" + goodsId;
+  return request(config.host + "/goods/deletegoods", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    },
+    body
+  });
+}
+
+
+export function deleteCategory({ categoryId }) {
+  const body = "categoryId=" + categoryId;
+  return request(config.host + "/category/destory", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    },
+    body
+  });
+}

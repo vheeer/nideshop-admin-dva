@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, Input, Modal, InputNumber } from 'antd';
+import { Button, Form, Input, Modal, InputNumber, Popconfirm } from 'antd';
 import SingleImgUploader from './mini_components/SingleImgUploader';
 import MySwitch from './mini_components/MySwitch';
 import styles from './GoodsCollectionsPage.css';
@@ -24,7 +24,7 @@ const GoodsCollectionCreateForm = Form.create({
   		}
   	});
   	editGoodsObj = editGoodsObj || {};
-  	let { id, name, category_id, goods_unit, is_new, is_hot, is_on_sale, prima_pic_url, list_pic_url, goods_brief, goods_desc, brand_id, add_time, retail_price } = editGoodsObj;
+  	let { id, name, category_id, goods_unit, is_new, is_hot, is_on_sale, prima_pic_url, list_pic_url, goods_brief, goods_desc, brand_id, add_time, retail_price, extra_price, primary_product_id } = editGoodsObj;
     //prima图片
     let prima_pic_url_filelist = [{
       uid: -1,
@@ -85,6 +85,12 @@ const GoodsCollectionCreateForm = Form.create({
       }),
       list_pic_url: Form.createFormField({
         value: list_pic_url_filelist
+      }),
+      extra_price: Form.createFormField({
+        value: extra_price
+      }),
+      primary_product_id: Form.createFormField({
+        value: primary_product_id
       })
     }
   },
@@ -158,6 +164,7 @@ const GoodsCollectionCreateForm = Form.create({
                 <Input placeholder="请输入简介" />
               )}
             </FormItem>
+            {/*
             <FormItem
               label="商品描述"
             >
@@ -167,6 +174,18 @@ const GoodsCollectionCreateForm = Form.create({
                 <TextArea placeholder="请输入描述" />
               )}
             </FormItem>
+            */}
+            {/*
+            <FormItem
+              label="默认产品ID"
+            >
+              {getFieldDecorator('primary_product_id', {
+                rules: [{ required: false, message: '请输入默认产品ID' }],
+              })(
+                <Input placeholder="请输入描述" />
+              )}
+            </FormItem>
+            */}
             <FormItem
               label="价格"
             >
@@ -181,6 +200,22 @@ const GoodsCollectionCreateForm = Form.create({
                 />
               )}
             </FormItem>
+            {/*
+            <FormItem
+              label="运费"
+            >
+              {getFieldDecorator('extra_price', {
+                rules: [{ required: true, message: '请输入价格' }],
+              })(
+                <InputNumber
+                  min={0.00}
+                  max={5000.00}
+                  formatter={value => "￥" + parseFloat(value).toFixed(2)}
+                  parser={value => parseFloat(value.split('￥')[1]?value.split('￥')[1]:0.00)}
+                />
+              )}
+            </FormItem>
+            */}
             <FormItem
               label="单位"
             >
@@ -190,6 +225,7 @@ const GoodsCollectionCreateForm = Form.create({
                  <Input placeholder="请输入单位" />
               )}
             </FormItem>
+            {/*
             <FormItem
               label="添加时间"
             >
@@ -212,8 +248,9 @@ const GoodsCollectionCreateForm = Form.create({
                 />
               )}
             </FormItem>
+            */}
             <FormItem
-              label="list_pic_url"
+              label="商品图"
             >
               {getFieldDecorator('list_pic_url', {
                 rules: [{ required: false, message: 'list_pic_url' }],
@@ -274,6 +311,13 @@ export default class GoodsCollectionsPage extends React.Component {
     	editGoodsId
     });
   }
+  deleteGoods = () => {
+    const { dispatch, goodsId } = this.props;
+    dispatch({
+      type: 'goods/deleteGoods',
+      goodsId
+    });
+  }
   handleCancel = () => {
     this.setState({ visible: false });
   }
@@ -325,6 +369,9 @@ export default class GoodsCollectionsPage extends React.Component {
     return (
       <div>
         <Button type="primary" data-goods_id={this.props.goodsId} onClick={this.showModal}>编辑</Button>
+         <Popconfirm title="删除商品的一切信息，不可恢复！" onConfirm={this.deleteGoods} okText="是" cancelText="否">
+            <Button type="" data-goods_id={this.props.goodsId}>删除</Button>
+         </Popconfirm>
         <GoodsCollectionCreateForm
           {...this.props}
           wrappedComponentRef={this.saveFormRef}

@@ -2,9 +2,9 @@ import getModalDesc from './curd';
 import menuConfig from '../menuConfig';
 
 //命名空间
-const namespace = "brand";
+const namespace = "address";
 //全局提示
-const alertMessage = "您可以在这里设置产品";
+const alertMessage = "您可以在这里查看用户的地址管理";
 //默认每页条数
 const pageSize = 7;
 //操作列宽度
@@ -39,19 +39,19 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * 4个汉字宽90px 5个汉字宽105px
  */
 const columnMatch = {
-                     id: ["ID", true, 'varchar', true, "varchar required", {width: 120, fixed: 'left'}, true],
-                   name: ["名称", true, 'varchar', true, "varchar", {width: 150, fixed: 'left'}, true],
-           list_pic_url: ["list_pic_url", true, 'image', true, "image", {width: 150}, true],
-            simple_desc: ["简短描述", true, 'varchar', true, "varchar", {width: 150}, true],
-                pic_url: ["pic_url", true, 'image', true, "image", {width: 150}, true],
-             sort_order: ["排序", true, 'varchar', true, "varchar", {width: 150}, true],
-                is_show: ["是否显示", true, 'switch', true, "switch", {width: 150}, true],
-            floor_price: ["floor_price", true, 'varchar', true, "varchar", {width: 150}, true],
-       app_list_pic_url: ["app_list_pic_url", true, 'image', true, "image", {width: 150}, true],
-                 is_new: ["新品", true, 'switch', true, "switch", {width: 150}, true],
-            new_pic_url: ["新品图片", true, 'image', true, "image", {width: 150}, true],
-         new_sort_order: ["新品排序", true, 'varchar', true, "varchar", {width: 150}, true],
-               add_time: ["添加时间", true, 'date_time', true, "varchar", {width: 200}, true],
+                 id: ["ID", true, 'varchar', true, "varchar required", {width: 120, fixed: 'left'}, true],
+               name: ["名称", true, 'varchar', true, "varchar", {width: 150}, true],
+            user_id: ["用户ID", true, 'varchar', true, "varchar", {width: 150}, true],
+         country_id: ["国家", true, 'varchar', true, "varchar", {width: 150}, true],
+        province_id: ["省", true, 'varchar', true, "varchar", {width: 150}, true],
+            city_id: ["市", true, 'varchar', true, "varchar", {width: 150}, true],
+        district_id: ["区", true, 'varchar', true, "varchar", {width: 150}, true],
+            address: ["地址", true, 'varchar', true, "varchar", {width: 150}, true],
+             mobile: ["电话", true, 'varchar', true, "varchar", {width: 150}, true],
+         is_default: ["是否为默认地址", true, 'switch', false, "varchar", {width: 150}, true],
+           add_time: ["添加时间", true, 'date_time', true, "varchar", {width: 250}, true],
+           nickname: ["昵称", true, 'varchar', true, "varchar", {width: 150}, true],
+             avatar: ["头像", true, 'image', true, "image", {width: 150}, true],
     };
 //计算表格总宽度
 const totalWidth = (() => {

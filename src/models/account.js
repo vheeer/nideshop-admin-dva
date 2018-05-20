@@ -16,7 +16,7 @@ export default {
       history.listen(location => {
         let userName,id,login;
         //测试时使用默认登录态
-        if(window.location.origin === "http://localhost:8000" || 1){
+        if(window.location.origin === "http://localhost:8000" && 0){
           userName = "zhangjizhe1993728@126.com";
           id = 14;
           dispatch({
@@ -38,9 +38,13 @@ export default {
               id: id
             });
           }else if(login === "0"){
-            dispatch(routerRedux.push('/login'));
+            if(window.location.hash.indexOf("login") == -1){
+              dispatch(routerRedux.push('/login'));
+            }
           }else if(login === undefined){
-            dispatch(routerRedux.push('/login'));
+            if(window.location.hash.indexOf("login") == -1){
+              dispatch(routerRedux.push('/login'));
+            }
           }
         }
       })
@@ -70,12 +74,16 @@ export default {
       yield put({ type: 'showLoginLoading' });
       const mes = yield call(userService.login, values);
       yield put({ type: 'hideLoginLoading' });
-      if(mes.data.mes === "success"){
+      console.log("login mes: ", mes);
+      if(mes.data.data.mes === "success"){
         message.success("成功登录");
+        Cookies.set("login", "1");
+        Cookies.set("userName", mes.data.data.data.userName);
+        Cookies.set("id", mes.data.data.data.id);
         yield put({ 
           type: 'setUserName', 
-          userName: mes.data.data.userName,
-          id: mes.data.data.id 
+          userName: mes.data.data.data.userName,
+          id: mes.data.data.data.id 
         });
         yield put({ type: 'main_data/fetch' });
         yield put(routerRedux.push('/goods/list'));//登录成功后跳到货物管理
