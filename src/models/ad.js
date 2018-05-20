@@ -32,7 +32,7 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * columnMatch: {
  *   数据库字段名: [显示的字段名, 表格中是否开启,表单字段展示类型, 表单中是否开启, 表格列描述, 表格字段展示类型],
  *   id: ["ID", true, 'varchar'],
- *   column_2: [……],
+ *   column_2: [….…],
  *   ……
  * }
  * 4个汉字宽90px 5个汉字宽105px
