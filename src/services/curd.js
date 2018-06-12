@@ -17,7 +17,10 @@ export function read({ model, ...params }) {
 	let url = config.host + '/' + model + '/read?' + params_str;
 
 	return request(url, {
-		method: 'get'
+		method: 'get',
+		headers: {
+	      'withCredentials': true
+	    },
 	});
 }
   /**

@@ -16,9 +16,7 @@ export default {
       history.listen(location => {
         let userName,id,login;
         //测试时使用默认登录态
-        if(window.location.origin === "http://localhost:8000" && 0){
-          userName = "zhangjizhe1993728@126.com";
-          id = 14;
+        if(window.location.origin === "http://localhost:8000"){
           dispatch({
             type: 'setUserName',
             userName: defaultAcc,
@@ -77,13 +75,13 @@ export default {
       console.log("login mes: ", mes);
       if(mes.data.data.mes === "success"){
         message.success("成功登录");
-        Cookies.set("login", "1");
-        Cookies.set("userName", mes.data.data.data.userName);
-        Cookies.set("id", mes.data.data.data.id);
+        // Cookies.set("login", "1");
+        // Cookies.set("userName", mes.data.data.data.userName);
+        // Cookies.set("id", mes.data.data.data.id);
         yield put({ 
           type: 'setUserName', 
-          userName: mes.data.data.data.userName,
-          id: mes.data.data.data.id 
+          userName: Cookies.get("userName"),
+          id: Cookies.get("id") 
         });
         yield put({ type: 'main_data/fetch' });
         yield put(routerRedux.push('/goods/list'));//登录成功后跳到货物管理

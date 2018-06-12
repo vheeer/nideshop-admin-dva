@@ -306,10 +306,11 @@ export default class GoodsCollectionsPage extends React.Component {
       return true;
   }
   render() {
+    const { button_text } = this.props;
     return (
       <span>
         <a onClick={this.showModal}>
-          编辑
+          {button_text}
         </a>
         <GoodsCollectionCreateForm
           {...this.props}

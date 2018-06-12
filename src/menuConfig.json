@@ -98,7 +98,7 @@
     }, 
     {
         "href": "shop", 
-        "word": "店铺运营", 
+        "word": "店铺管理", 
         "icon": "user", 
         "children": [
             {
@@ -146,6 +146,27 @@
         ]
     }, 
     {
+        "href": "operate", 
+        "word": "营销工具", 
+        "icon": "user", 
+        "children": [
+            {
+                "href": "#/operate/distribute_apply", 
+                "word": "分销申请", 
+                "icon": "user", 
+                "title": "分销申请",
+                "model": "distribute_apply"
+            },
+            {
+                "href": "#/operate/distribute_commision", 
+                "word": "返佣记录", 
+                "icon": "user", 
+                "title": "返佣记录",
+                "model": "distribute_commision"
+            }
+        ]
+    }, 
+    {
         "href": "vip", 
         "word": "会员管理", 
         "icon": "user", 
@@ -163,6 +184,13 @@
                 "icon": "user", 
                 "title": "地址管理",
                 "model": "address"
+            },
+            {
+                "href": "#/vip/cash", 
+                "word": "提现记录",
+                "icon": "user", 
+                "title": "提现记录",
+                "model": "cash"
             }
         ]
     }, 

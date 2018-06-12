@@ -1,5 +1,5 @@
 'use strict';
-let project = "nideshop/admin"
+let project = "nideshop-mul-dev/admin";
 let host = "https://www.yinmudianying.club/" + project;
 export default {
 	project,

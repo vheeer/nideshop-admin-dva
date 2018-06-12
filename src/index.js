@@ -42,6 +42,10 @@ app.model(require('./models/channel').default);
 app.model(require('./models/feedback').default);
 app.model(require('./models/comment').default);
 
+app.model(require('./models/cash').default);
+app.model(require('./models/distribute_apply').default);
+app.model(require('./models/distribute_commision').default);
+
 app.model(require('./models/user').default);
 app.model(require('./models/address').default);
 

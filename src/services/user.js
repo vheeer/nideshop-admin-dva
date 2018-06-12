@@ -3,12 +3,15 @@ import config from '../config';
 
 export function login(data) {
   console.log("service: data ", JSON.stringify(data));
+  console.log("cookie", document.cookie)
   return request(config.host + '/user_login/index', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-      'withCredentials': true
-      //'Content-Type': 'application/json',
+      'withCredentials': true,
+      "Cookie": "document.cookie",
+      "a": "b"
+      // 'Content-Type': 'application/json'
     },
     body: "userName=" + data.userName + "&&password=" + data.password
   });

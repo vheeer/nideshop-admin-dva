@@ -48,7 +48,11 @@ last_login_time: ["上次登录时间", true, 'date_time', true, "varchar", {wid
   user_level_id: ["用户等级id", true, 'varchar', true, "varchar", {width: 150}, true],
        nickname: ["昵称", true, 'varchar', true, "varchar", {width: 150}, true],
          mobile: ["手机", true, 'varchar', true, "varchar", {width: 150}, true],
-    register_ip: ["注册ip", true, 'varchar', true, "varchar", {width: 150}, true]
+    register_ip: ["注册ip", true, 'varchar', true, "varchar", {width: 150}, true],
+        balance: ["可提现金额", true, 'varchar', true, "varchar", {width: 150}, true],
+      cash_paid: ["已提现金额", true, 'varchar', true, "varchar", {width: 150}, true],
+ is_distributor: ["是否为分销商", true, 'varchar', true, "varchar", {width: 150}, true],
+        referee: ["推荐人ID", true, 'varchar', true, "varchar", {width: 150}, true],
 
 //     id: 43
 //        username: 微信用户092b2bbe-1dea-40dd-848e-e10716a7db05

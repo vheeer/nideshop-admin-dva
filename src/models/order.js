@@ -37,14 +37,14 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * 4个汉字宽90px 5个汉字宽105px
  */
 const columnMatch = {
-                     id: ["ID", false, 'varchar', true, "varchar required", {width: 60}, false],
+                     id: ["ID", true, 'varchar', true, "varchar required", {width: 60,fixed: 'left'}, false],
                 user_id: ["用户ID", false, 'varchar', false, "varchar", {width: 150}, true],
-                 avatar: ["头像", true, 'avatar', false, "avatar", {width: 60}, false],
-               order_sn: ["单号", true, 'varchar', false, "varchar", {width: 200,fixed: 'left'}, true],
+                 avatar: ["头像", true, 'avatar', false, "avatar", {width: 80}, false],
+               order_sn: ["单号", true, 'varchar', false, "varchar", {width: 220}, true],
                nickname: ["昵称", true, 'varchar', false, "varchar", {width: 200}, true],
-           order_status: ["订单状态", true, 'order_status', false, "varchar", {width: 90}, false],
-        shipping_status: ["物流状态", false, 'varchar', false, "varchar", {width: 90}, false],
-             pay_status: ["支付状态", true, 'pay_status', false, "varchar", {width: 90}, false],
+           order_status: ["订单状态", true, 'order_status', false, "varchar", {width: 110}, false],
+        shipping_status: ["物流状态", false, 'varchar', false, "varchar", {width: 110}, false],
+             pay_status: ["支付状态", true, 'pay_status', false, "varchar", {width: 110}, false],
               consignee: ["收件人", true, 'varchar', true, "varchar", {width: 90}, true],
                 country: ["国家", false, 'varchar', false, "varchar", {width: 120}, false],
                province: ["省", false, 'varchar', false, "varchar", {width: 120}, false],
@@ -56,7 +56,7 @@ const columnMatch = {
            shipping_fee: ["运费", false, 'varchar', false, "money", {width: 150}, false],
                pay_name: ["pay_name", false, 'varchar', false, "varchar", {width: 150}, false],
                  pay_id: ["pay_id", false, 'varchar', false, "varchar", {width: 150}, false],
-           actual_price: ["用户实际需要支付金额", true, 'varchar', "money", "money", {width: 150}, false],
+           actual_price: ["用户实际需要支付金额", true, 'varchar', "money", "money", {width: 200}, false],
                integral: ["integral", false, 'varchar', false, "varchar", {width: 150}, false],
          integral_money: ["integral_money", false, 'varchar', false, "varchar", {width: 150}, false],
             order_price: ["订单总额", true, 'varchar', false, "money", {width: 150}, true],
@@ -70,6 +70,7 @@ const columnMatch = {
            coupon_price: ["优惠券金额", false, 'varchar', false, "money", {width: 105}, false],
         callback_status: ["callback_status", false, 'varchar', false, "varchar", {width: 150}, false],
             order_goods: ["order_goods", false, 'varchar', false, "varchar", {width: 150}, false],
+                referee: ["推荐人ID", true, 'varchar', false, "varchar", {width: 150}, false],
 
     };
 //计算表格总宽度

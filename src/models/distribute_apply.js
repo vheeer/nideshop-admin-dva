@@ -1,14 +1,16 @@
 import getModalDesc from './curd';
 import menuConfig from '../menuConfig';
+import * as distribute_applyService from '../services/distribute_apply';
+import { message } from 'antd';
 
 //命名空间
-const namespace = "others";
+const namespace = "distribute_apply";
 //全局提示
-const alertMessage = "您可以在这里修改商城设置";
+const alertMessage = "您可以在这里管理分销";
 //默认每页条数
 const pageSize = 7;
 //操作列宽度
-const actionWidth = 108;
+const actionWidth = 240;
 //默认添加形式
 const defaultCreateDesc = {
   model: namespace
@@ -38,26 +40,14 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * 4个汉字宽90px 5个汉字宽105px
  */
 const columnMatch = {
-                      id: ["ID", true, 'varchar', true, "varchar required", {width: 120, fixed: 'left'}, true],
-                    name: ["名称", true, 'varchar', true, "varchar", {width: 150}, true],
-                 freight: ["运费", true, 'varchar', true, "money", {width: 150}, true],
-             brand_title: ["制造商标题", true, 'varchar', true, "varchar", {width: 150}, true],
-               new_title: ["新品标题", true, 'varchar', true, "varchar", {width: 150}, true],
-               hot_title: ["热卖标题", true, 'varchar', true, "varchar", {width: 150}, true],
-             topic_title: ["专题标题", true, 'varchar', true, "varchar", {width: 150}, true], 
-                add_time: ["添加时间", true, 'date_time', true, "varchar", {width: 250}, true],
-        service_policy_1: ["服务1", true, 'varchar', true, "varchar", {width: 170}, true],
-        service_policy_2: ["服务2", true, 'varchar', true, "varchar", {width: 170}, true],
-        service_policy_3: ["服务3", true, 'varchar', true, "varchar", {width: 170}, true],
-         hot_goods_title: ["热品标题", true, 'varchar', true, "varchar", {width: 170}, true],
-    hot_goods_bannar_url: ["热品大图", true, 'image', true, "image", {width: 170}, true],
-         new_goods_title: ["新品标题", true, 'varchar', true, "varchar", {width: 170}, true],
-    new_goods_bannar_url: ["新品大图", true, 'image', true, "image", {width: 170}, true],
-        share_background: ["分享背景图", true, 'image', true, "image", {width: 170}, true],
-         is_distribute: ["开启分销", true, 'switch', false, "switch", {width: 170}, true],
-         first_commision: ["一级佣金", true, 'varchar', true, "varchar", {width: 170}, true],
-         second_commision: ["二级佣金", true, 'varchar', true, "varchar", {width: 170}, true],
-};
+             id: ["ID", true, 'varchar', true, "varchar required", {width: 120, fixed: 'left'}, true],
+        user_id: ["用户ID", true, 'varchar', true, "varchar", {width: 150}, true],
+        referee: ["推荐人ID", true, 'varchar', true, "varchar", {width: 150}, true],
+      real_name: ["真实姓名", true, 'varchar', true, "varchar", {width: 150}, true],
+       nickname: ["昵称", true, 'varchar', false, "varchar", {width: 150}, true],
+         avatar: ["头像", true, 'image', false, "image", {width: 150}, true],
+       add_time: ["添加时间", true, 'date_time', false, "varchar", {width: 250}, true],
+    };
 //计算表格总宽度
 const totalWidth = (() => {
   let totalWidth = 0;
@@ -106,7 +96,22 @@ export default {
     }
   },
   effects: {
-    ...effects
+    ...effects,
+    *accept ({ id }, { call, put }) {
+      yield put({ type: 'showLoginLoading' });
+      const mes = yield call(distribute_applyService.accept, id);
+      yield put({ type: 'hideLoginLoading' });
+
+      if(mes.data.data === 1){
+        message.success("添加成功");
+      }else{
+        message.error("添加失败");
+      }
+      //刷新数据
+      yield put({
+        type: 'readData'
+      });
+    }
   },
   reducers: {
     ...reducers

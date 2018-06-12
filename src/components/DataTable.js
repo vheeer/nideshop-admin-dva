@@ -27,6 +27,7 @@ export default class DataTable extends React.Component {
 		this.switchData = this.switchData.bind(this);
 		this.switchColumn = this.switchColumn.bind(this);
 		this.confirmSend = this.confirmSend.bind(this);
+		this.handleClickAccept = this.handleClickAccept.bind(this);
 	}
 	static propTypes = {
 		columnMatch: PropTypes.object.isRequired,
@@ -127,6 +128,15 @@ export default class DataTable extends React.Component {
 			type: "order/updateData",
 			id,
 			order_status: 300
+		})
+	}
+	handleClickAccept(record) {
+		const { id } = record;
+		console.log(record);	
+		const { dispatch } = this.props;
+		dispatch({
+			type: "distribute_apply/accept",
+			id
 		})
 	}
 	shouldComponentUpdate(nextProps, nextState) {
@@ -409,6 +419,37 @@ export default class DataTable extends React.Component {
 						    </div>
 						);
 		  			break;
+		  		case "distribute_apply":
+		  			buttons = (
+		  				<div>
+							<OrderCollectionsPage 
+							  columnMatch={columnMatch}
+							  dispatch={dispatch}
+							  model={model}
+							  editGoodsObj={record} 
+							  handleInputChange={this.handleInputChange}
+							  button_text="查看"
+							/>
+							<Divider type="vertical" />
+							<Popconfirm 
+								title={record.referee === null?"用户将成为一级分销商":"用户将成为二级分销商"}
+								onConfirm={() => this.handleClickAccept(data)}
+								okText={"确认"}	
+								cancelText={"取消"}
+							>
+								<Button className={styles.op_button} type="primary">接受</Button>
+							</Popconfirm>
+							<Popconfirm 
+								title="拒绝后用户可重新申请"
+								onConfirm={() => this.handleClickDelete(data)}
+								okText={"确认"}	
+								cancelText={"取消"}
+							>
+								<Button className={styles.op_button}>拒绝</Button>
+							</Popconfirm>
+					    </div>
+					);
+		  			break;
 		  		case "":
 		  			break;
 		  		default:
@@ -419,7 +460,8 @@ export default class DataTable extends React.Component {
 							  dispatch={dispatch}
 							  model={model}
 							  editGoodsObj={record} 
-							  handleInputChange={this.handleInputChange} 
+							  handleInputChange={this.handleInputChange}
+							  button_text="编辑"
 							/>
 							<Divider type="vertical" />
 							<Popconfirm 
