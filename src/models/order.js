@@ -1,4 +1,8 @@
 import getModalDesc from './curd';
+import request from '../utils/request';
+import { objToParams } from '../utils/mini_utils';
+import config from '../config';
+import { message } from 'antd';
 
 //命名空间
 const namespace = "order";
@@ -158,7 +162,57 @@ export default {
     }
   },
   effects: {
-    ...effects
+    ...effects,
+    //拒绝退款
+    *refuseRefund({ type, id }, { call, put }) {
+      const params_str = objToParams({ id });
+
+      let url = config.host + '/' + namespace + '/refuserefund';
+
+      const result = yield request(url, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: params_str
+      });
+      console.log("退款结果", result);
+      const { mes } = result.data.data;
+      if(mes === "success"){
+        message.success("已拒绝退款");
+        //刷新数据
+        yield put({
+          type: 'readData'
+        });
+      }else{
+        message.warning("操作失败");
+      }
+    },
+    //确认发货
+    *shipped({ type, id }, { call, put }) {
+      const params_str = objToParams({ id });
+
+      let url = config.host + '/' + namespace + '/shipped';
+
+      const result = yield request(url, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: params_str
+      });
+      console.log("确认发货结果", result);
+      const { mes } = result.data.data;
+      if(mes === "success"){
+        message.success("已确认发货");
+        //刷新数据
+        yield put({
+          type: 'readData'
+        });
+      }else{
+        message.warning("操作失败");
+      }
+    }
   },
   reducers: {
     ...reducers

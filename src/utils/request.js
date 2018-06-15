@@ -27,6 +27,7 @@ export default function request(url, options) {
   if(!options)
     options = {};
   options.credentials = 'include';
+  // options.withcredentials = false;
   // options["a"] = "b";
   return fetch(url, options)
     .then(checkStatus)
