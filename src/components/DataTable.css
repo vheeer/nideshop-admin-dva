@@ -35,8 +35,15 @@
     margin: 0 0 10px 0;
 }
 .avatar {
+<<<<<<< HEAD
     width: 32px;
     margin: 0px 12px 0px 0px;
+=======
+    position: absolute;
+    width: 35px;
+    margin: -18px 0px 0px 0px;
+    left: 10px;
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
     border-radius: 2px;
 }
 .image_box {

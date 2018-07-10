@@ -29,7 +29,11 @@ export function read({ model, ...params }) {
    * @return {Promise} []
    */
 export function readColumn({ model, ...params }) {
+<<<<<<< HEAD
 	// const params_str = objToParams(params);
+=======
+	const params_str = objToParams(params);
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 
 	let url = config.host + '/' + model + '/readcolumn';
 

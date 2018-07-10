@@ -72,7 +72,11 @@ export default {
           // 对应的路径
           let target_hash = "";
           menuConfig.forEach(firstPath => {
+<<<<<<< HEAD
             const { children } = firstPath;
+=======
+            const { href: href_1, children } = firstPath;
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
             if(children)
               children.forEach(secondPath => {
                 const { href: href_2, model } = secondPath;

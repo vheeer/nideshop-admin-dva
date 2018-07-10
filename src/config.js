@@ -5,6 +5,7 @@ export default {
 	project,
 	host,
 	defaultId: 14,
+<<<<<<< HEAD
     defaultAcc: "zhangjizhe1993728@126.com",
     order_status_match: {
     	'0': '未付款',
@@ -24,4 +25,7 @@ export default {
     shipping_status_match: {
     	
     }
+=======
+    defaultAcc: "zhangjizhe1993728@126.com"
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 }

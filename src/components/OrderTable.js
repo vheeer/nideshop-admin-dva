@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+<<<<<<< HEAD
 import { Table, Spin, Divider, Popconfirm, Switch, Input, Select, Button, Message, Row, Icon, Alert } from 'antd';
 import OrderCollectionsPage from './OrderCollectionsPage';
 import Excel from './mini_components/Excel';
+=======
+import { Table, Spin, Divider, Popconfirm, Switch, Input, Select, Button, Message, Row, Icon, Alert, Tag } from 'antd';
+import OrderCollectionsPage from '../components/OrderCollectionsPage';
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 import { getDiff } from '../utils/mini_utils';
 import styles from './DataTable.css';
 const { Option } = Select;
@@ -14,6 +19,7 @@ export default class DataTable extends React.Component {
 			...props,
 			key: '__none',
 			value: '',
+<<<<<<< HEAD
 			is_column: false,
 			selectedRows: []
 		}
@@ -27,6 +33,10 @@ export default class DataTable extends React.Component {
 		    }
 	    },400);
 
+=======
+			is_column: false
+		}
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 		this.handleClickEdit = this.handleClickEdit.bind(this);
 		this.handleClickDelete = this.handleClickDelete.bind(this);
 		this.handleClickCreate = this.handleClickCreate.bind(this);
@@ -146,7 +156,11 @@ export default class DataTable extends React.Component {
 		console.log(record);	
 		const { dispatch } = this.props;
 		dispatch({
+<<<<<<< HEAD
 			type: "order/accept",
+=======
+			type: "distribute_apply/accept",
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 			id
 		})
 	}
@@ -169,6 +183,7 @@ export default class DataTable extends React.Component {
 		else
 		  return true;
 	}
+<<<<<<< HEAD
 	handleCantPrint() {
 		Message.warning("请选择要打印的订单");
 	}
@@ -223,6 +238,14 @@ export default class DataTable extends React.Component {
 		     };
 		     print_data.push(print_data_single);
 		});
+=======
+	render() {
+		const _that = this;
+		const { dataList, columnMatch, dispatch, count, loading, model, order_status, pay_status, totalWidth, actionWidth, alertMessage, currentPage: page, column_dataList } = this.props;
+		const { pageSize, key, value, is_column } = this.state;
+    	console.log("props of DataTable: ", this.props);
+
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
     	/* 详细数据 */
     	//查询到的字段列表
     	let keys = [];
@@ -363,6 +386,7 @@ export default class DataTable extends React.Component {
 							}
 						});
 						break;
+<<<<<<< HEAD
 					case 'user':
 						columns.push({
 							...columnMatch[key][5],
@@ -404,6 +428,8 @@ export default class DataTable extends React.Component {
 							}
 						});
 						break;
+=======
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 					default:
 						break;
 				}
@@ -416,9 +442,15 @@ export default class DataTable extends React.Component {
 		  fixed: 'right',
 		  width: actionWidth,
 		  render: (data, record) => {
+<<<<<<< HEAD
 		  	const { order_status, pay_status } = record;
 		  	let buttons = null;
 			const OrderGoods = require('./OrderGoods').default;
+=======
+		  	const { order_status, pay_status, shipping_status } = record;
+		  	let buttons = null;
+			const Order_goods = require('./Order_goods').default;
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 			const divider_1 = ( <Divider type="vertical" key="1" /> );
 			const divider_2 = ( <Divider type="vertical" key="2" /> );
 			const edit_btn = (
@@ -444,10 +476,15 @@ export default class DataTable extends React.Component {
 				</Popconfirm>
 			);
 			const order_goods_btn = (	
+<<<<<<< HEAD
 				<OrderGoods
 					{...record}	
 					dispatch={dispatch}
 					others={others}
+=======
+				<Order_goods
+					{...record}	
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 					key="opera_4"
 				/>
 			);
@@ -580,6 +617,7 @@ export default class DataTable extends React.Component {
 
 		/* 字段管理 */
 		const column_columns = null;
+<<<<<<< HEAD
 
 	    // rowSelection object indicates the need for row selection
 	    const rowSelection = {
@@ -593,6 +631,8 @@ export default class DataTable extends React.Component {
 	      }),
 	    }
 		
+=======
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 		return (
 			<div>
 				<Alert className={styles.alert} message={alertMessage} type="info" />
@@ -610,6 +650,7 @@ export default class DataTable extends React.Component {
 				    	<Option value={100}>100</Option>
 				    </Select>
 				    <Button className={styles.search} type="primary" onClick={this.handleInputClick}>查询</Button>
+<<<<<<< HEAD
 					{
 						selectedRows.length === 0
 						?
@@ -617,6 +658,8 @@ export default class DataTable extends React.Component {
 						:
 						<Excel data={print_data} btn_ele={<Button type="primary">批量打印</Button>} />
 					}
+=======
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 			    	<Button className={styles.create} type="primary" onClick={this.handleClickCreate}><Icon type="plus"></Icon>添加</Button>
 				    <Button.Group size="middle">
 				    	<Button className={""} type={is_column?"primary":""} onClick={this.switchColumn}><Icon type="database" />字段管理</Button>
@@ -633,17 +676,26 @@ export default class DataTable extends React.Component {
 							rowClassName={styles.row}
 							columns={column_columns}
 							dataSource={column_dataList}
+<<<<<<< HEAD
 							others={others}
+=======
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 							rowKey={ record => record.id }
 						/>
 						:
 						<Table 
+<<<<<<< HEAD
 							rowSelection={rowSelection}
+=======
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 							rowClassName={styles.row}
 							scroll={{ x: totalWidth + actionWidth }}
 							columns={columns} 
 							dataSource={dataList} 
+<<<<<<< HEAD
 							others={others}
+=======
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 							pagination={{
 								total: count,
 								pageSize,

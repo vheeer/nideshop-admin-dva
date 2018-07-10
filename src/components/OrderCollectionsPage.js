@@ -27,6 +27,10 @@ const GoodsCollectionCreateForm = Form.create({
     if(editGoodsObj)
       keys = Object.keys(editGoodsObj);
     const fieldsObj = {};
+<<<<<<< HEAD
+=======
+    const column = [];
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
     for(const key of keys)
     {
       //跳过字段
@@ -167,7 +171,11 @@ const GoodsCollectionCreateForm = Form.create({
                 })(
                   <InputNumber
                     min={0}
+<<<<<<< HEAD
                     max={1500000}
+=======
+                    max={500000}
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
                   />
                 )}
               </FormItem>
@@ -184,7 +192,11 @@ const GoodsCollectionCreateForm = Form.create({
                 })(
                   <InputNumber
                     min={0.00}
+<<<<<<< HEAD
                     max={15000.00}
+=======
+                    max={5000.00}
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
                     formatter={value => "￥" + parseFloat(value).toFixed(2)}
                     parser={value => parseFloat(value.split('￥')[1]?value.split('￥')[1]:0.00)}
                   />

@@ -62,9 +62,14 @@
           //恢复正常状态
           yield put({ type: 'toggleLoading', loading: false });
           //查询结果
+<<<<<<< HEAD
           if(result.data.errno === 0){
             // message.success("读取信息成功");
           }
+=======
+          if(result.data.errno === 0)
+            message.success("读取信息成功");
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
           else
             return message.error("读取数据失败");
           //订单列表分页信息

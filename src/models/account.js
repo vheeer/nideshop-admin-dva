@@ -36,11 +36,19 @@ export default {
               id: id
             });
           }else if(login === "0"){
+<<<<<<< HEAD
             if(window.location.hash.indexOf("login") === -1){
               dispatch(routerRedux.push('/login'));
             }
           }else if(login === undefined){
             if(window.location.hash.indexOf("login") === -1){
+=======
+            if(window.location.hash.indexOf("login") == -1){
+              dispatch(routerRedux.push('/login'));
+            }
+          }else if(login === undefined){
+            if(window.location.hash.indexOf("login") == -1){
+>>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
               dispatch(routerRedux.push('/login'));
             }
           }
