@@ -1,0 +1,34 @@
+.img {
+	width: 150px;
+}
+.content {
+	color: rgba(0, 0, 0, 0.45);
+}
+.title {
+	color: rgba(0, 0, 0, 0.75);
+}
+.model {
+	width: 800px;
+}
+.freight_col {
+    padding: 15px 0 5px 0;
+    line-height: 32px;
+}
+.btn_able {
+	background-color: #1890ff;
+	color: #fff;
+	cursor: pointer;
+}
+.btn_unable {
+	background-color: #555;
+}
+.print_btn {
+    position: absolute;
+    top: 4px;
+    right: 0px;
+}
+.shipping {
+	background-color: #ECECEC;
+	padding: 30px;
+	margin-top: 10px;
+}

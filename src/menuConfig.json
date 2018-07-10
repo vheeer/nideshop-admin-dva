@@ -1,0 +1,211 @@
+[
+    {
+        "href": "#/", 
+        "word": "主页", 
+        "icon": "home",
+        "title": "主页"
+    }, 
+    {
+        "href": "goods", 
+        "word": "商品管理", 
+        "icon": "user", 
+        "children": [
+            {
+                "href": "#/goods/list", 
+                "word": "分类&商品", 
+                "icon": "user", 
+                "title": "分类&商品",
+                "model": "goods"
+            },
+            {
+                "href": "#/goods/attribute", 
+                "word": "全部属性", 
+                "icon": "user", 
+                "title": "全部属性",
+                "model": "attribute"
+            },
+            {
+                "href": "#/goods/goods_attribute", 
+                "word": "商品属性", 
+                "icon": "user", 
+                "title": "商品属性",
+                "model": "goods_attribute"
+            },
+            {
+                "href": "#/goods/goods_issue", 
+                "word": "常见问题", 
+                "icon": "user", 
+                "title": "常见问题",
+                "model": "goods_issue"
+            },
+            {
+                "href": "#/goods/related_goods", 
+                "word": "相关商品", 
+                "icon": "user", 
+                "title": "相关商品",
+                "model": "related_goods"
+            }
+        ]
+    },
+    {
+        "href": "product", 
+        "word": "产品管理", 
+        "icon": "user", 
+        "children": [
+            {
+                "href": "#/product/list",
+                "word": "产品列表", 
+                "icon": "user", 
+                "title": "产品列表",
+                "model": "product"
+            },
+            {
+                "href": "#/goods/specification", 
+                "word": "全部规格", 
+                "icon": "user", 
+                "title": "全部规格",
+                "model": "specification"
+            },
+            {
+                "href": "#/goods/goods_specification", 
+                "word": "商品规格", 
+                "icon": "user", 
+                "title": "商品规格",
+                "model": "goods_specification"
+            }
+        ]
+    }, 
+    {
+        "href": "order", 
+        "word": "订单中心", 
+        "icon": "user", 
+        "children": [
+            {
+                "href": "#/order/list", 
+                "word": "订单列表", 
+                "icon": "user", 
+                "title": "订单列表",
+                "model": "order"
+            },
+            {
+                "href": "#/order/goods", 
+                "word": "订单商品", 
+                "icon": "user", 
+                "title": "订单商品",
+                "model": "order_goods"
+            }
+        ]
+    }, 
+    {
+        "href": "shop", 
+        "word": "店铺管理", 
+        "icon": "user", 
+        "children": [
+            {
+                "href": "#/shop/topic", 
+                "word": "专题列表", 
+                "icon": "user", 
+                "title": "专题列表",
+                "model": "topic"
+            }, 
+            {
+                "href": "#/shop/brand", 
+                "word": "制造商", 
+                "icon": "user", 
+                "title": "制造商",
+                "model": "brand"
+            }, 
+            {
+                "href": "#/shop/channel", 
+                "word": "频道列表", 
+                "icon": "user", 
+                "title": "频道列表",
+                "model": "channel"
+            },
+            {
+                "href": "#/shop/ad", 
+                "word": "广告", 
+                "icon": "user", 
+                "title": "广告",
+                "model": "ad"
+            }, 
+            {
+                "href": "#/shop/comment", 
+                "word": "评论", 
+                "icon": "user", 
+                "title": "评论",
+                "model": "comment"
+            }, 
+            {
+                "href": "#/shop/feedback", 
+                "word": "反馈", 
+                "icon": "user", 
+                "title": "反馈",
+                "model": "feedback"
+            }
+        ]
+    }, 
+    {
+        "href": "operate", 
+        "word": "营销工具", 
+        "icon": "user", 
+        "children": [
+            {
+                "href": "#/operate/distribute_apply", 
+                "word": "分销申请", 
+                "icon": "user", 
+                "title": "分销申请",
+                "model": "distribute_apply"
+            },
+            {
+                "href": "#/operate/distribute_commision", 
+                "word": "返佣记录", 
+                "icon": "user", 
+                "title": "返佣记录",
+                "model": "distribute_commision"
+            }
+        ]
+    }, 
+    {
+        "href": "vip", 
+        "word": "会员管理", 
+        "icon": "user", 
+        "children": [
+            {
+                "href": "#/vip/list", 
+                "word": "会员列表", 
+                "icon": "user", 
+                "title": "会员列表",
+                "model": "user"
+            },
+            {
+                "href": "#/vip/address", 
+                "word": "地址管理",
+                "icon": "user", 
+                "title": "地址管理",
+                "model": "address"
+            },
+            {
+                "href": "#/vip/cash", 
+                "word": "提现记录",
+                "icon": "user", 
+                "title": "提现记录",
+                "model": "cash"
+            }
+        ]
+    }, 
+    {
+        "href": "others", 
+        "word": "其他", 
+        "icon": "user", 
+        "children": [
+            {
+                "href": "#/others/others", 
+                "word": "设置", 
+                "icon": "user", 
+                "title": "设置",
+                "model": "others"
+            }
+        ]
+    }
+]

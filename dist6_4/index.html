@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>后台管理</title>
+  <link rel="stylesheet" href="index.css" />
+  <style>
+  .ostro_picWall .ant-upload-list-item-info:before {
+  	left: 0px;
+  }
+  .App {
+  text-align: center;
+  width: 100%;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+.w-e-toolbar {
+  flex-wrap: wrap;
+}
+.w-e-text-container {
+  z-index: 1 !important;
+  height: auto !important;
+}
+.w-e-menu {
+  z-index: 2 !important;
+}
+.ant-btn > .anticon + span {
+  margin-left: 2px !important;
+}
+tr,td {
+  position: relative;
+}
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+  </style>
+</head>
+<body>
+
+  <div id="root"></div>
+  <script>
+    Date.prototype.format = function(fmt) { 
+     var o = { 
+        "M+" : this.getMonth()+1,                 //月份 
+        "d+" : this.getDate(),                    //日 
+        "h+" : this.getHours(),                   //小时 
+        "m+" : this.getMinutes(),                 //分 
+        "s+" : this.getSeconds(),                 //秒 
+        "q+" : Math.floor((this.getMonth()+3)/3), //季度 
+        "S"  : this.getMilliseconds()             //毫秒 
+    }; 
+    if(/(y+)/.test(fmt)) {
+            fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+    }
+     for(var k in o) {
+        if(new RegExp("("+ k +")").test(fmt)){
+             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+         }
+     }
+    return fmt; 
+}
+  </script>
+  <script src="https://www.yinmudianying.club/wangEditor.js"></script>
+  <script src="index.js"></script>
+
+</body>
+</html>

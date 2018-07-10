@@ -1,0 +1,16 @@
+.category_col {
+	padding: 10px;
+}
+.category_edit_btn {
+	
+}
+.ostro_picWall .ant-upload-list-item-info:before {
+  left: 0px;
+}
+.goods_desc_box {
+	width: 100%;
+	    text-align: left;
+}
+.alert {
+	text-align: left;
+}
