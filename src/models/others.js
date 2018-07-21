@@ -38,7 +38,6 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * 4个汉字宽90px 5个汉字宽105px
  */
 const columnMatch = {
-<<<<<<< HEAD
                           id: ["ID", true, 'varchar', true, "varchar required", {width: 120, fixed: 'left'}, true],
                         name: ["名称", true, 'varchar', true, "varchar", {width: 150}, true],
                      freight: ["运费", true, 'varchar', true, "money", {width: 150}, true],
@@ -76,30 +75,11 @@ const columnMatch = {
              default_contact: ["默认发货电话", true, 'varchar', true, "varchar", {width: 200}, true],
 default_postscript_consignor: ["默认卖家留言", true, 'varchar', true, "varchar", {width: 200}, true],
 
+         is_auto_distributor: ["自动成为分销商", true, 'varchar', true, "varchar", {width: 200}, true],
 
 
 
-=======
-                      id: ["ID", true, 'varchar', true, "varchar required", {width: 120, fixed: 'left'}, true],
-                    name: ["名称", true, 'varchar', true, "varchar", {width: 150}, true],
-                 freight: ["运费", true, 'varchar', true, "money", {width: 150}, true],
-             brand_title: ["制造商标题", true, 'varchar', true, "varchar", {width: 150}, true],
-               new_title: ["新品标题", true, 'varchar', true, "varchar", {width: 150}, true],
-               hot_title: ["热卖标题", true, 'varchar', true, "varchar", {width: 150}, true],
-             topic_title: ["专题标题", true, 'varchar', true, "varchar", {width: 150}, true], 
-                add_time: ["添加时间", true, 'date_time', true, "varchar", {width: 250}, true],
-        service_policy_1: ["服务1", true, 'varchar', true, "varchar", {width: 170}, true],
-        service_policy_2: ["服务2", true, 'varchar', true, "varchar", {width: 170}, true],
-        service_policy_3: ["服务3", true, 'varchar', true, "varchar", {width: 170}, true],
-         hot_goods_title: ["热品标题", true, 'varchar', true, "varchar", {width: 170}, true],
-    hot_goods_bannar_url: ["热品大图", true, 'image', true, "image", {width: 170}, true],
-         new_goods_title: ["新品标题", true, 'varchar', true, "varchar", {width: 170}, true],
-    new_goods_bannar_url: ["新品大图", true, 'image', true, "image", {width: 170}, true],
-        share_background: ["分享背景图", true, 'image', true, "image", {width: 170}, true],
-         is_distribute: ["开启分销", true, 'switch', false, "switch", {width: 170}, true],
-         first_commision: ["一级佣金", true, 'varchar', true, "varchar", {width: 170}, true],
-         second_commision: ["二级佣金", true, 'varchar', true, "varchar", {width: 170}, true],
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
+
 };
 //计算表格总宽度
 const totalWidth = (() => {
@@ -127,11 +107,7 @@ export default {
           // 对应的路径
           let target_hash = "";
           menuConfig.forEach(firstPath => {
-<<<<<<< HEAD
             const { children } = firstPath;
-=======
-            const { href: href_1, children } = firstPath;
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
             if(children)
               children.forEach(secondPath => {
                 const { href: href_2, model } = secondPath;

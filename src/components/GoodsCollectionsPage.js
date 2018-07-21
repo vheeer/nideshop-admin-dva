@@ -164,29 +164,17 @@ const GoodsCollectionCreateForm = Form.create({
                 <Input placeholder="请输入简介" />
               )}
             </FormItem>
-<<<<<<< HEAD
             {
             <FormItem
               label="商品描述"
             >
               {getFieldDecorator('goods_desc', {  
-=======
-            {/*
-            <FormItem
-              label="商品描述"
-            >
-              {getFieldDecorator('goods_desc', {
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
                 rules: [{ required: false, message: '请输入商品描述' }],
               })(
                 <TextArea placeholder="请输入描述" />
               )}
             </FormItem>
-<<<<<<< HEAD
             }
-=======
-            */}
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
             {/*
             <FormItem
               label="默认产品ID"
@@ -206,11 +194,7 @@ const GoodsCollectionCreateForm = Form.create({
               })(
                 <InputNumber
                   min={0.00}
-<<<<<<< HEAD
                   max={15000.00}
-=======
-                  max={5000.00}
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
                   formatter={value => "￥" + parseFloat(value).toFixed(2)}
                   parser={value => parseFloat(value.split('￥')[1]?value.split('￥')[1]:0.00)}
                 />

@@ -8,7 +8,7 @@ const alertMessage = "您可以在这里设置产品";
 //默认每页条数
 const pageSize = 7;
 //操作列宽度
-const actionWidth = 108;
+const actionWidth = 999;
 //默认添加形式
 const defaultCreateDesc = {
   model: namespace,
@@ -43,11 +43,21 @@ const columnMatch = {
         goods_id: ["商品ID", true, 'varchar', true, "varchar", {width: 150}, true],
 related_goods_id: ["关联商品ID", true, 'varchar', true, "varchar", {width: 150}, true],
         add_time: ["添加时间", true, 'date_time', true, "varchar", {width: 250}, true],
+  ad_position_id: ["关联商品ID", false, 'varchar', false, "varchar", {width: 150}, true],
+      media_type: ["关联商品ID", false, 'varchar', false, "varchar", {width: 150}, true],
+            name: ["关联商品ID", false, 'varchar', false, "varchar", {width: 150}, true],
+            link: ["关联商品ID", false, 'varchar', false, "varchar", {width: 150}, true],
+       image_url: ["关联商品ID", false, 'varchar', false, "varchar", {width: 150}, true],
+         content: ["关联商品ID", false, 'varchar', false, "varchar", {width: 150}, true],
+        end_time: ["关联商品ID", false, 'varchar', false, "varchar", {width: 150}, true],
+         enabled: ["关联商品ID", false, 'varchar', false, "varchar", {width: 150}, true],
+
     };
 //计算表格总宽度
 const totalWidth = (() => {
   let totalWidth = 0;
   Object.keys(columnMatch).forEach(key => totalWidth += columnMatch[key][1]?columnMatch[key][5]["width"]:0);
+  totalWidth = 0;
   return totalWidth;
 })();
 export default {
@@ -70,11 +80,7 @@ export default {
           // 对应的路径
           let target_hash = "";
           menuConfig.forEach(firstPath => {
-<<<<<<< HEAD
             const {children } = firstPath;
-=======
-            const { href: href_1, children } = firstPath;
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
             if(children)
               children.forEach(secondPath => {
                 const { href: href_2, model } = secondPath;

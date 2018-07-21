@@ -1,18 +1,10 @@
 import React from 'react';
-<<<<<<< HEAD
 import { Button, Form, Input, Modal, InputNumber, Popconfirm } from 'antd';
-=======
-import { Button, Form, Input, Modal, Icon, InputNumber, Popconfirm } from 'antd';
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 import SingleImgUploader from './mini_components/SingleImgUploader';
 import MySwitch from './mini_components/MySwitch';
 import { boolToNum, numToBool } from '../utils/mini_utils';
 import config from '../config';
 
-<<<<<<< HEAD
-=======
-const { TextArea } = Input;
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 const FormItem = Form.Item;
 
 const CategoryCollectionCreateForm = Form.create({
@@ -117,10 +109,6 @@ const CategoryCollectionCreateForm = Form.create({
       };
   	}
     render() {
-<<<<<<< HEAD
-=======
-      const { props } = this;
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
       const { categoryId, visible, onCancel, onCreate, form } = this.props;
       const { getFieldDecorator } = form;
       return (

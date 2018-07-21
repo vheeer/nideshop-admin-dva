@@ -24,6 +24,8 @@ export default model => connect(
 			    <div className={styles.normal}>
 			      <DataTable
 				      {...this.props[model]}
+				      others={this.props.others}
+			      	  {...this.props['others']}
 				      model={model}
 				      dispatch={dispatch}
 			      />

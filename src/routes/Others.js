@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'dva';
 import styles from './IndexPage.css';
-import DataTable from '../components/OrderTable';
+import DataTable from '../components/OtherTable';
 
-class Order extends React.Component {
+class User extends React.Component {
 	constructor(props) {
     	super(props);
 		this.state = {
@@ -14,14 +14,13 @@ class Order extends React.Component {
   		const { dispatch } = this.props;
 	  	return(
 		    <div className={styles.normal}>
-		      <DataTable	
-			      {...this.props.order}
-			      others={this.props.others}
-			      model={"order"}
+		      <DataTable
+			      {...this.props.others}
+			      model={"others"}
 			      dispatch={dispatch}
 		      />
 		    </div>
 	    )
 	}
 }
-export default connect(({ order, others }) => ({ order, others }))(Order);
+export default connect(({ others }) => ({ others }))(User);

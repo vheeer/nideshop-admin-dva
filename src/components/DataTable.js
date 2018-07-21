@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-<<<<<<< HEAD
 import { Table, Spin, Divider, Popconfirm, Switch, Input, Select, Button, Message, Row, Icon, Alert } from 'antd';
-=======
-import { Table, Spin, Divider, Popconfirm, Switch, Input, Select, Button, Message, Row, Icon, Alert, Tag } from 'antd';
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 import OrderCollectionsPage from '../components/OrderCollectionsPage';
 import { getDiff } from '../utils/mini_utils';
 import styles from './DataTable.css';
@@ -163,11 +159,7 @@ export default class DataTable extends React.Component {
 		const _that = this;
 		const { dataList, columnMatch, dispatch, count, loading, model, order_status, pay_status, totalWidth, actionWidth, alertMessage, currentPage: page, column_dataList } = this.props;
 		const { pageSize, key, value, is_column } = this.state;
-<<<<<<< HEAD
     	// console.log("props of DataTable: ", this.props);
-=======
-    	console.log("props of DataTable: ", this.props);
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 
     	/* 详细数据 */
     	//查询到的字段列表
@@ -328,7 +320,6 @@ export default class DataTable extends React.Component {
 							}
 						});
 						break;
-<<<<<<< HEAD
 					case 'region':
 						columns.push({
 							...columnMatch[key][5],
@@ -342,8 +333,20 @@ export default class DataTable extends React.Component {
 							}
 						});
 						break;
-=======
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
+					case 'wxlink':
+						columns.push({
+							...columnMatch[key][5],
+							title: columnMatch[key][0],
+							dataIndex: key,
+							key,
+							render: (data, record) => {
+								const goods_id = data.split('=')[1];
+								return (
+									<span>{goods_id}</span>
+								)
+							}
+						});
+						break;
 					default:
 						break;
 				}
@@ -353,7 +356,6 @@ export default class DataTable extends React.Component {
 		columns.push({
 		  title: '操作',
 		  key: 'action',
-		  fixed: 'right',
 		  width: actionWidth,
 		  render: (data, record) => {
 		  	const { order_status, pay_status } = record;
@@ -361,11 +363,7 @@ export default class DataTable extends React.Component {
 		  	switch(model)
 		  	{
 		  		case "order":
-<<<<<<< HEAD
 					const OrderGoods = require('./OrderGoods').default;
-=======
-					const Order_goods = require('./Order_goods').default;
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 		  			const opera = [(
 		  				<OrderCollectionsPage 
 		  				  key="opera_1"
@@ -390,7 +388,6 @@ export default class DataTable extends React.Component {
 					),(
 						<Divider type="vertical" key="opera_5" />
 					),(	
-<<<<<<< HEAD
 						<OrderGoods
 							{...record}	
 							dispatch={dispatch}
@@ -398,14 +395,6 @@ export default class DataTable extends React.Component {
 						>
 							
 						</OrderGoods>
-=======
-						<Order_goods
-							{...record}	
-							key="opera_4"
-						>
-							
-						</Order_goods>
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 					)];
 					
 		  			if(order_status === 201 && pay_status === 2)
@@ -573,7 +562,6 @@ export default class DataTable extends React.Component {
 						:
 						<Table 
 							rowClassName={styles.row}
-							scroll={{ x: totalWidth + actionWidth }}
 							columns={columns} 
 							dataSource={dataList} 
 							pagination={{

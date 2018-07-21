@@ -42,7 +42,7 @@ const columnMatch = {
                     ad_position_id: ["ad_position_id", false, 'varchar', false, "varchar", {width: 150}, false],
                         media_type: ["media_type", false, 'varchar', false, "varchar", {width: 150}, false],
                               name: ["名称", true, 'varchar', true, "varchar", {width: 150}, true],
-                              link: ["链接", false, 'varchar', false, "varchar", {width: 150}, false],
+                              link: ["链接", true, 'wxlink', true, "wxlink", {width: 150}, false],
                          image_url: ["大图", true, 'image', true, "image", {width: 150}, false],
                            content: ["内容", true, 'varchar', true, "textArea", {width: 150}, true],
                           end_time: ["结束时间", false, 'date_time', false, "varchar", {width: 150}, false],

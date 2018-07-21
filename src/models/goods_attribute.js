@@ -8,7 +8,7 @@ const alertMessage = "您可以在这里设置商品属性";
 //默认每页条数
 const pageSize = 7;
 //操作列宽度
-const actionWidth = 1;
+const actionWidth = 999;
 //默认添加形式
 const defaultCreateDesc = {
   model: namespace,
@@ -43,7 +43,7 @@ const columnMatch = {
             goods_id: ["商品ID", true, 'varchar', true, "varchar", {width: 150}, true],
         attribute_id: ["属性ID", true, 'varchar', true, "varchar", {width: 150}, true],
                value: ["属性值", true, 'varchar', true, "varchar", {width: 150}, true],
-            add_time: ["添加时间", true, 'date_time', false, "varchar", {width: 150}, true],
+            add_time: ["添加时间", true, 'date_time', false, "date_time", {width: 750}, true],
     };
 //计算表格总宽度
 const totalWidth = (() => {
@@ -71,11 +71,7 @@ export default {
           // 对应的路径
           let target_hash = "";
           menuConfig.forEach(firstPath => {
-<<<<<<< HEAD
             const { children } = firstPath;
-=======
-            const { href: href_1, children } = firstPath;
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
             if(children)
               children.forEach(secondPath => {
                 const { href: href_2, model } = secondPath;

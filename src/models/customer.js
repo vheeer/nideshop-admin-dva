@@ -1,11 +1,7 @@
 import { routerRedux } from 'dva/router';
 import * as userService from '../services/user';
 import { message } from 'antd';
-<<<<<<< HEAD
 import Cookies from 'cookies';
-=======
-import Cookies from 'js-cookie';
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 import config from '../config';
 const { defaultId, defaultAcc } = config;
 export default {

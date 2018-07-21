@@ -8,7 +8,7 @@ const alertMessage = "您可以在这里添加、修改商品拥有的属性";
 //默认每页条数
 const pageSize = 7;
 //操作列宽度
-const actionWidth = 108;
+const actionWidth = 999;
 //默认添加形式
 const defaultCreateDesc = {
   model: namespace,
@@ -51,6 +51,7 @@ attribute_category_id: ["商品分类ID", true, 'varchar', true, "varchar", {wid
 const totalWidth = (() => {
   let totalWidth = 0;
   Object.keys(columnMatch).forEach(key => totalWidth += columnMatch[key][1]?columnMatch[key][5]["width"]:0);
+  totalWidth = 0;
   return totalWidth;
 })();
 export default {
@@ -73,11 +74,7 @@ export default {
           // 对应的路径
           let target_hash = "";
           menuConfig.forEach(firstPath => {
-<<<<<<< HEAD
             const { children } = firstPath;
-=======
-            const { href: href_1, children } = firstPath;
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
             if(children)
               children.forEach(secondPath => {
                 const { href: href_2, model } = secondPath;

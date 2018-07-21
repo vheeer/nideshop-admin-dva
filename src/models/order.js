@@ -3,10 +3,7 @@ import request from '../utils/request';
 import { objToParams } from '../utils/mini_utils';
 import config from '../config';
 import { message } from 'antd';
-<<<<<<< HEAD
 const { order_status_match, pay_status_match } = config;
-=======
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 
 //命名空间
 const namespace = "order";
@@ -45,20 +42,12 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * 4个汉字宽90px 5个汉字宽105px
  */
 const columnMatch = {
-<<<<<<< HEAD
                      id: ["ID", false, 'varchar', true, "varchar required", {width: 60}, false],
                 user_id: ["用户ID", false, 'varchar', false, "varchar", {width: 150}, true],
                  avatar: ["头像", false, 'avatar', false, "avatar", {width: 80}, false],
                    user: ["用户", true, 'user', false, "avatar", {width: 180}, false],
                order_sn: ["单号", true, 'varchar', false, "varchar", {width: 220}, true],
                nickname: ["昵称", false, 'varchar', false, "varchar", {width: 200}, true],
-=======
-                     id: ["ID", true, 'varchar', true, "varchar required", {width: 60,fixed: 'left'}, false],
-                user_id: ["用户ID", false, 'varchar', false, "varchar", {width: 150}, true],
-                 avatar: ["头像", true, 'avatar', false, "avatar", {width: 80}, false],
-               order_sn: ["单号", true, 'varchar', false, "varchar", {width: 220}, true],
-               nickname: ["昵称", true, 'varchar', false, "varchar", {width: 200}, true],
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
            order_status: ["订单状态", true, 'order_status', false, "varchar", {width: 110}, false],
         shipping_status: ["物流状态", false, 'varchar', false, "varchar", {width: 110}, false],
              pay_status: ["支付状态", true, 'pay_status', false, "varchar", {width: 110}, false],
@@ -67,7 +56,6 @@ const columnMatch = {
                province: ["省", false, 'varchar', false, "varchar", {width: 120}, false],
                    city: ["市", false, 'varchar', false, "varchar", {width: 120}, false],
                district: ["区", false, 'varchar', false, "varchar", {width: 120}, false],
-<<<<<<< HEAD
           province_text: ["省", true, 'region', false, "varchar", {width: 120}, false],
               city_text: ["市", true, 'region', false, "varchar", {width: 120}, false],
           district_text: ["区", true, 'region', false, "varchar", {width: 120}, false],
@@ -75,11 +63,6 @@ const columnMatch = {
                  mobile: ["电话", true, 'varchar', true, "varchar", {width: 150}, true],
              postscript: ["留言", true, 'varchar', true, "varchar", {width: 150}, true],
    postscript_consignor: ["商家留言", true, 'varchar', true, "varchar", {width: 150}, true],
-=======
-                address: ["详细地址", true, 'varchar', true, "varchar", {width: 180}, true],
-                 mobile: ["电话", true, 'varchar', true, "varchar", {width: 150}, true],
-             postscript: ["留言", true, 'varchar', true, "varchar", {width: 150}, true],
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
            shipping_fee: ["运费", false, 'varchar', false, "money", {width: 150}, false],
                pay_name: ["pay_name", false, 'varchar', false, "varchar", {width: 150}, false],
                  pay_id: ["pay_id", false, 'varchar', false, "varchar", {width: 150}, false],
@@ -98,13 +81,10 @@ const columnMatch = {
         callback_status: ["callback_status", false, 'varchar', false, "varchar", {width: 150}, false],
             order_goods: ["order_goods", false, 'varchar', false, "varchar", {width: 150}, false],
                 referee: ["推荐人ID", true, 'varchar', false, "varchar", {width: 150}, false],
-<<<<<<< HEAD
              freight_id: ["", false, 'varchar', false, "varchar", {width: 150}, false],
            out_trade_no: ["", false, 'varchar', false, "varchar", {width: 150}, false],
             shipping_id: ["", false, 'varchar', false, "varchar", {width: 150}, false]
 
-=======
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
 
     };
 //计算表格总宽度
@@ -124,61 +104,12 @@ export default {
     actionWidth,
     order_status: order_status => {
       let statusText = '未付款';
-<<<<<<< HEAD
           statusText = order_status_match[order_status];
-=======
-      switch(order_status) 
-      {
-        case 0:
-          statusText = '未付款';
-          break;
-        case 101:
-          statusText = '已取消';
-          break;
-        case 102:
-          statusText = '已删除';
-          break;
-        case 201:
-          statusText = '待发货';
-          break;
-        case 300:
-          statusText = '已发货';
-          break;
-        case 301:
-          statusText = '已收货';
-          break;
-        case 401:
-          statusText = '退款申请';
-          break;
-        case 402:
-          statusText = '退款申请';
-          break;
-        case 403:
-          statusText = '已退款';
-          break;
-        default:
-          break;
-      }
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
       return statusText;
     },
     pay_status: pay_status => {
       let statusText = '';
-<<<<<<< HEAD
           statusText = pay_status_match[pay_status];
-=======
-      switch(pay_status)
-      {
-        case 0:
-          statusText = '未支付';
-          break;
-        case 2:
-          statusText = '已支付';
-          break;
-        default:
-          break;
-      }
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
       return statusText;
     },
     loading: true
@@ -201,7 +132,6 @@ export default {
   },
   effects: {
     ...effects,
-<<<<<<< HEAD
     //同意退款
     *acceptRefund({ type, id }, { call, put }) {
       const params_str = objToParams({ id });
@@ -227,8 +157,6 @@ export default {
         message.warning("操作失败");
       }
     },
-=======
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c
     //拒绝退款
     *refuseRefund({ type, id }, { call, put }) {
       const params_str = objToParams({ id });

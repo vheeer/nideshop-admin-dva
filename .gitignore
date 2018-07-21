@@ -9,7 +9,4 @@
 # misc
 .DS_Store
 npm-debug.log*
-<<<<<<< HEAD
 package-lock.json
-=======
->>>>>>> 6de01f8aad4eaf1b163366defdc6f70fdeee514c

@@ -12,16 +12,16 @@
         "children": [
             {
                 "href": "#/goods/list", 
-                "word": "分类&商品", 
+                "word": "添加商品", 
                 "icon": "user", 
-                "title": "分类&商品",
+                "title": "添加商品",
                 "model": "goods"
             },
             {
                 "href": "#/goods/attribute", 
-                "word": "全部属性", 
+                "word": "属性分类", 
                 "icon": "user", 
-                "title": "全部属性",
+                "title": "属性分类",
                 "model": "attribute"
             },
             {
@@ -61,9 +61,9 @@
             },
             {
                 "href": "#/goods/specification", 
-                "word": "全部规格", 
+                "word": "规格分类", 
                 "icon": "user", 
-                "title": "全部规格",
+                "title": "规格分类",
                 "model": "specification"
             },
             {
@@ -86,13 +86,6 @@
                 "icon": "user", 
                 "title": "订单列表",
                 "model": "order"
-            },
-            {
-                "href": "#/order/goods", 
-                "word": "订单商品", 
-                "icon": "user", 
-                "title": "订单商品",
-                "model": "order_goods"
             }
         ]
     }, 
@@ -135,13 +128,6 @@
                 "icon": "user", 
                 "title": "评论",
                 "model": "comment"
-            }, 
-            {
-                "href": "#/shop/feedback", 
-                "word": "反馈", 
-                "icon": "user", 
-                "title": "反馈",
-                "model": "feedback"
             }
         ]
     }, 

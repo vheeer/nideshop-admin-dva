@@ -6,10 +6,12 @@ import Curd from './routes/Curd';
 import Goods from './routes/Goods';
 import Login from './routes/Login';
 import Order from './routes/Order';
+import Topic from './routes/Topic';
+import Others from './routes/Others';
 import menuConfig from './menuConfig.json';
 import IndexPage from './routes/IndexPage';
 
-const ingore_model = [ "goods", "order" ]; //过滤模型
+const ingore_model = [ "goods", "order", "others" ]; //过滤模型
 const routes = [];
 menuConfig.forEach(firstPath => {
 	const { href: href_1, children } = firstPath;
@@ -28,6 +30,8 @@ menuConfig.forEach(firstPath => {
 routes.unshift((<Route key={"/goods/list"} path="/goods/list" exact component={Goods} />));
 routes.unshift((<Route key={"/login"} path="/login" exact component={Login} />));
 routes.unshift((<Route key={"/order/list"} path="/order/list" exact component={Order} />));
+// routes.unshift((<Route key={"/topic/list"} path="/topic/list" exact component={Topic} />)); 
+routes.unshift((<Route key={"/others/others"} path="/others/others" exact component={Others} />));
 
 let WrapFrame = connect(({ page, account }) => ({
   page, 

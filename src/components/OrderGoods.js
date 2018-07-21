@@ -303,7 +303,7 @@ export default class OrderGoods extends React.Component {
     const shipping_html = (
       <div>
         <div className={styles.print_btn}>
-          <Excel data={print_data} btn_ele={<Button type="primary">打印</Button>} />
+          <Excel data={print_data} btn_ele={<Button type="primary">导出</Button>} />
         </div>
         <div className={styles.shipping}>
           <Row gutter={16}>
