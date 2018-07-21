@@ -109,6 +109,13 @@
                 "model": "brand"
             }, 
             {
+                "href": "#/shop/tag",
+                "word": "标签",
+                "icon": "user",
+                "title": "标签",
+                "model": "tag"
+            }, 
+            {
                 "href": "#/shop/channel", 
                 "word": "频道列表", 
                 "icon": "user", 

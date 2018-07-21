@@ -1,5 +1,6 @@
 import React from 'react';
 import { Upload, Icon, Modal, message } from 'antd';
+import styles from './MultiImgUploader.css';
 
 export default class SingleImgUploader extends React.Component {
   constructor(props){
@@ -19,9 +20,21 @@ export default class SingleImgUploader extends React.Component {
     });
   }
   handlePreview(file) {
+    console.log('file', file);
+    // 获取、添加轮播图格式
+    let type;
+    const currentType = file.url.split('.').pop();
+    const currentName = file.url.split('/').pop();
+    const imgType = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+    if(imgType.indexOf(currentType) > -1) {
+      type = 'img';
+    }
     this.setState({
+      ...file,
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
+      type,
+      currentName
     });
   }
   handleChange(data) {
@@ -45,7 +58,7 @@ export default class SingleImgUploader extends React.Component {
   }
   render() {
     const { max } = this.props;
-    const { previewVisible, previewImage, fileList } = this.state;
+    const { previewVisible, previewImage, fileList, type, currentName } = this.state;
     const uploadButton = (
       <div>
         <Icon type="plus" />
@@ -65,7 +78,16 @@ export default class SingleImgUploader extends React.Component {
           {fileList.length >= max ? null : uploadButton}
         </Upload>
         <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-          <img alt="example" style={{ width: '100%' }} src={previewImage} />
+          <h3>{currentName}</h3>
+          {
+            type === 'img'
+            ?
+              <img alt="example" style={{ width: '100%' }} src={previewImage} />
+            :
+              <video className={styles.video} src={previewImage} controls="controls">
+                您的浏览器不支持 video 标签。
+              </video>
+          }
         </Modal>
       </div>
     );
