@@ -6,6 +6,12 @@ import { getDiff } from '../utils/mini_utils';
 import styles from './DataTable.css';
 const { Option } = Select;
 
+class VSelect extends React.Component {
+  render() {
+    return <Select {...this.props} defaultValue={this.props.value} />;
+  }
+}
+
 export default class DataTable extends React.Component {
 	constructor(props) {
     	super(props);
@@ -210,7 +216,7 @@ export default class DataTable extends React.Component {
 							key,
 							render: (data, record) => {
 								return (
-									<span>{data?"男":"女"}</span>
+									<span>{data === 0?"未知":(data === 1?"男":"女")}</span>
 								)
 							}
 						});

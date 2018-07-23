@@ -182,7 +182,7 @@ export default class OrderGoods extends React.Component {
       placeholder: "请填写运单号",
       onSearch: this.handleUpdateFreightId,
       onChange: this.handleFreightIdChange,
-      disabled: shipping_status === 0?false:true
+      disabled: shipping_status === 2?false:true, //收货后将无法修改
     }
     // 卖家留言输入框
     const inputPostScriptProperties = {

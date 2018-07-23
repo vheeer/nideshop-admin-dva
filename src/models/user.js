@@ -37,10 +37,10 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * 4个汉字宽90px 5个汉字宽105px
  */
 const columnMatch = {
-             id: ["ID", true, 'varchar', true, "varchar required", {width: 120, fixed: 'left'}, true],
+             id: ["ID", true, 'varchar', true, "varchar required", {width: 120}, true],
          avatar: ["头像", true, 'image', true, "image", {width: 60}, true],
        username: ["用户名", false, 'varchar', false, "varchar", {width: 150}, true],
-         gender: ["性别", true, 'varchar', true, "varchar", {width: 150}, true],
+         gender: ["性别", true, 'gender', true, "gender", {width: 150}, true],
        birthday: ["生日", false, 'date_time', false, "varchar", {width: 180}, true],
   register_time: ["注册时间", true, 'date_time', true, "varchar", {width: 180}, true],
 last_login_time: ["上次登录时间", true, 'date_time', true, "varchar", {width: 180}, true],

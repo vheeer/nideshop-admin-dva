@@ -457,7 +457,7 @@ export default class DataTable extends React.Component {
 					okText={"确认"}	
 					cancelText={"取消"}
 				>
-					<a>删除</a>
+					<a disabled={pay_status !== 0}>删除</a>
 				</Popconfirm>
 			);
 			const order_goods_btn = (	

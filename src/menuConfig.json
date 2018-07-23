@@ -116,17 +116,10 @@
                 "model": "tag"
             }, 
             {
-                "href": "#/shop/channel", 
-                "word": "频道列表", 
-                "icon": "user", 
-                "title": "频道列表",
-                "model": "channel"
-            },
-            {
                 "href": "#/shop/ad", 
-                "word": "广告", 
+                "word": "轮播图", 
                 "icon": "user", 
-                "title": "广告",
+                "title": "轮播图",
                 "model": "ad"
             }, 
             {

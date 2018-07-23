@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Modal, InputNumber } from 'antd';
+import { Form, Input, Modal, InputNumber, Select } from 'antd';
 import { getDiff } from '../utils/mini_utils';
 import SingleImgUploader from './mini_components/SingleImgUploader';
 import styles from './OrderCollectionsPage.css';
@@ -7,6 +7,13 @@ import config from '../config';
 const { TextArea } = Input;
 const FormItem = Form.Item;
 
+const { Option } = Select;
+
+class VSelect extends React.Component {
+  render() {
+    return <Select {...this.props} defaultValue={this.props.value} />;
+  }
+}
 const GoodsCollectionCreateForm = Form.create({
   onFieldsChange(props, changedFields) {
 
@@ -48,6 +55,9 @@ const GoodsCollectionCreateForm = Form.create({
           KV(key, editGoodsObj[key]);
           break;
         case "money":
+          KV(key, editGoodsObj[key]);
+          break;
+        case "gender":
           KV(key, editGoodsObj[key]);
           break;
         case "image":
@@ -205,6 +215,24 @@ const GoodsCollectionCreateForm = Form.create({
                     name={columnMatch[key][0]}
                     action={config.host + "/" + model + "/changeimg?column=" + key + "&id=" + editGoodsObj['id']} 
                   />
+                )}
+              </FormItem>
+            ));
+            break;
+          case "gender":
+            fieldsHTML.push((
+              <FormItem
+                key={key}
+                label={columnMatch[key][0]}
+              >
+                {getFieldDecorator(key, {
+                  rules: [{ required: false, message: '' }],
+                })(
+                  <VSelect>
+                    <Option value={0}>未知</Option>
+                    <Option value={1}>男</Option>
+                    <Option value={2}>女</Option>
+                  </VSelect>
                 )}
               </FormItem>
             ));

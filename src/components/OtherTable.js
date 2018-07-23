@@ -1,10 +1,24 @@
 import React from 'react';
-import { Form, Icon, Input, Button, Modal, InputNumber } from 'antd';
+import { Form, Icon, Input, Button, Modal, InputNumber, Switch } from 'antd';
 import SingleImgUploader from './mini_components/SingleImgUploader';
 import styles from './GoodsCollectionsPage.css';
 import config from '../config';
+import MySwitch from './mini_components/MySwitch'
+import RichText from './mini_components/RichText';
 
 const FormItem = Form.Item;
+
+class MyRichText extends React.Component {
+    render() {
+      console.log(this.props);
+        return (
+            <RichText
+              {...this.props}
+              richText={this.props.value}
+            />
+        );
+    }
+}
 
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
@@ -28,6 +42,8 @@ class HorizontalLoginForm extends React.Component {
       {
         if(key === "id")
           continue;
+        if(key === "is_auto_distributor")
+          newValues[key] = values[key] === false?0:1;
         if(!form.isFieldTouched(key))
           delete newValues[key];
       }
@@ -36,15 +52,15 @@ class HorizontalLoginForm extends React.Component {
         dispatch(Object.assign({ type: model + '/updateData' }, newValues));
       }
       //重新拉取信息
-      dispatch({
-        type: model + '/readData',
-        page: currentPage
-      })
+      // dispatch({
+      //   type: model + '/readData',
+      //   page: currentPage
+      // })
       //防止提交后表单值立即重新渲染为修改前数据
-      dispatch({
-        type: model + '/changeDataValues',
-        values: newValues
-      })
+      // dispatch({
+      //   type: model + '/changeDataValues',
+      //   values: newValues
+      // })
       //关闭
       this.setState({ 
         visible: false
@@ -54,12 +70,14 @@ class HorizontalLoginForm extends React.Component {
 
   render() {
     console.log('OtherTable props: ', this.props);
-      const { dataList: editGoodsObj, visible, onCancel, onCreate, form, columnMatch, model } = this.props;
+      const { dataList: editGoodsObj, visible, onCancel, onCreate, form, columnMatch, model, dispatch } = this.props;
       const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = form;
       /*** 表单结构生成 ***/
       const fieldsHTML = [];
       for(const key in editGoodsObj[0])
       {
+
+          console.log(key);
         //id字段
         if(key === "id")
         {
@@ -115,6 +133,26 @@ class HorizontalLoginForm extends React.Component {
                 )}
               </FormItem>
             ));
+            break;;
+          case "richText":
+            fieldsHTML.push((
+              <FormItem
+                key={key}
+                label={columnMatch[key][0]}
+              >
+                {getFieldDecorator(key, {
+                  rules: [{ required: false, message: '' }],
+                })(
+                  <MyRichText onSave={text => {
+                    dispatch({
+                      type: 'others/updateData',
+                      notes: text,
+                      id: editGoodsObj[0].id
+                    })
+                  }} className={styles.textArea} />
+                )}
+              </FormItem>
+            ));
             break;
           case "varchar required":
             fieldsHTML.push((
@@ -161,6 +199,22 @@ class HorizontalLoginForm extends React.Component {
                     max={15000.00}
                     formatter={value => "￥" + parseFloat(value).toFixed(2)}
                     parser={value => parseFloat(value.split('￥')[1]?value.split('￥')[1]:0.00)}
+                  />
+                )}
+              </FormItem>
+            ));
+            break;
+          case "switch":
+            fieldsHTML.push((
+              <FormItem
+                key={key}
+                label={columnMatch[key][0]}
+              >
+                {getFieldDecorator(key, {
+                  rules: [{ required: false, message: '' }],
+                })(
+                  <MySwitch
+                    key="switch_auto_distribute"
                   />
                 )}
               </FormItem>
@@ -239,6 +293,9 @@ const WrappedHorizontalLoginForm = Form.create({
         case "textArea":
           KV(key, editGoodsObj[key]);
           break;
+        case "richText":
+          KV(key, editGoodsObj[key]);
+          break;
         case "varchar required":
           KV(key, editGoodsObj[key]);
           break;
@@ -247,6 +304,9 @@ const WrappedHorizontalLoginForm = Form.create({
           break;
         case "money":
           KV(key, editGoodsObj[key]);
+          break;
+        case "switch":
+          KV(key, editGoodsObj[key] === 0?false:true);
           break;
         case "image":
           const filelist = [{

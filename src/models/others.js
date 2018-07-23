@@ -38,7 +38,7 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * 4个汉字宽90px 5个汉字宽105px
  */
 const columnMatch = {
-                          id: ["ID", true, 'varchar', true, "varchar required", {width: 120, fixed: 'left'}, true],
+                          id: ["ID", true, 'varchar', true, "varchar required", {width: 120}, true],
                         name: ["名称", true, 'varchar', true, "varchar", {width: 150}, true],
                      freight: ["运费", true, 'varchar', true, "money", {width: 150}, true],
                  brand_title: ["制造商标题", true, 'varchar', true, "varchar", {width: 150}, true],
@@ -54,7 +54,7 @@ const columnMatch = {
              new_goods_title: ["新品标题", true, 'varchar', true, "varchar", {width: 170}, true],
         new_goods_bannar_url: ["新品大图", true, 'image', true, "image", {width: 170}, true],
             share_background: ["分享背景图", true, 'image', true, "image", {width: 170}, true],
-               is_distribute: ["开启分销", true, 'switch', false, "switch", {width: 170}, true],
+               is_distribute: ["开启分销", true, 'switch', true, "switch", {width: 170}, true],
              first_commision: ["一级佣金", true, 'varchar', true, "varchar", {width: 170}, true],
             second_commision: ["二级佣金", true, 'varchar', true, "varchar", {width: 170}, true],
                       notice: ["广播", true, 'varchar', true, "varchar", {width: 200}, true],
@@ -75,10 +75,8 @@ const columnMatch = {
              default_contact: ["默认发货电话", true, 'varchar', true, "varchar", {width: 200}, true],
 default_postscript_consignor: ["默认卖家留言", true, 'varchar', true, "varchar", {width: 200}, true],
 
-         is_auto_distributor: ["自动成为分销商", true, 'varchar', true, "varchar", {width: 200}, true],
-
-
-
+         is_auto_distributor: ["自动成为分销商", true, 'switch', true, "switch", {width: 200}, true],
+                       notes: ["购物须知", true, 'richText', true, "richText", {width: 200}, true],
 
 };
 //计算表格总宽度

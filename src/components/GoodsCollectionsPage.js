@@ -24,7 +24,7 @@ const GoodsCollectionCreateForm = Form.create({
   		}
   	});
   	editGoodsObj = editGoodsObj || {};
-  	let { id, name, category_id, goods_unit, is_new, is_hot, is_on_sale, prima_pic_url, list_pic_url, goods_brief, goods_desc, brand_id, add_time, retail_price, extra_price, primary_product_id } = editGoodsObj;
+  	let { id, name, category_id, goods_unit, is_new, is_hot, is_on_sale, prima_pic_url, list_pic_url, goods_brief, goods_desc, brand_id, tag_id, add_time, retail_price, extra_price, primary_product_id } = editGoodsObj;
     //prima图片
     let prima_pic_url_filelist = [{
       uid: -1,
@@ -55,6 +55,9 @@ const GoodsCollectionCreateForm = Form.create({
       }),
       brand_id: Form.createFormField({
         value: brand_id
+      }),
+      tag_id: Form.createFormField({
+        value: tag_id
       }),
       add_time: Form.createFormField({
         value: add_time
@@ -153,6 +156,15 @@ const GoodsCollectionCreateForm = Form.create({
                 rules: [{ required: false, message: '请输入所属品牌' }],
               })(
                 <Input placeholder="请输入品牌" />
+              )}
+            </FormItem>
+            <FormItem
+              label="标签"
+            >
+              {getFieldDecorator('tag_id', {
+                rules: [{ required: false, message: '请输入所属标签' }],
+              })(
+                <Input placeholder="请输入标签" />
               )}
             </FormItem>
             <FormItem

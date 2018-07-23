@@ -34,7 +34,8 @@ export default class RichText extends React.Component {
     // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
     editor.customConfig.onchange = html => {
       _that.setState({
-        editorContent: html
+        editorContent: html,
+        value: html
       })
     }
     editor.create();
@@ -49,7 +50,8 @@ export default class RichText extends React.Component {
     editor.customConfig.onchange = html => {
       html = html.replace(/<img/g, '<img style="margin: 0;"');
       _that.setState({
-        editorContent: html
+        editorContent: html,
+        value: html
       })
     }
     editor.create();

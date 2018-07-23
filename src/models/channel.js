@@ -39,7 +39,7 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * 4个汉字宽90px 5个汉字宽105px
  */
 const columnMatch = {
-        id: ["ID", true, 'varchar', true, "varchar required", {width: 120, fixed: 'left'}, true],
+        id: ["ID", true, 'varchar', true, "varchar required", {width: 120}, true],
       name: ["名称", true, 'varchar', true, "varchar", {width: 150}, true],
        url: ["路径", false, 'varchar', false, "varchar", {width: 150}, true],
   icon_url: ["按钮图标", true, 'image', true, "image", {width: 150}, true],
