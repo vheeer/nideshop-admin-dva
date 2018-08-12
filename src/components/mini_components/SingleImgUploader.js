@@ -48,6 +48,7 @@ export default class SingleImgUploader extends React.Component {
           onPreview={this.handlePreview}
           onChange={this.handleChange}
           onRemove={this.handleRemove}
+          withCredentials={true}
         >
           {fileList.length >= 1 ? null : uploadButton}
         </Upload>

@@ -233,7 +233,7 @@ class Goods extends React.Component {
 					添加
 				</Button>
 				</Row>
-				<Alert className={styles.alert} message="商品展示图列表" type="info" />
+				<Alert className={styles.alert} message="商品轮播图" type="info" />
 				{/* 商品展示图列表 */}
 				<Row type="flex" justify="middle">
 				<div className={"ostro_picWall"}>
@@ -261,7 +261,7 @@ class Goods extends React.Component {
 				*/}
 				</Row>
 				{/* 商品描述 */}
-				<Alert className={styles.alert} message="商品描述" type="info" />
+				<Alert className={styles.alert} message="商品详情" type="info" />
 				<Row type="flex" justify="middle">
 				{/*
 					<Col className={styles.category_col}>

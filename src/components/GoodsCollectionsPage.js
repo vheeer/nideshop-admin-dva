@@ -24,7 +24,7 @@ const GoodsCollectionCreateForm = Form.create({
   		}
   	});
   	editGoodsObj = editGoodsObj || {};
-  	let { id, name, category_id, goods_unit, is_new, is_hot, is_on_sale, prima_pic_url, list_pic_url, goods_brief, goods_desc, brand_id, tag_id, add_time, retail_price, extra_price, primary_product_id } = editGoodsObj;
+  	let { id, name, category_id, goods_unit, is_new, is_hot, is_on_sale, prima_pic_url, list_pic_url, goods_brief, goods_desc, brand_id, tag_id, add_time, retail_price, extra_price, primary_product_id, freight, is_free_delivery } = editGoodsObj;
     //prima图片
     let prima_pic_url_filelist = [{
       uid: -1,
@@ -43,6 +43,7 @@ const GoodsCollectionCreateForm = Form.create({
     is_new = numToBool(editGoodsObj.is_new);
     is_hot = numToBool(editGoodsObj.is_hot);
     is_on_sale = numToBool(editGoodsObj.is_on_sale);
+    is_free_delivery = numToBool(editGoodsObj.is_free_delivery);
     return {
       id: Form.createFormField({
         value: id
@@ -94,6 +95,12 @@ const GoodsCollectionCreateForm = Form.create({
       }),
       primary_product_id: Form.createFormField({
         value: primary_product_id
+      }),
+      freight: Form.createFormField({
+        value: freight
+      }),
+      is_free_delivery: Form.createFormField({
+        value: is_free_delivery
       })
     }
   },
@@ -210,6 +217,29 @@ const GoodsCollectionCreateForm = Form.create({
                   formatter={value => "￥" + parseFloat(value).toFixed(2)}
                   parser={value => parseFloat(value.split('￥')[1]?value.split('￥')[1]:0.00)}
                 />
+              )}
+            </FormItem>
+            <FormItem
+              label="运费"
+            >
+              {getFieldDecorator('freight', {
+                rules: [{ required: true, message: '请输入价格' }],
+              })(
+                <InputNumber
+                  min={0.00}
+                  max={15000.00}
+                  formatter={value => "￥" + parseFloat(value).toFixed(2)}
+                  parser={value => parseFloat(value.split('￥')[1]?value.split('￥')[1]:0.00)}
+                />
+              )}
+            </FormItem>
+            <FormItem
+              label="免运费"
+            >
+              {getFieldDecorator('is_free_delivery', {
+                rules: [{ required: false, message: '是否启用' }],
+              })(
+              <MySwitch />
               )}
             </FormItem>
             {/*
@@ -357,6 +387,8 @@ export default class GoodsCollectionsPage extends React.Component {
         newValues.is_hot = boolToNum(newValues.is_hot);
       if(newValues.is_on_sale)
         newValues.is_on_sale = boolToNum(newValues.is_on_sale);
+      if(newValues.is_free_delivery)
+        newValues.is_free_delivery = boolToNum(newValues.is_free_delivery);
       //提交修改的信息
       if(Object.keys(newValues).length > 1) {
         this.formRef.props.dispatch({

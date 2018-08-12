@@ -42,6 +42,8 @@ class HorizontalLoginForm extends React.Component {
       {
         if(key === "id")
           continue;
+        if(key === "is_distribute")
+          newValues[key] = values[key] === false?0:1;
         if(key === "is_auto_distributor")
           newValues[key] = values[key] === false?0:1;
         if(!form.isFieldTouched(key))

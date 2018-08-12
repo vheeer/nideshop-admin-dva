@@ -26,6 +26,7 @@ export default class Frame extends React.Component {
     
   }
   render() {
+    console.log('account', this.props);
     return (
       <Layout className={styles.main}>
         <Header className={styles.top}>
@@ -36,12 +37,12 @@ export default class Frame extends React.Component {
             ?
             <Breadcrumb>
               <Breadcrumb.Item><a href="#/login" onClick={this.props.handleClickLogin}>登录</a></Breadcrumb.Item>
-              <Breadcrumb.Item><a href="#/register" onClick={this.props.handleClickRegister}>{0?"注册":""}</a></Breadcrumb.Item>
+              <Breadcrumb.Item><a href="#/register" onClick={this.props.handleClickRegister}>注册</a></Breadcrumb.Item>
             </Breadcrumb>
             :
             <Breadcrumb>
-              <Breadcrumb.Item><a onClick={this.handleClickLogout}>{0?"退出":""}</a></Breadcrumb.Item>
-              <Breadcrumb.Item><a href="#/changePSD">{0?"改密":""}</a></Breadcrumb.Item>
+              <Breadcrumb.Item><a onClick={this.handleClickLogout}>退出</a></Breadcrumb.Item>
+              <Breadcrumb.Item><a href="#/changePSD">改密</a></Breadcrumb.Item>
             </Breadcrumb>
           }
           </div>

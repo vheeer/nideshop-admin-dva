@@ -1,6 +1,9 @@
 .category_col {
 	padding: 10px;
 }
+.category_col img {
+	width: 100%;
+}
 .category_edit_btn {
 	
 }

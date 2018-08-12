@@ -1,5 +1,5 @@
 import React from 'react';
-import './RichText.css';
+import styles from './RichText.css';
 import { Button } from 'antd';
 // import E from 'wangeditor';
 // import E from '../../routes/wangEditor';
@@ -16,7 +16,7 @@ export default class RichText extends React.Component {
     return (
       <div className="App">
         {/* 将生成编辑器 */}
-        <div ref="editorElem" style={{textAlign: 'left'}}>
+        <div className={styles.box} ref="editorElem" style={{textAlign: 'left'}}>
         </div>
 
         <Button type="primary" onClick={this.clickHandle.bind(this)}>确认修改</Button>
@@ -48,7 +48,7 @@ export default class RichText extends React.Component {
     const editor = new E(elem);
     // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
     editor.customConfig.onchange = html => {
-      html = html.replace(/<img/g, '<img style="margin: 0;"');
+      // html = html.replace(/<img/g, '<img style="margin: 0;"');
       _that.setState({
         editorContent: html,
         value: html
