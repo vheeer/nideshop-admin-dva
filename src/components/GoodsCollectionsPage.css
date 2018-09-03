@@ -1,3 +1,7 @@
 .model {
 	top: 20px;
 }
+.wrap {
+	margin: 0 auto;
+	width: 400px;
+}

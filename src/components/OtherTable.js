@@ -221,35 +221,35 @@ class HorizontalLoginForm extends React.Component {
                 )}
               </FormItem>
             ));
-          //   break;
-          // case "image":
-          //   fieldsHTML.push((
-          //     <FormItem
-          //       key={key}
-          //       label={columnMatch[key][0]}
-          //     >
-          //       {getFieldDecorator(key, {
-          //         rules: [{ required: false, message: '请输入价格' }],
-          //       })(
-          //         <SingleImgUploader
-          //           name={columnMatch[key][0]}
-          //           action={config.host + "/" + model + "/changeimg?column=" + key + "&id=" + editGoodsObj['id']}
-          //         />
-          //       )}
-          //     </FormItem>
-          //   ));
-          //   break;
+            break;
+          case "image":
+            fieldsHTML.push((
+              <FormItem
+                key={key}
+                label={columnMatch[key][0]}
+              >
+                {getFieldDecorator(key, {
+                  rules: [{ required: false, message: '请输入价格' }],
+                })(
+                  <SingleImgUploader
+                    name={columnMatch[key][0]}
+                    action={config.host + "/" + model + "/changeimg?column=" + key + "&id=" + editGoodsObj[0]['id']}
+                  />
+                )}
+              </FormItem>
+            ));
+            break;
           default:
             break;
         }
       }
 
       return (
-        <Form layout="vertical" onSubmit={this.handleSubmit}>
+        <Form className={styles.wrap} layout="vertical" onSubmit={this.handleSubmit}>
           {
             fieldsHTML
           }
-           <FormItem>
+          <FormItem>
             <Button
               type="primary"
               htmlType="submit"

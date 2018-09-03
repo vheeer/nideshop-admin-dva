@@ -57,6 +57,8 @@ const columnMatch = {
                is_distribute: ["开启分销", true, 'switch', true, "switch", {width: 170}, true],
              first_commision: ["一级佣金", true, 'varchar', true, "varchar", {width: 170}, true],
             second_commision: ["二级佣金", true, 'varchar', true, "varchar", {width: 170}, true],
+       angle_first_commision: ["天使合伙人一级佣金", true, 'varchar', true, "varchar", {width: 170}, true],
+      angle_second_commision: ["天使合伙人二级佣金", true, 'varchar', true, "varchar", {width: 170}, true],
                       notice: ["广播", true, 'varchar', true, "varchar", {width: 200}, true],
                  index_img_1: ["首页附图一", true, 'image', true, "image", {width: 170}, true],
 
