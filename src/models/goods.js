@@ -24,6 +24,10 @@ export default {
             dispatch({
               type: 'getCategory'
             });
+            dispatch({
+              type: 'specification/readData',
+              pageSize: 999
+            });
             break;
           default:
             break;
@@ -93,6 +97,20 @@ export default {
       });
       const result = yield call(goodsService.getGalleryByGood, { goods_id: goodsFocusId });
       const galleryList = result.data.data.data;
+      // 相关规格
+      yield put({
+        type: 'goods_specification/readData',
+        pageSize: 999,
+        key: 'goods_id',
+        value: goodsFocusId
+      });
+      // 相关规格
+      yield put({
+        type: 'product/readData',
+        pageSize: 999,
+        key: 'goods_id',
+        value: goodsFocusId
+      });
       // 改变当前展示图列表
       yield put({
         type: 'changeGalleryList',

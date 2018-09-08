@@ -28,6 +28,29 @@ const defaultReadDesc = {
 //获取模型操作过程
 const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defaultUpdateDesc, defaultReadDesc });
 
+const change = (state, data) => {
+  const newState = Object.assign({}, state);
+  newState.dataList = [];
+  const { columnMatch } = state;
+  for(const key in data)
+  {
+    if(key === "dataList" && typeof data[key] === "object" && data[key].length > 0)
+    {
+      const firstData = data[key][0];
+      for(const key in firstData)
+      {
+        if(columnMatch.hasOwnProperty(key) === false)
+          columnMatch[key] = [key, true, 'varchar', true, "varchar", {width: 150}, true];
+      }
+    }
+    newState[key] = data[key];
+  }
+  console.log("Model change", newState);
+  return newState;
+}
+
+reducers.change = change;
+
 /*
  * 字段对应表  
  * columnMatch: {

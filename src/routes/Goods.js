@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import styles from './Goods.css';
-import { Row, Col, Button, Alert } from 'antd';
+import { Row, Col, Button, Alert, Input, Table } from 'antd';
 import Cube from '../components/Cube';
 import CategoryCollectionsPage from '../components/CategoryCollectionsPage';
 import GoodsCollectionsPage from '../components/GoodsCollectionsPage';
@@ -16,7 +16,8 @@ class Goods extends React.Component {
 		this.state = {
 			firstCategoryModelVisible: false,
 			firstCategoryModelConfirmLoading: false,
-			toggleEditor: false
+			toggleEditor: false,
+			goods_specification: []
 		}
 		this.handleTopCategoryClick = this.handleTopCategoryClick.bind(this);
 		this.handleFirstCategoryClick = this.handleFirstCategoryClick.bind(this);
@@ -27,6 +28,7 @@ class Goods extends React.Component {
 		this.handleGalleryRemove = this.handleGalleryRemove.bind(this);
 		this.handleDescSave = this.handleDescSave.bind(this);
 		this.handleToggleEditor = this.handleToggleEditor.bind(this);
+		this.changeGoodsSpeValue = this.changeGoodsSpeValue.bind(this);
 	}
 	handleTopCategoryClick(event) {
 		const top_category_focus_id = event.currentTarget.dataset.top_category_focus_id;
@@ -85,7 +87,7 @@ class Goods extends React.Component {
 	}
 	handleGoodsClick(event) {
 		const goods_focus_id = event.currentTarget.dataset.goods_focus_id;
-		// 拉取商品展示图
+		// 拉取商品展示图、规格、描述
 		this.props.dispatch({
 			type: 'goods/getGalleryByGood',
 			goodsFocusId: goods_focus_id
@@ -143,10 +145,97 @@ class Goods extends React.Component {
 			toggleEditor: !this.state.toggleEditor
 		})
 	}
+	changeGoodsSpeValue() {
+
+	}
 	render() {
 		console.log("props of Goods: ", this.props);
 	    const { goods_desc, topCategoryFocusId, firstCategory, galleryList, goodsFocusId } = this.props.goods;
-	     // alert(goods_desc);
+	    // 规格
+	    const { dataList: goods_specifications } = this.props.goods_specification;
+	    const spes = [];
+	    let lastId = null;
+	    let tmp = {};
+	    goods_specifications.forEach(goods_specification => {
+	    	const { id, name } = goods_specification.specification;
+
+	    	if (spes[spes.length - 1] && spes[spes.length - 1]['id'] === id) {
+	    		spes[spes.length - 1]['values'].push(goods_specification.value)
+	    	} else {
+	    		spes.push({
+	    			id,
+	    			name,
+	    			values: [
+	    				goods_specification.value
+	    			]
+	    		})
+	    	}
+	    	lastId = id;
+	    })
+	    // 产品
+	    const columns = spes.map(spe => {
+	    	spe.title = spe.name;
+	    	spe.dataIndex = spe.name;
+	    	return spe;
+	    });
+	    let productData = [{
+	    	'颜色': 1,
+	    	'长度': 20
+	    }];
+
+	    let source = spes.slice(0);
+	    if(source[0])
+	    {
+		    let result = [];
+		    let i = 1;
+
+			source[0]['values'].forEach(value => {
+				let obj = {};
+					obj[source[0]['name']] = value;
+				result.push(obj)
+			})
+
+			console.log('result', result);
+
+			function cloneArr(arr) {
+				// const newArr = arr.slice(0);
+				const newArr = arr.slice(0).map(item => {
+					return Object.assign({}, item);
+				})
+				return newArr;
+			}
+
+		    function re(i) {
+		    	const { values: vs_i, name } = source[i];
+		    	let final_result = [];
+		    	vs_i.forEach(v_i => {
+		    		console.log('遍历新values')
+		    		const new_result = cloneArr(result);
+		    		new_result.forEach((item, index) => {
+		    			console.log('遍历结果集', v_i);
+		    			// item[name] = v_i;
+		    			new_result[index][name] = v_i;
+		    			console.log('结果', new_result[index][name]);
+		    			console.log('结果', new_result[index]);
+		    			console.log('结果', new_result);
+		    		})
+		    		final_result = [ ...final_result, ...new_result ]
+		    		console.log('new_result', new_result)
+		    	});
+		    	console.log('final_result', final_result)
+		    }
+		    console.log('开始')
+		    re(i);
+		    console.log('结束')
+		}
+
+	    // [{ '颜色': 1 }, { '颜色': 2 }]
+
+	    // [{ '颜色': 1 }, { '颜色': 2 }]
+	    // [{ '颜色': 1 }, { '颜色': 2 }]
+
+	    // [{ '颜色': 1, '尺寸': 1 }, { '颜色': 1, '尺寸': 2 }, { '颜色': 2, '尺寸': 1 }, { '颜色': 2, '尺寸': 2 }]
+
 		// 当前一级分类数组
 		const firstCategory_now = firstCategory.filter((item) => {
 		  return item.parent_id === parseInt(topCategoryFocusId, 10);
@@ -260,6 +349,50 @@ class Goods extends React.Component {
 				}
 				*/}
 				</Row>
+
+				{/* 商品SKU开始 */}
+				<Alert className={styles.alert} message="商品规格" type="info" />
+				<div className={styles.sku}>
+					{/* 商品所有规格 */}
+					<Row className={styles.goods_specification_item}>
+						{
+							spes.map((spe, index) => {
+								const { id, name, values } = spe;
+								return (
+									<Col key={id} span={4}>
+										<h3>{name}</h3>
+										{
+											values.map((value, index) => {
+												console.log(value, index)
+												return (
+													<Row key={index}>
+														<Col span={18}>
+															<Input onChange={this.changeGoodsSpeValue} value={value} />
+														</Col>
+														<Col span={6}>
+															<a href="javascript:(0)">删除</a>
+														</Col>
+													</Row>
+												)
+											})
+										}
+										<Button>添加规格值</Button>
+									</Col>
+								)
+							})
+						}
+						<Col key="addSpe" span={4}>
+							<Button>添加规格</Button>
+						</Col>
+					</Row>
+				</div>
+				{/* 商品SKU结束 */}
+
+				{/* 产品开始 */}
+				<Alert className={styles.alert} message="商品规格" type="info" />
+				<Table columns={columns} dataSource={productData} />
+				{/* 产品结束 */}
+
 				{/* 商品描述 */}
 				<Alert className={styles.alert} message="商品详情" type="info" />
 				<Row type="flex" justify="middle">
@@ -296,4 +429,4 @@ class Goods extends React.Component {
 		);
 	}
 }
-export default connect(({ goods }) => ({ goods }))(Goods);
+export default connect(({ goods, specification, goods_specification, product }) => ({ goods, specification, goods_specification, product }))(Goods);

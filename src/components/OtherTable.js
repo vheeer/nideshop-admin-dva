@@ -26,7 +26,6 @@ function hasErrors(fieldsError) {
 
 class HorizontalLoginForm extends React.Component {
   componentDidMount() {
-    // To disabled submit button at the beginning.
     this.props.form.validateFields();
   }
 
