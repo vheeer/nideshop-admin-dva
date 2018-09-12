@@ -104,7 +104,7 @@ export default {
         key: 'goods_id',
         value: goodsFocusId
       });
-      // 相关规格
+      // 相关产品
       yield put({
         type: 'product/readData',
         pageSize: 999,

@@ -4,7 +4,7 @@
     return {
       effects: {
         //添加数据
-        *createData({ type, ...createDesc }, { call, put }) {
+        *createData({ type, need_flush = true, callback, ...createDesc }, { call, put }) {
           //确认添加形式
           const currentCreateDesc = Object.assign(defaultCreateDesc, createDesc);
           //添加数据
@@ -15,12 +15,17 @@
           else
             return message.error("添加数据失败");
           //刷新数据
-          yield put({
-            type: 'readData'
-          });
+          if (need_flush) {
+            yield put({
+              type: 'readData'
+            });
+          }
+          if (callback) {
+            callback();
+          }
         },
         //删除数据
-        *deleteData({ type, id }, { call, put }) {
+        *deleteData({ type, need_flush = true, callback, id }, { call, put }) {
           //删除数据
           const result = yield call(CURD.delete_row, { model, id });
           //查询结果
@@ -29,12 +34,17 @@
           else
             return message.error("删除数据失败");
           //刷新数据
-          yield put({
-            type: 'readData'
-          });
+          if (need_flush) {
+            yield put({
+              type: 'readData'
+            });
+          }
+          if (callback) {
+            callback();
+          }
         },
         //更新数据
-        *updateData({ type, ...updateDesc }, { call, put }) {
+        *updateData({ type, need_flush = true, callback, ...updateDesc }, { call, put }) {
           //确认更新形式
           const currentUpdateDesc = Object.assign(defaultUpdateDesc, updateDesc);
           //更新数据
@@ -44,10 +54,15 @@
             message.success("修改成功");
           else
             return message.error("修改数据失败");
-          //刷新数据
-          yield put({
-            type: 'readData'
-          });
+          //刷新数据          
+          if (need_flush) {
+            yield put({
+              type: 'readData'
+            });
+          }
+          if (callback) {
+            callback();
+          }
         },
         //拉取数据
         *readData({ type, ...readDesc }, { call, put }) {
