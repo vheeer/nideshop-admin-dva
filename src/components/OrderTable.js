@@ -523,6 +523,7 @@ export default class DataTable extends React.Component {
 					);
 					break;
 				case 403:
+					buttons = opera;
 					break;
 				default:
 					break;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import styles from './Goods.css';
-import { Row, Col, Button, Alert, Input, Table, Modal, Select } from 'antd';
+import { Row, Col, Button, Alert, Input, Table, Modal, Select, Popover } from 'antd';
 import Cube from '../components/Cube';
 import CategoryCollectionsPage from '../components/CategoryCollectionsPage';
 import GoodsCollectionsPage from '../components/GoodsCollectionsPage';
@@ -646,13 +646,15 @@ class Goods extends React.Component {
 					this.props.goods.goodsList.map((item, index) => {
 						return (
 							<Col key={item.id} className={styles.category_col}>
-								<Cube
-									handleOnClick={this.handleGoodsClick}
-									src={item.list_pic_url}
-									goodsFocusId={item.id}
-								>
-								</Cube>
-								{item.name}
+								<Popover content={item.name} title="商品名称" placement="rightTop" trigger="hover">
+									<Cube
+										handleOnClick={this.handleGoodsClick}
+										src={item.list_pic_url}
+										goodsFocusId={item.id}
+									>
+									</Cube>
+						            {item.name.substr(0, 6)}
+						        </Popover>
 								<GoodsCollectionsPage {...this.props} goodsId={item.id} />
 							</Col>
 						);
@@ -772,7 +774,7 @@ class Goods extends React.Component {
 				        	<Option value={0}>请选择</Option>
 					        {
 					        	specification.map(spe => 
-									<Option value={spe.id}>{spe.name}</Option>
+									<Option key={spe.id} value={spe.id}>{spe.name}</Option>
 					        	)
 					        }
 						</Select>

@@ -182,7 +182,7 @@ export default class OrderGoods extends React.Component {
       placeholder: "请填写运单号",
       onSearch: this.handleUpdateFreightId,
       onChange: this.handleFreightIdChange,
-      disabled: shipping_status === 2?true:false, //收货后将无法修改
+      disabled: (order_status === 403 || order_status === 401 || shipping_status === 2)?true:false, //收货后将无法修改，退款操作时无法修改
     }
     // 卖家留言输入框
     const inputPostScriptProperties = {
@@ -192,7 +192,7 @@ export default class OrderGoods extends React.Component {
       placeholder: "不填写则使用默认留言",
       onSearch: this.handleUpdatePostScript,
       onChange: this.handlePostScriptChange,
-      disabled: shipping_status === 2?true:false, //收货后将无法修改
+      disabled: (order_status === 403 || order_status === 401 || shipping_status === 2)?true:false, //收货后将无法修改，退款操作时无法修改
     }
     // 操作按钮
     const shipping_btn_show = shipping_status === 0 && order_status === 201;

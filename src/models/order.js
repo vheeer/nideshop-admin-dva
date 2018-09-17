@@ -73,7 +73,8 @@ const columnMatch = {
             goods_price: ["商品总价", false, 'varchar', false, "money", {width: 90}, false],
                add_time: ["下单时间", true, 'date_time', false, "varchar", {width: 180}, false],
            confirm_time: ["确认时间", false, 'date_time', false, "varchar", {width: 180}, false],
-               pay_time: ["支付时间", false, 'date_time', false, "varchar", {width: 180}, false],
+               pay_time: ["支付时间", true, 'date_time', false, "varchar", {width: 180}, false],
+           receive_time: ["收货时间", true, 'date_time', false, "varchar", {width: 180}, false],
           freight_price: ["运费", true, 'varchar', false, "money", {width: 150}, false],
               coupon_id: ["优惠券ID", false, 'varchar', false, "varchar", {width: 90}, false],
               parent_id: ["parent_id", false, 'varchar', false, "varchar", {width: 150}, false],
@@ -146,15 +147,15 @@ export default {
         body: params_str
       });
       console.log("退款结果", result);
-      const { mes } = result.data.data;
-      if(mes === "success"){
-        message.success("已拒绝退款");
+      const { errno, errmsg } = result.data;
+      if(errno === 0){
+        message.success("已退款");
         //刷新数据
         yield put({
           type: 'readData'
         });
       }else{
-        message.warning("操作失败");
+        message.warning("操作失败，" + errmsg);
       }
     },
     //拒绝退款

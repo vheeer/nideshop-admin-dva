@@ -19,7 +19,7 @@ export default {
     },
     pay_status_match: {
     	'0': '未支付',
-    	'1': '已支付'
+    	'2': '已支付'
     },
     shipping_status_match: {
     	
