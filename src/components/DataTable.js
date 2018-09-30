@@ -1,6 +1,7 @@
 import React from 'react';
+import { Fragment } from 'react'
 import PropTypes from 'prop-types';
-import { Table, Spin, Divider, Popconfirm, Switch, Input, Select, Button, Message, Row, Icon, Alert } from 'antd';
+import { Table, Spin, Divider, Popconfirm, Switch, Input, Select, Button, Message, Row, Icon, Alert, Popover } from 'antd';
 import OrderCollectionsPage from '../components/OrderCollectionsPage';
 import { getDiff } from '../utils/mini_utils';
 import styles from './DataTable.css';
@@ -276,6 +277,32 @@ export default class DataTable extends React.Component {
 											className={styles.image}
 										/>
 									</div>
+								)
+							}
+						});
+						break;
+					case 'pop':
+						columns.push({
+							...columnMatch[key][5],
+							title: columnMatch[key][0],
+							dataIndex: key,
+							key,
+							render: (val, record) => {    
+								console.log('------------------val', val)
+								if(!val)
+									return null;
+								const length = val.length;
+						        const breif = val.substr(0, 6);
+						        const title = (
+						          <Fragment>
+						            <b>{record.name}</b>的属性
+						          </Fragment>
+						        );
+								return (
+									<Popover content={val} title={title} trigger="hover">
+						              {breif}
+						              {length > 6 ? '...' : null}
+						            </Popover>
 								)
 							}
 						});

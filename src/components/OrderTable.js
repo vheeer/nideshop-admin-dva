@@ -1,6 +1,7 @@
 import React from 'react';
+import { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Spin, Divider, Popconfirm, Switch, Input, Select, Button, Message, Row, Icon, Alert } from 'antd';
+import { Table, Spin, Divider, Popconfirm, Switch, Input, Select, Button, Message, Row, Icon, Alert, Popover } from 'antd';
 import OrderCollectionsPage from './OrderCollectionsPage';
 import Excel from './mini_components/Excel';
 import { getDiff } from '../utils/mini_utils';

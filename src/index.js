@@ -47,6 +47,8 @@ app.model(require('./models/cash').default);
 app.model(require('./models/distribute_apply').default);
 app.model(require('./models/distribute_commision').default);
 
+app.model(require('./models/post').default);
+
 app.model(require('./models/user').default);
 app.model(require('./models/address').default);
 

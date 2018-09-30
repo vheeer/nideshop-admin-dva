@@ -151,7 +151,21 @@
                 "model": "distribute_commision"
             }
         ]
-    }, 
+    },
+    {
+        "href": "post", 
+        "word": "信息管理", 
+        "icon": "user", 
+        "children": [
+            {
+                "href": "#/post/list", 
+                "word": "信息列表", 
+                "icon": "user", 
+                "title": "信息列表",
+                "model": "post"
+            }
+        ]
+    },
     {
         "href": "vip", 
         "word": "会员管理", 
