@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import { Fragment } from 'react'
 import PropTypes from 'prop-types';
 import { Table, Spin, Divider, Popconfirm, Switch, Input, Select, Button, Message, Row, Icon, Alert, Popover } from 'antd';
@@ -7,13 +7,13 @@ import { getDiff } from '../utils/mini_utils';
 import styles from './DataTable.css';
 const { Option } = Select;
 
-class VSelect extends React.Component {
+class VSelect extends Component {
   render() {
     return <Select {...this.props} defaultValue={this.props.value} />;
   }
 }
 
-export default class DataTable extends React.Component {
+export default class DataTable extends Component {
 	constructor(props) {
     	super(props);
 		this.state = {
@@ -66,6 +66,18 @@ export default class DataTable extends React.Component {
 			id
 		};
 		dispatchObj[key] = e === false?0:1;
+
+		dispatch(dispatchObj);
+	}
+	handlePostSwitchchange(e, record, key, data) {
+		const { dispatch, model } = this.props;
+		const { id } = record;
+
+		const dispatchObj = {
+			type: model + '/updateData',
+			id
+		};
+		dispatchObj[key] = e === false?1:2;
 
 		dispatch(dispatchObj);
 	}
@@ -235,6 +247,26 @@ export default class DataTable extends React.Component {
 										onChange={
 											((record, key, data) =>
 												e => _that.handleSwitchchange(e, record, key, data)
+											)(record, key, data)
+										}
+									></Switch>
+								)
+							}
+						});
+						break;
+					case 'postSwitch':
+						columns.push({
+							...columnMatch[key][5],
+							title: columnMatch[key][0],
+							dataIndex: key,
+							key,
+							render: (data, record) => {
+								return data === 0?data:(
+									<Switch 
+										defaultChecked={data === 2?true:(data === 1?false:false)} 
+										onChange={
+											((record, key, data) =>
+												e => _that.handlePostSwitchchange(e, record, key, data)
 											)(record, key, data)
 										}
 									></Switch>

@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import { Button, Form, Input, Modal, InputNumber, Popconfirm } from 'antd';
 import SingleImgUploader from './mini_components/SingleImgUploader';
 import MySwitch from './mini_components/MySwitch';
@@ -101,7 +101,7 @@ const CategoryCollectionCreateForm = Form.create({
     console.log(values);
   },
 })(
-  class extends React.Component {
+  class extends Component {
   	constructor(props){
   		super(props);
       this.state = {
@@ -252,7 +252,7 @@ const CategoryCollectionCreateForm = Form.create({
   }
 );
 
-export default class CategoryCollectionsPage extends React.Component {
+export default class CategoryCollectionsPage extends Component {
 	constructor(props){
 		super(props);
 		this.state = {

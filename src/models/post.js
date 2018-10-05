@@ -41,7 +41,7 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
 const columnMatch = {
                   id: ["ID", true, 'varchar', true, "varchar required", {width: 120}, true],
              user_id: ["用户ID", true, 'varchar', true, "varchar", {width: 120}, true],
-              status: ["状态，1审核2通过", true, 'varchar', true, "varchar", {width: 150}, true],
+              status: ["状态，1审核2通过", true, 'postSwitch', true, "varchar", {width: 150}, true],
                title: ["标题", true, 'varchar', true, "varchar", {width: 150}, true],
              content: ["内容", false, 'varchar', true, "varchar", {width: 150}, true],
           shop_title: ["店名", false, 'varchar', true, "varchar", {width: 150}, true],
@@ -65,7 +65,7 @@ position_description: ["位置描述", true, 'varchar', true, "varchar", {width:
               attach: ["attach", false, 'varchar', true, "varchar", {width: 150}, true],
           post_price: ["实际价格", true, 'varchar', true, "varchar", {width: 150}, true],
              referee: ["推荐人", true, 'varchar', true, "varchar", {width: 150}, true],
-            add_time: ["添加时间", true, 'varchar', true, "varchar", {width: 150}, true],
+            add_time: ["添加时间", true, 'varchar', true, "varchar", {width: 150}, true]
 };
 //计算表格总宽度
 const totalWidth = (() => {

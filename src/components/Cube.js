@@ -1,5 +1,4 @@
 import React from 'react';
-import {  } from 'antd';
 import styles from './Cube.css';
 export default class Cube extends React.Component {
 	constructor(props) {

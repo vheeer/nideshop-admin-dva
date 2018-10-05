@@ -79,6 +79,7 @@ default_postscript_consignor: ["默认卖家留言", true, 'varchar', true, "var
 
          is_auto_distributor: ["自动成为分销商", true, 'switch', true, "switch", {width: 200}, true],
                        notes: ["购物须知", true, 'richText', true, "richText", {width: 200}, true],
+                      status: ["状态", true, 'switch', true, "switch", {width: 200}, true],
 
 };
 //计算表格总宽度
