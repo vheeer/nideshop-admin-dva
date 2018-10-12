@@ -65,7 +65,7 @@ position_description: ["位置描述", true, 'varchar', true, "varchar", {width:
               attach: ["attach", false, 'varchar', true, "varchar", {width: 150}, true],
           post_price: ["实际价格", true, 'varchar', true, "varchar", {width: 150}, true],
              referee: ["推荐人", true, 'varchar', true, "varchar", {width: 150}, true],
-            add_time: ["添加时间", true, 'varchar', true, "varchar", {width: 150}, true]
+            add_time: ["添加时间", true, 'date_time', true, "varchar", {width: 150}, true]
 };
 //计算表格总宽度
 const totalWidth = (() => {

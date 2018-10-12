@@ -86,6 +86,13 @@
                 "icon": "user", 
                 "title": "订单列表",
                 "model": "order"
+            },
+            {
+                "href": "#/join/list", 
+                "word": "订单列表", 
+                "icon": "user", 
+                "title": "订单列表",
+                "model": "join"
             }
         ]
     }, 
@@ -121,6 +128,13 @@
                 "icon": "user", 
                 "title": "轮播图",
                 "model": "ad"
+            }, 
+            {
+                "href": "#/shop/bannar", 
+                "word": "信息轮播图", 
+                "icon": "user", 
+                "title": "信息轮播图",
+                "model": "bannar"
             }, 
             {
                 "href": "#/shop/comment", 

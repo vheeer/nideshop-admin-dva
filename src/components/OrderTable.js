@@ -1,4 +1,4 @@
-import React from 'react';
+import react from 'react';
 import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Table, Spin, Divider, Popconfirm, Switch, Input, Select, Button, Message, Row, Icon, Alert, Popover } from 'antd';
@@ -8,7 +8,7 @@ import { getDiff } from '../utils/mini_utils';
 import styles from './DataTable.css';
 const { Option } = Select;
 
-export default class DataTable extends React.Component {
+export default class DataTable extends react.Component {
 	constructor(props) {
     	super(props);
 		this.state = {

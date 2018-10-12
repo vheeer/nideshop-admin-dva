@@ -47,7 +47,6 @@ export default {
         }
       })
     }
-    
   },
   reducers: {
     'showLoginLoading'(state) {
@@ -61,10 +60,17 @@ export default {
       return newState;
     },
     'setUserName'(state, { userName, id }) {
+      console.log('userName', userName)
       let newState = Object.assign({}, state);
         newState.userName = userName;
         newState.id = id;
       return newState;
+    },
+    'clearUser'(state, {}) {
+      let newState = Object.assign({}, state);
+        newState.userName = undefined
+        newState.id = undefined
+      return newState
     }
   },
   effects: {
@@ -78,12 +84,14 @@ export default {
         // Cookies.set("login", "1");
         // Cookies.set("userName", mes.data.data.data.userName);
         // Cookies.set("id", mes.data.data.data.id);
+        console.log('success')
         yield put({ 
           type: 'setUserName', 
-          userName: Cookies.get("userName"),
-          id: Cookies.get("id") 
+          userName: mes.data.data.data.userName,
+          id: mes.data.data.data.id
         });
-        yield put({ type: 'main_data/fetch' });
+        console.log('success');
+        // yield put({ type: 'main_data/fetch' });
         yield put(routerRedux.push('/goods/list'));//登录成功后跳到货物管理
       }else{
         message.error("登录失败");
@@ -96,9 +104,9 @@ export default {
       if(mes.data.mes === "success"){
         message.success("注册成功并登录");
         yield put({ 
-          type: 'setUserName', 
+          type: 'setUserName',
           userName: mes.data.data.userName,
-          id: mes.data.data.id 
+          id: mes.data.data.id
         });
         yield put(routerRedux.push('/goods/list'));//注册成功后跳到货物管理
         yield put({ 
@@ -110,12 +118,10 @@ export default {
     },
     *logout ({ values }, { call, put }) {
       const mes = yield call(userService.logout);
-      if(mes.data.mes === "success"){
+      if(mes.data.data === 1){
         message.success("退出成功");
         yield put({
-          type: 'setUserName', 
-          userName: undefined,
-          id: undefined 
+          type: 'clearUser'
         });
         yield put(routerRedux.push('/login'));//退出成功后跳到登录页面
       }else{

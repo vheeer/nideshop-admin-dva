@@ -1,15 +1,17 @@
-import React from 'react';
-import { Form, Input, Modal, InputNumber, Select } from 'antd';
+import react from 'react';
+import { Form, Input, Modal, InputNumber, Select, Button } from 'antd';
 import { getDiff } from '../utils/mini_utils';
 import SingleImgUploader from './mini_components/SingleImgUploader';
 import styles from './OrderCollectionsPage.css';
 import config from '../config';
+import RichTextstyles from './mini_components/RichText.css';
+import RichTextS from './mini_components/RichTextS';
 const { TextArea } = Input;
 const FormItem = Form.Item;
 
 const { Option } = Select;
 
-class VSelect extends React.Component {
+class VSelect extends react.Component {
   render() {
     return <Select {...this.props} defaultValue={this.props.value} />;
   }
@@ -81,12 +83,15 @@ const GoodsCollectionCreateForm = Form.create({
     console.log(values);
   },
 })(
-  class extends React.Component {
+  class extends react.Component {
     constructor(props){
       super(props);
       this.state = {
 
       }
+    }
+    RichTextOnChange() {
+      console.log('rich');
     }
     render() {
       const { editGoodsObj, visible, onCancel, onCreate, form, columnMatch, model } = this.props;
@@ -237,6 +242,20 @@ const GoodsCollectionCreateForm = Form.create({
               </FormItem>
             ));
             break;
+          case "richtext":
+            fieldsHTML.push((
+              <FormItem
+                key={key}
+                label={columnMatch[key][0]}
+              >
+                {getFieldDecorator(key, {
+                  rules: [{ required: false, message: '' }],
+                })(
+                  <Input />
+                )}
+              </FormItem>
+            ));
+            break;
           default:
             break;
         }
@@ -263,7 +282,7 @@ const GoodsCollectionCreateForm = Form.create({
   }
 );
 
-export default class GoodsCollectionsPage extends React.Component {
+export default class GoodsCollectionsPage extends react.Component {
   constructor(props){
     super(props);
     this.state = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import react from 'react';
 import { connect } from 'dva';
 import styles from './IndexPage.css';
 import { header, content } from 'antd';

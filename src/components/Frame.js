@@ -1,10 +1,10 @@
-import React from 'react';
+import react from 'react';
 import { Layout, Icon, Breadcrumb, Row, Col } from 'antd';
 import styles from './Frame.css';
 import Menus from './Menus';
 const { Header, Sider, Content } = Layout;
 
-export default class Frame extends React.Component {
+export default class Frame extends react.Component {
   constructor(props) {
       super(props);
       this.state = {
@@ -18,6 +18,7 @@ export default class Frame extends React.Component {
       });
   }
   handleClickLogout() {
+    console.log('Frame props', this.props)
     this.props.dispatch({
       type: "account/logout"
     });
@@ -31,6 +32,9 @@ export default class Frame extends React.Component {
       <Layout className={styles.main}>
         <Header className={styles.top}>
           <div className={styles.logo} />
+          <div className={styles.nav_login_box}>
+            {this.props.account.userName}
+          </div>
           <div className={styles.nav_login_box}>
           {
             !this.props.account.id
@@ -56,34 +60,31 @@ export default class Frame extends React.Component {
 	            <Menus {...this.props} />
             </Sider>
             <Layout>
-                <Row>
-                  <Col span={2}>
-                    <Icon
-                      className={styles.menu_trigger_box_trigger}
-                      type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                      onClick={this.toggle}
-                    />
-                  </Col>
-                  <Col span={14}>
-                    <Breadcrumb 
-                      className={styles.nav}
-                      separator=">"
-                    >
-                      <Breadcrumb.Item>{this.props.page.firstBreadcrumbItem}</Breadcrumb.Item>
-                      {
-                        this.props.page.secondBreadcrumbItem
-                        ?
-                        <Breadcrumb.Item><a href={this.props.page.defaultKey}>{this.props.page.secondBreadcrumbItem}</a></Breadcrumb.Item>
-                        :
-                        null
-                      }
-                    </Breadcrumb>
-                  </Col>
-                  <Col span={8}></Col>
-                </Row>
-                
-            	
-                
+              <Row>
+                <Col span={2}>
+                  <Icon
+                    className={styles.menu_trigger_box_trigger}
+                    type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                    onClick={this.toggle}
+                  />
+                </Col>
+                <Col span={14}>
+                  <Breadcrumb 
+                    className={styles.nav}
+                    separator=">"
+                  >
+                    <Breadcrumb.Item>{this.props.page.firstBreadcrumbItem}</Breadcrumb.Item>
+                    {
+                      this.props.page.secondBreadcrumbItem
+                      ?
+                      <Breadcrumb.Item><a href={this.props.page.defaultKey}>{this.props.page.secondBreadcrumbItem}</a></Breadcrumb.Item>
+                      :
+                      null
+                    }
+                  </Breadcrumb>
+                </Col>
+                <Col span={8}></Col>
+              </Row>
             	<Content className={styles.content}>
                 <div className={styles.content_div}>
                 	{this.props.children}

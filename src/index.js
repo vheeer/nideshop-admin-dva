@@ -35,10 +35,13 @@ app.model(require('./models/goods_specification').default);
 app.model(require('./models/order').default);
 app.model(require('./models/order_goods').default);
 
+app.model(require('./models/join').default);
+
 app.model(require('./models/brand').default);
 app.model(require('./models/tag').default);
 app.model(require('./models/topic').default);
 app.model(require('./models/ad').default);
+app.model(require('./models/bannar').default);
 app.model(require('./models/channel').default);
 app.model(require('./models/feedback').default);
 app.model(require('./models/comment').default);

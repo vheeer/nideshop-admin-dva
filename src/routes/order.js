@@ -1,9 +1,9 @@
-import React from 'react';
+import react from 'react';
 import { connect } from 'dva';
 import styles from './IndexPage.css';
 import DataTable from '../components/OrderTable';
 
-class Order extends React.Component {
+class Order extends react.Component {
 	constructor(props) {
     	super(props);
 		this.state = {

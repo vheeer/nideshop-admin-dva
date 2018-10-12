@@ -1,9 +1,9 @@
-import React from 'react';
+import react from 'react';
 import { connect } from 'dva';
 import styles from './IndexPage.css';
 import DataTable from '../components/DataTable';
 
-class Brand extends React.Component {
+class Brand extends react.Component {
 	constructor(props) {
     	super(props);
 		this.state = {

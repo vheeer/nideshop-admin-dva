@@ -1,4 +1,4 @@
-import React from 'react';
+import react from 'react';
 import { Button, Modal, Avatar, List, Steps, Row, Col, Card, InputNumber, Input, Tooltip, Message } from 'antd';
 import styles from './OrderGoods.css';
 import config from '../config';
@@ -7,7 +7,7 @@ const { order_status_match } = config;
 const { Step } = Steps;
 const { Search } = Input;
 
-export default class OrderGoods extends React.Component {
+export default class OrderGoods extends react.Component {
   constructor(props) {
     super(props);
     this.state = { 

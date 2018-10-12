@@ -1,10 +1,10 @@
-import React from 'react';
+import react from 'react';
 import { connect } from 'dva';
 import { Form, Icon, Input, Button } from 'antd';
 
 const FormItem = Form.Item;
 
-class NormalLoginForm extends React.Component {
+class NormalLoginForm extends react.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,7 +40,7 @@ class NormalLoginForm extends React.Component {
         </FormItem>
         <FormItem>
           <Button type="primary" htmlType="submit" className="login-form-button">
-            登陆
+            登录
           </Button>
         </FormItem>
       </Form>
@@ -50,7 +50,7 @@ class NormalLoginForm extends React.Component {
 
 const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
 
-class Login extends React.Component { 
+class Login extends react.Component { 
   constructor(props) {
     super(props);
     this.state = {

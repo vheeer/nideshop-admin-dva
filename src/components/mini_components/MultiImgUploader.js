@@ -1,8 +1,8 @@
-import React from 'react';
+import react from 'react';
 import { Upload, Icon, Modal, message } from 'antd';
 import styles from './MultiImgUploader.css';
 
-export default class SingleImgUploader extends React.Component {
+export default class SingleImgUploader extends react.Component {
   constructor(props){
     super(props);
     this.state = {

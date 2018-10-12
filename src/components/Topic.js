@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import react, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Card, Button, Icon, List } from 'antd';
 

@@ -1,8 +1,8 @@
-import React from 'react';
+import react from 'react';
 import { Modal, Button } from 'antd';
 import PropTypes from 'prop-types';
 
-export default class EditModel extends React.Component {
+export default class EditModel extends react.Component {
   state = {
     visible: this.props.visible
   }

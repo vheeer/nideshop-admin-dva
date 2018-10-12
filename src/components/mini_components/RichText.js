@@ -1,11 +1,11 @@
-import React from 'react';
+import react from 'react';
 import styles from './RichText.css';
 import { Button } from 'antd';
 // import E from 'wangeditor';
 // import E from '../../routes/wangEditor';
 const E = window.wangEditor;
 
-export default class RichText extends React.Component {
+export default class RichText extends react.Component {
   constructor(props, context) {
       super(props, context);
       this.state = {

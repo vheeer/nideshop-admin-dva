@@ -37,23 +37,27 @@ const { effects, reducers } = getModalDesc(namespace, { defaultCreateDesc, defau
  * 4个汉字宽90px 5个汉字宽105px
  */
 const columnMatch = {
-                 id: ["ID", true, 'varchar', true, "varchar required", {width: 120}, true],
-             avatar: ["头像", true, 'image', true, "image", {width: 60}, true],
+                 id: ["ID", true, 'varchar', true, "varchar required", {width: 60}, true],
+             avatar: ["头像", true, 'image', true, "image", {width: 30}, true],
            username: ["用户名", false, 'varchar', false, "varchar", {width: 150}, true],
-             gender: ["性别", true, 'gender', true, "gender", {width: 150}, true],
+             gender: ["性别", true, 'gender', true, "gender", {width: 50}, true],
            birthday: ["生日", false, 'date_time', false, "varchar", {width: 180}, true],
-      register_time: ["注册时间", true, 'date_time', true, "varchar", {width: 180}, true],
-    last_login_time: ["上次登录时间", true, 'date_time', true, "varchar", {width: 180}, true],
+      register_time: ["注册时间", true, 'date_time', true, "varchar", {width: 160}, true],
+    last_login_time: ["上次登录时间", true, 'date_time', true, "varchar", {width: 160}, true],
       last_login_ip: ["上次登陆ip", false, 'varchar', false, "varchar", {width: 150}, true],
       user_level_id: ["用户等级id", false, 'varchar', false, "varchar", {width: 150}, true],
-           nickname: ["昵称", true, 'varchar', true, "varchar", {width: 150}, true],
-             mobile: ["手机", true, 'varchar', true, "varchar", {width: 150}, true],
+           nickname: ["昵称", true, 'varchar', true, "varchar", {width: 140}, true],
+             mobile: ["手机", true, 'varchar', true, "varchar", {width: 145}, true],
         register_ip: ["注册ip", false, 'varchar', true, "false", {width: 150}, true],
-            balance: ["可提现金额", true, 'varchar', true, "varchar", {width: 150}, true],
-          cash_paid: ["已提现金额", true, 'varchar', true, "varchar", {width: 150}, true],
-     is_distributor: ["是否为分销商", true, 'varchar', true, "varchar", {width: 150}, true],
-  distributor_level: ["分销级别", true, 'varchar', true, "varchar", {width: 150}, true],
-            referee: ["推荐人ID", true, 'varchar', true, "varchar", {width: 150}, true],
+            balance: ["可提现金额", true, 'varchar', true, "varchar", {width: 50}, true],
+          cash_paid: ["已提现金额", true, 'varchar', true, "varchar", {width: 50}, true],
+     is_distributor: ["是否为分销商", true, 'varchar', true, "varchar", {width: 50}, true],
+  distributor_level: ["1表示36元支付", true, 'varchar', false, "varchar", {width: 50}, true],
+distributor_level_1: ["1表示付费发帖", true, 'varchar', false, "varchar", {width: 50}, true],
+            referee: ["推荐人ID", true, 'varchar', true, "varchar", {width: 50}, true],
+          commision: ["所得佣金", false, 'varchar', false, "varchar", {width: 150}, true],
+               cash: ["", false, 'varchar', false, "varchar", {width: 150}, true],
+          remainder: ["剩余次数", true, 'varchar', true, "varchar", {width: 50}, true]
 
 //     id: 43
 //        username: 微信用户092b2bbe-1dea-40dd-848e-e10716a7db05

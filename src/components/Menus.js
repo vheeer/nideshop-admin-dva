@@ -1,6 +1,6 @@
-import React from 'react';
+import react from 'react';
 import { Menu, Icon } from 'antd';
-export default class Menus extends React.Component {
+export default class Menus extends react.Component {
   constructor(props) {
     super(props);
     this.state = {

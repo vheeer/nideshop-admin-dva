@@ -1,4 +1,4 @@
-import React from 'react';
+import react from 'react';
 import { connect } from 'dva';
 import styles from './IndexPage.css';
 import DataTable from '../components/DataTable';
@@ -11,7 +11,7 @@ export default model => connect(
 		return obj
 	}
 )(
-	class extends React.Component {
+	class extends react.Component {
 		constructor(props) {
 	    	super(props);
 			this.state = {

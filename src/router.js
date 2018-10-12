@@ -1,4 +1,4 @@
-import React from 'react';
+import react from 'react';
 import { Router, Route, Switch } from 'dva/router';
 import { connect } from 'dva';
 import Frame from './components/Frame';

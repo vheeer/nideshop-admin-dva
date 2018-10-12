@@ -1,4 +1,4 @@
-import React from 'react';
+import react from 'react';
 import { Form, Icon, Input, Button, Modal, InputNumber, Switch } from 'antd';
 import SingleImgUploader from './mini_components/SingleImgUploader';
 import styles from './GoodsCollectionsPage.css';
@@ -8,7 +8,7 @@ import RichText from './mini_components/RichText';
 
 const FormItem = Form.Item;
 
-class MyRichText extends React.Component {
+class MyRichText extends react.Component {
     render() {
       console.log(this.props);
         return (
@@ -24,7 +24,7 @@ function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
-class HorizontalLoginForm extends React.Component {
+class HorizontalLoginForm extends react.Component {
   componentDidMount() {
     this.props.form.validateFields();
   }

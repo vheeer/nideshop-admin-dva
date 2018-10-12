@@ -1,9 +1,9 @@
-import React from 'react';
+import react from 'react';
 import { connect } from 'dva';
 import { Form, Input, Button } from 'antd';
 const FormItem = Form.Item;
 
-class RegistrationForm extends React.Component {
+class RegistrationForm extends react.Component {
   constructor(props) {
     super(props);
     this.handleRegister = this.handleRegister.bind(this);

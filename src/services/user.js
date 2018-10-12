@@ -29,7 +29,7 @@ export function register(data) {
 }
 export function logout(data) {
   console.log("service: data ", JSON.stringify(data));
-  return request(config.host + '/user_logout/index', {
+  return request(config.host + '/user_login/logout', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',

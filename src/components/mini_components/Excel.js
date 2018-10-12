@@ -1,8 +1,8 @@
-import React from 'react';
+import react from 'react';
 import Workbook from 'react-excel-workbook';
 import styles from './Excel.css';
 //解决开关无法在表单内赋初始值问题
-export default class Excel extends React.Component {
+export default class Excel extends react.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

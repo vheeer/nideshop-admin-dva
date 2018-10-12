@@ -81,6 +81,8 @@ default_postscript_consignor: ["默认卖家留言", true, 'varchar', true, "var
                        notes: ["购物须知", true, 'richText', true, "richText", {width: 200}, true],
                       status: ["状态", true, 'switch', true, "switch", {width: 200}, true],
 
+                edit_img_url: ["发帖页顶图", true, 'image', true, "image", {width: 170}, true],
+
 };
 //计算表格总宽度
 const totalWidth = (() => {

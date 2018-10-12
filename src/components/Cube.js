@@ -1,6 +1,6 @@
-import React from 'react';
+import react from 'react';
 import styles from './Cube.css';
-export default class Cube extends React.Component {
+export default class Cube extends react.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

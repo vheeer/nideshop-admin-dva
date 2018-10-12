@@ -1,4 +1,4 @@
-import React from 'react';
+import react from 'react';
 import { connect } from 'dva';
 import styles from './Goods.css';
 import { Row, Col, Button, Alert, Input, Table, Modal, Select, Popover } from 'antd';
@@ -15,7 +15,7 @@ function sequence(a, b) {
 	return a - b;
 }
 
-class Goods extends React.Component {
+class Goods extends react.Component {
 	constructor(props) {
     	super(props);
 		this.state = {
